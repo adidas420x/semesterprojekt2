@@ -4,50 +4,29 @@ import java.time.LocalDate;
 
 public class Event {
 
-	private String id;
-	private String status;
-	private LocalDate startDate;
-	private LocalDate endDate;
+	private String eventID;
+	private String name;
 	
-	public Event(String id, String status, LocalDate startDate, LocalDate endDate) {
+	public Event(String eventID, String name) {
 		super();
-		this.id = id;
-		this.status = status;
-		this.startDate = startDate;
-		this.endDate = endDate;
+		this.eventID = eventID;
+		this.name = name;
 	}
 
-	public String getId() {
-		return id;
+	public String getEventID() {
+		return eventID;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setEventID(String eventID) {
+		this.eventID = eventID;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getName() {
+		return name;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public LocalDate getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
-
-	public LocalDate getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}
-
-	
 }
