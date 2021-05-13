@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JList;
 
 public class OrderGui extends JFrame {
 
@@ -49,48 +50,52 @@ public class OrderGui extends JFrame {
 		JLayeredPane layeredPane = new JLayeredPane();
 		contentPane.add(layeredPane, BorderLayout.CENTER);
 		
-		JButton btnNewButton = new JButton("Events");
-		btnNewButton.setBounds(1458, 98, 89, 23);
-		layeredPane.add(btnNewButton);
+		JButton eventBtn = new JButton("Events");
+		eventBtn.setBounds(494, 56, 145, 67);
+		layeredPane.add(eventBtn);
 		
-		JButton btnNewButton_1 = new JButton("Opret Ordre");
-		btnNewButton_1.setBounds(1363, 98, 89, 23);
-		layeredPane.add(btnNewButton_1);
+		JButton opretOrdreBtn = new JButton("Opret Ordre");
+		opretOrdreBtn.setBounds(27, 56, 145, 67);
+		layeredPane.add(opretOrdreBtn);
 		
-		JButton btnNewButton_2 = new JButton("Lager");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton lagerBtn = new JButton("Lager");
+		lagerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton_2.setBounds(1268, 98, 89, 23);
-		layeredPane.add(btnNewButton_2);
+		lagerBtn.setBounds(339, 56, 145, 67);
+		layeredPane.add(lagerBtn);
 		
-		JLabel lblNewLabel = new JLabel("Eventnavn");
-		lblNewLabel.setBounds(250, 161, 115, 14);
-		layeredPane.add(lblNewLabel);
+		JLabel eventNavnLbl = new JLabel("                                     Navn for event");
+		eventNavnLbl.setBounds(27, 133, 302, 40);
+		layeredPane.add(eventNavnLbl);
 		
-		JButton btnNewButton_3 = new JButton("Annuller");
-		btnNewButton_3.setBounds(614, 443, 89, 23);
-		layeredPane.add(btnNewButton_3);
+		JButton annullerBtn = new JButton("Annuller");
+		annullerBtn.setBounds(896, 654, 137, 67);
+		layeredPane.add(annullerBtn);
 		
-		JButton btnNewButton_4 = new JButton("Accepter");
-		btnNewButton_4.setBounds(749, 443, 89, 23);
-		layeredPane.add(btnNewButton_4);
+		JButton accepterBtn = new JButton("Accepter");
+		accepterBtn.setBounds(1064, 654, 137, 67);
+		layeredPane.add(accepterBtn);
 		
-		JButton btnNewButton_5 = new JButton("Tilføj");
-		btnNewButton_5.setBounds(488, 648, 89, 23);
-		layeredPane.add(btnNewButton_5);
+		JButton tilfjBtn = new JButton("Tilføj");
+		tilfjBtn.setBounds(226, 746, 90, 35);
+		layeredPane.add(tilfjBtn);
 		
 		txtIndtastAntal = new JTextField();
 		txtIndtastAntal.setText("Indtast antal");
-		txtIndtastAntal.setBounds(207, 618, 86, 20);
+		txtIndtastAntal.setBounds(27, 746, 201, 35);
 		layeredPane.add(txtIndtastAntal);
 		txtIndtastAntal.setColumns(10);
 		
 		txtIndtastSgeordEller = new JTextField();
 		txtIndtastSgeordEller.setText("Indtast søgeord eller ID");
-		txtIndtastSgeordEller.setBounds(186, 380, 201, 20);
+		txtIndtastSgeordEller.setBounds(27, 268, 201, 20);
 		layeredPane.add(txtIndtastSgeordEller);
 		txtIndtastSgeordEller.setColumns(10);
+		
+		JButton aktiveOrdreBtn = new JButton("Aktive Ordre");
+		aktiveOrdreBtn.setBounds(182, 56, 147, 67);
+		layeredPane.add(aktiveOrdreBtn);
 	}
 }
