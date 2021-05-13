@@ -9,4 +9,10 @@ public class OrderDB implements OrderDBIF {
 	private static final String insertOrderQ = "insert into orders eventstartdate = ?, eventenddate = ?, eventstatus = ?, employeeid = ?";
 
 	private PreparedStatement insertOrder;
+	
+	public OrderDB() throws DataAccessException{
+		try {
+			insertOrder = DBConnection.getIn
+		}
+	}
 }
