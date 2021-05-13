@@ -71,7 +71,7 @@ public class OrderGui extends JFrame {
 		layeredPane.add(eventNavnLbl);
 		
 		JButton annullerBtn = new JButton("Annuller");
-		annullerBtn.setBounds(896, 654, 137, 67);
+		annullerBtn.setBounds(917, 654, 137, 67);
 		layeredPane.add(annullerBtn);
 		
 		JButton accepterBtn = new JButton("Accepter");
