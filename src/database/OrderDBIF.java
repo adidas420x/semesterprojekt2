@@ -6,4 +6,6 @@ public interface OrderDBIF {
 
 	//indsæt funktion fra order
 	
+	public Order insertOrder(Order order) throws DataAccessException;
+	
 }
