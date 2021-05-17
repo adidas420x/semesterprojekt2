@@ -13,12 +13,19 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import java.awt.Font;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class OrderGui extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtIndtastAntal;
 	private JTextField txtIndtastSgeordEller;
+	private JTextField txtNavnForEvent;
+	private JTable table;
+	private JTable table_1;
+	private JTable table_2;
 
 	/**
 	 * Launch the application.
@@ -51,24 +58,23 @@ public class OrderGui extends JFrame {
 		contentPane.add(layeredPane, BorderLayout.CENTER);
 		
 		JButton eventBtn = new JButton("Events");
+		eventBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		eventBtn.setBounds(494, 56, 145, 67);
 		layeredPane.add(eventBtn);
 		
 		JButton opretOrdreBtn = new JButton("Opret Ordre");
+		opretOrdreBtn.setFont(new Font("Sylfaen", Font.BOLD, 20));
 		opretOrdreBtn.setBounds(27, 56, 145, 67);
 		layeredPane.add(opretOrdreBtn);
 		
 		JButton lagerBtn = new JButton("Lager");
+		lagerBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		lagerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
 		lagerBtn.setBounds(339, 56, 145, 67);
 		layeredPane.add(lagerBtn);
-		
-		JLabel eventNavnLbl = new JLabel("                                     Navn for event");
-		eventNavnLbl.setBounds(27, 133, 302, 40);
-		layeredPane.add(eventNavnLbl);
 		
 		JButton annullerBtn = new JButton("Annuller");
 		annullerBtn.setBounds(917, 654, 137, 67);
@@ -89,13 +95,71 @@ public class OrderGui extends JFrame {
 		txtIndtastAntal.setColumns(10);
 		
 		txtIndtastSgeordEller = new JTextField();
+		txtIndtastSgeordEller.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		txtIndtastSgeordEller.setText("Indtast søgeord eller ID");
-		txtIndtastSgeordEller.setBounds(27, 268, 201, 20);
+		txtIndtastSgeordEller.setBounds(27, 267, 201, 40);
 		layeredPane.add(txtIndtastSgeordEller);
 		txtIndtastSgeordEller.setColumns(10);
 		
 		JButton aktiveOrdreBtn = new JButton("Aktive Ordre");
+		aktiveOrdreBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		aktiveOrdreBtn.setBounds(182, 56, 147, 67);
 		layeredPane.add(aktiveOrdreBtn);
+		
+		JLabel lblNewLabel = new JLabel("DEADLIGHT");
+		lblNewLabel.setFont(new Font("Sylfaen", Font.PLAIN, 52));
+		lblNewLabel.setBounds(931, 56, 415, 67);
+		layeredPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("LYDIKSEN");
+		lblNewLabel_1.setFont(new Font("Sylfaen", Font.BOLD, 60));
+		lblNewLabel_1.setBounds(931, 82, 312, 104);
+		layeredPane.add(lblNewLabel_1);
+		
+		txtNavnForEvent = new JTextField();
+		txtNavnForEvent.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		txtNavnForEvent.setText("Navn for event");
+		txtNavnForEvent.setBounds(27, 133, 302, 40);
+		layeredPane.add(txtNavnForEvent);
+		txtNavnForEvent.setColumns(10);
+		
+		table = new JTable();
+		table.setBounds(44, 334, 1, 1);
+		layeredPane.add(table);
+		
+		table_1 = new JTable();
+		table_1.setBounds(27, 514, 244, -164);
+		layeredPane.add(table_1);
+		
+		table_2 = new JTable();
+		table_2.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+			},
+			new String[] {
+				"Udstyr", "Tilg\u00E6ngelige"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Object.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		table_2.setFont(new Font("Sylfaen", Font.PLAIN, 14));
+		table_2.setBounds(27, 334, 234, 192);
+		layeredPane.add(table_2);
 	}
 }
