@@ -14,7 +14,7 @@ public class EventController {
 		this.eventDB = new EventDB();
 	}
 
-	public Event SearchEvent(String eventID) {
+	public Event findEventByID(String eventID) {
 		return eventDB.findEventbyID(eventID);
 	}
 }
