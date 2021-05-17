@@ -4,17 +4,25 @@ import java.time.LocalDate;
 
 public class Order {
 
+	private String orderID;
 	private LocalDate eventStartDate;
 	private LocalDate eventEndDate;
 	private String eventStatus;
-	private String employeeID;
-	
-	public Order(LocalDate eventStartDate, LocalDate eventEndDate, String eventStatus, String employeeID) {
+
+	public Order(String orderID, LocalDate eventStartDate, LocalDate eventEndDate, String eventStatus) {
 		super();
+		this.orderID = orderID;
 		this.eventStartDate = eventStartDate;
 		this.eventEndDate = eventEndDate;
 		this.eventStatus = eventStatus;
-		this.employeeID = employeeID;
+	}
+
+	public String getOrderID() {
+		return orderID;
+	}
+
+	public void setOrderID(String orderID) {
+		this.orderID = orderID;
 	}
 
 	public LocalDate getEventStartDate() {
@@ -41,14 +49,4 @@ public class Order {
 		this.eventStatus = eventStatus;
 	}
 
-	public String getEmployeeID() {
-		return employeeID;
-	}
-
-	public void setEmployeeID(String employeeID) {
-		this.employeeID = employeeID;
-	}
-	
-	
-	
 }

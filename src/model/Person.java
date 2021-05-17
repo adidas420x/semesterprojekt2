@@ -7,7 +7,7 @@ public class Person {
 	private String zipCode;
 	private String city;
 	private String address;
-	
+
 	public Person(String email, String phoneNo, String zipCode, String city, String address) {
 		super();
 		this.email = email;
@@ -56,6 +56,5 @@ public class Person {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	
+
 }

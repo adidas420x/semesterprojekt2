@@ -2,17 +2,32 @@ package model;
 
 public class Equipment {
 
+	private String eqName;
 	private String eqID;
 	private String storageLocation;
 	private String description;
+	private String manufacturer;
 	private int stock;
-	
-	public Equipment(String eqID, String storageLocation, String description, int stock) {
+	private String owner;
+
+	public Equipment(String eqName, String eqID, String storageLocation, String description, String manufacturer,
+			int stock, String owner) {
 		super();
+		this.eqName = eqName;
 		this.eqID = eqID;
 		this.storageLocation = storageLocation;
 		this.description = description;
+		this.manufacturer = manufacturer;
 		this.stock = stock;
+		this.owner = owner;
+	}
+
+	public String getEqName() {
+		return eqName;
+	}
+
+	public void setEqName(String eqName) {
+		this.eqName = eqName;
 	}
 
 	public String getEqID() {
@@ -39,6 +54,14 @@ public class Equipment {
 		this.description = description;
 	}
 
+	public String getManufacturer() {
+		return manufacturer;
+	}
+
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+
 	public int getStock() {
 		return stock;
 	}
@@ -46,5 +69,13 @@ public class Equipment {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-	
+
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+
 }
