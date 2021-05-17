@@ -2,25 +2,25 @@ package model;
 
 public class Equipment {
 
-	private String serialNo;
+	private String eqID;
 	private String storageLocation;
 	private String description;
 	private int stock;
 	
-	public Equipment(String serialNo, String storageLocation, String description, int stock) {
+	public Equipment(String eqID, String storageLocation, String description, int stock) {
 		super();
-		this.serialNo = serialNo;
+		this.eqID = eqID;
 		this.storageLocation = storageLocation;
 		this.description = description;
 		this.stock = stock;
 	}
 
-	public String getSerialNo() {
-		return serialNo;
+	public String getEqID() {
+		return eqID;
 	}
 
-	public void setSerialNo(String serialNo) {
-		this.serialNo = serialNo;
+	public void setEqID(String eqID) {
+		this.eqID = eqID;
 	}
 
 	public String getStorageLocation() {

@@ -14,9 +14,14 @@ public class EquipmentController {
 		this.equipmentDB = new EquipmentDB();
 	}
 	
-	public Equipment searchEquipment(String name, String eqID) {
-		return EquipmentDB.findEquipment(name, eqID);
+	public Equipment findEquipmentByName(String name) {
+		return EquipmentDB.findEquipmentName(name);
 	}
+	
+	public Equipment findEquimentByID(String eqID) {
+		return EquipmentDB.findEquipmentID(eqID);
+	}
+	
 	
 	public Equipment addEquipmentToOrder(String eqID, quantity??) {
 		return null;

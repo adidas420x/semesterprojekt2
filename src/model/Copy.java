@@ -2,21 +2,21 @@ package model;
 
 public class Copy {
 	
-	private String eqID;
+	private String serialNo;
 	private String eqAvailability;
 	
-	public Copy(String eqID, String eqAvailability) {
+	public Copy(String serialNo, String eqAvailability) {
 		super();
-		this.eqID = eqID;
+		this.serialNo = serialNo;
 		this.eqAvailability = eqAvailability;
 	}
 
-	public String getEqID() {
-		return eqID;
+	public String getSerialNo() {
+		return serialNo;
 	}
 
-	public void setEqID(String eqID) {
-		this.eqID = eqID;
+	public void setSerialNo(String serialNo) {
+		this.serialNo = serialNo;
 	}
 
 	public String getEqAvailability() {
