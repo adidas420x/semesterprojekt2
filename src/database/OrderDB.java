@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import model.Order;
+import model.Event;
 
 public class OrderDB implements OrderDBIF {
 
@@ -27,8 +28,8 @@ public class OrderDB implements OrderDBIF {
 			insertOrder.setDate(2, Date.valueOf(order.getStartDate()));
 			insertOrder.setDate(3, Date.valueOf(order.getEndDate()));
 			insertOrder.setString(4, order.getEventStatus());
-			//insertOrder.setString(5, event.getEventID());
-			//insertOrder.setString(6, orderController.getEmployee().get);
+			insertOrder.setString(5, order.getEvent().getEventID());
+			insertOrder.setString(6, order.getEmployee().getEmployeeID());
 			insertOrder.executeUpdate();
 			return order;
 		} catch (SQLException e) {
