@@ -3,13 +3,11 @@ package database;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import model.Order;
-import model.Event;
 
 public class OrderDB implements OrderDBIF {
 
-	private static final String insertOrderQ = "insert into orders orderid = ?, eventstartdate = ?, eventenddate = ?, eventstatus = ?, eventid = ?, ephoneno = ?";
+	private static final String insertOrderQ = "insert into orders orderid = ?, eventstartdate = ?, eventenddate = ?, eventstatus = ?, eventid = ?, employeeid = ?";
 
 	private PreparedStatement insertOrder;
 	
