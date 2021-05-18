@@ -8,13 +8,23 @@ public class Order {
 	private LocalDate eventStartDate;
 	private LocalDate eventEndDate;
 	private String eventStatus;
+	private Event event;
 
-	public Order(String orderID, LocalDate eventStartDate, LocalDate eventEndDate, String eventStatus) {
+	public Order(String orderID, LocalDate eventStartDate, LocalDate eventEndDate, String eventStatus, Event event) {
 		super();
 		this.orderID = orderID;
 		this.eventStartDate = eventStartDate;
 		this.eventEndDate = eventEndDate;
 		this.eventStatus = eventStatus;
+		this.event = event;
+	}
+
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
 	}
 
 	public String getOrderID() {
