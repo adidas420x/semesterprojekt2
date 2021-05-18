@@ -9,6 +9,15 @@ public class Order {
 	private LocalDate endDate;
 	private String eventStatus;
 	private Event event;
+	private Employee employee;
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
 
 	public Order(String orderID, LocalDate startDate, LocalDate endDate, String eventStatus, Event event) {
 		super();
