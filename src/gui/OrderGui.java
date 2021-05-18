@@ -78,20 +78,22 @@ public class OrderGui extends JFrame {
 		layeredPane.add(lagerBtn);
 		
 		JButton annullerBtn = new JButton("Annuller");
-		annullerBtn.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		annullerBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		annullerBtn.setBounds(917, 654, 137, 67);
 		layeredPane.add(annullerBtn);
 		
 		JButton accepterBtn = new JButton("Accepter");
-		accepterBtn.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		accepterBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		accepterBtn.setBounds(1064, 654, 137, 67);
 		layeredPane.add(accepterBtn);
 		
 		JButton tilfjBtn = new JButton("Tilføj");
+		tilfjBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tilfjBtn.setBounds(239, 589, 90, 35);
 		layeredPane.add(tilfjBtn);
 		
 		txtIndtastAntal = new JTextField();
+		txtIndtastAntal.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		txtIndtastAntal.setText("Indtast antal");
 		txtIndtastAntal.setBounds(27, 589, 302, 35);
 		layeredPane.add(txtIndtastAntal);
@@ -186,19 +188,18 @@ public class OrderGui extends JFrame {
 		lblValgtUdstyr.setBounds(794, 350, 260, 35);
 		layeredPane.add(lblValgtUdstyr);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setEditable(true);
-		comboBox.addItem("Nibe 2019");
-		comboBox.addItem("Samsung livestream event 2020");
-		comboBox.addItem("2 vogne, 4 ekstra kamera");
-		comboBox.addItem("1 vogn, 2 ekstra kamera");
-		
-		comboBox.setSelectedItem("Skabeloner");
-		
-		
-		JComboBox comboBoxSkabeloner = new JComboBox();
-		comboBoxSkabeloner.setFont(new Font("Sylfaen", Font.PLAIN, 11));
+			
+		JComboBox<String> comboBoxSkabeloner = new JComboBox<String>();
+		comboBoxSkabeloner.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		comboBoxSkabeloner.setBounds(27, 183, 302, 40);
 		layeredPane.add(comboBoxSkabeloner);
+		
+		comboBoxSkabeloner.setEditable(true);
+		comboBoxSkabeloner.addItem("Nibe 2019");
+		comboBoxSkabeloner.addItem("Samsung livestream event 2020");
+		comboBoxSkabeloner.addItem("2 vogne, 4 ekstra kamera");
+		comboBoxSkabeloner.addItem("1 vogn, 2 ekstra kamera");
+		
+		comboBoxSkabeloner.setSelectedItem("Skabeloner");
 	}
 }
