@@ -5,16 +5,16 @@ import java.time.LocalDate;
 public class Order {
 
 	private String orderID;
-	private LocalDate eventStartDate;
-	private LocalDate eventEndDate;
+	private LocalDate startDate;
+	private LocalDate endDate;
 	private String eventStatus;
 	private Event event;
 
-	public Order(String orderID, LocalDate eventStartDate, LocalDate eventEndDate, String eventStatus, Event event) {
+	public Order(String orderID, LocalDate startDate, LocalDate endDate, String eventStatus, Event event) {
 		super();
 		this.orderID = orderID;
-		this.eventStartDate = eventStartDate;
-		this.eventEndDate = eventEndDate;
+		this.startDate = startDate;
+		this.endDate = endDate;
 		this.eventStatus = eventStatus;
 		this.event = event;
 	}
@@ -36,19 +36,19 @@ public class Order {
 	}
 
 	public LocalDate getEventStartDate() {
-		return eventStartDate;
+		return startDate;
 	}
 
-	public void setEventStartDate(LocalDate eventStartDate) {
-		this.eventStartDate = eventStartDate;
+	public void setEventStartDate(LocalDate startDate) {
+		this.startDate = startDate;
 	}
 
 	public LocalDate getEventEndDate() {
-		return eventEndDate;
+		return endDate;
 	}
 
-	public void setEventEndDate(LocalDate eventEndDate) {
-		this.eventEndDate = eventEndDate;
+	public void setEventEndDate(LocalDate endDate) {
+		this.endDate = endDate;
 	}
 
 	public String getEventStatus() {

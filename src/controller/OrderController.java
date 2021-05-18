@@ -23,6 +23,7 @@ public class OrderController {
 		this.equipmentController = new EquipmentController();
 		this.orderDB = new OrderDB();
 		this.eventController = new EventController();
+		this.order = null;
 		
 	}
 	
@@ -33,8 +34,8 @@ public class OrderController {
 	
 	public Order createOrder(String eventID, LocalDate startDate, LocalDate endDate, String employeeID) {
 		Event e = eventController.findEventByID(eventID);
-		Order o = new order(String eventID, LocalDate startDate, LocalDate endDate, String employeeID);
-		Order.setEvent(e);
 		
+		Order o = new Order(e, startDate, endDate, employeeID);
+		return o;
 	}
 }
