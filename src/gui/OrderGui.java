@@ -27,6 +27,8 @@ public class OrderGui extends JFrame {
 	private JTextField txtNavnForEvent;
 	private JTable findUdstyrTable;
 	private JTable valgtUdstyrTable;
+	private JTextField txtDdmmyyyy;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -78,20 +80,22 @@ public class OrderGui extends JFrame {
 		layeredPane.add(lagerBtn);
 		
 		JButton annullerBtn = new JButton("Annuller");
-		annullerBtn.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		annullerBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		annullerBtn.setBounds(917, 654, 137, 67);
 		layeredPane.add(annullerBtn);
 		
 		JButton accepterBtn = new JButton("Accepter");
-		accepterBtn.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		accepterBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		accepterBtn.setBounds(1064, 654, 137, 67);
 		layeredPane.add(accepterBtn);
 		
 		JButton tilfjBtn = new JButton("Tilføj");
+		tilfjBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tilfjBtn.setBounds(239, 589, 90, 35);
 		layeredPane.add(tilfjBtn);
 		
 		txtIndtastAntal = new JTextField();
+		txtIndtastAntal.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		txtIndtastAntal.setText("Indtast antal");
 		txtIndtastAntal.setBounds(27, 589, 302, 35);
 		layeredPane.add(txtIndtastAntal);
@@ -121,7 +125,7 @@ public class OrderGui extends JFrame {
 		
 		txtNavnForEvent = new JTextField();
 		txtNavnForEvent.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		txtNavnForEvent.setText("Navn for event");
+		txtNavnForEvent.setText("Navn for event:");
 		txtNavnForEvent.setBounds(27, 133, 302, 40);
 		layeredPane.add(txtNavnForEvent);
 		txtNavnForEvent.setColumns(10);
@@ -181,24 +185,42 @@ public class OrderGui extends JFrame {
 		valgtUdstyrTable.setBounds(794, 390, 302, 192);
 		layeredPane.add(valgtUdstyrTable);
 		
-		JLabel lblValgtUdstyr = new JLabel("Valgt udstyr");
+		JLabel lblValgtUdstyr = new JLabel("Valgt udstyr:");
 		lblValgtUdstyr.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		lblValgtUdstyr.setBounds(794, 350, 260, 35);
 		layeredPane.add(lblValgtUdstyr);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setEditable(true);
-		comboBox.addItem("Nibe 2019");
-		comboBox.addItem("Samsung livestream event 2020");
-		comboBox.addItem("2 vogne, 4 ekstra kamera");
-		comboBox.addItem("1 vogn, 2 ekstra kamera");
-		
-		comboBox.setSelectedItem("Skabeloner");
-		
-		
-		JComboBox comboBoxSkabeloner = new JComboBox();
-		comboBoxSkabeloner.setFont(new Font("Sylfaen", Font.PLAIN, 11));
+			
+		JComboBox<String> comboBoxSkabeloner = new JComboBox<String>();
+		comboBoxSkabeloner.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		comboBoxSkabeloner.setBounds(27, 183, 302, 40);
 		layeredPane.add(comboBoxSkabeloner);
+		
+		comboBoxSkabeloner.setEditable(true);
+		comboBoxSkabeloner.addItem("Nibe 2019");
+		comboBoxSkabeloner.addItem("Samsung livestream event 2020");
+		comboBoxSkabeloner.addItem("2 vogne, 4 ekstra kamera");
+		comboBoxSkabeloner.addItem("1 vogn, 2 ekstra kamera");
+		
+		comboBoxSkabeloner.setSelectedItem("Skabeloner");
+		
+		txtDdmmyyyy = new JTextField();
+		txtDdmmyyyy.setText("dd-mm-yyyy");
+		txtDdmmyyyy.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		txtDdmmyyyy.setColumns(10);
+		txtDdmmyyyy.setBounds(27, 233, 128, 40);
+		layeredPane.add(txtDdmmyyyy);
+		
+		textField = new JTextField();
+		textField.setText("dd-mm-yyyy");
+		textField.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		textField.setColumns(10);
+		textField.setBounds(201, 233, 128, 40);
+		layeredPane.add(textField);
+		
+		JLabel lblNewLabel = new JLabel("-");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
+		lblNewLabel.setBounds(169, 244, 15, 13);
+		layeredPane.add(lblNewLabel);
 	}
 }
