@@ -4,6 +4,8 @@ import model.Person;
 
 public interface PersonDBIF {
 
-	Person findPersonByPhone(String phoneNo) throws DataAccessException;
+	Person findCustomerByPhone(String phoneNo) throws DataAccessException;
+	
+	Person findEmployeeByID(String employeeID) throws DataAccessException;
 
 }

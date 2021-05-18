@@ -11,7 +11,10 @@ import model.Person;
 
 public class PersonDB implements PersonDBIF {
 	private static final String findCustomerByPhoneQ = "select email, phoneNo, zipcode," + 
-	 "address, from persons where phoneNo = ? and type = c";
+	 " address, from persons where phoneNo = ? and type = c";
+	
+	//private static final String findEmployeeByIDQ = "select email, phoneNo, zipCode, address, from persons where "
+	
 	private PreparedStatement findCustomerByPhone;
 	
 	public PersonDB() throws DataAccessException {
@@ -46,6 +49,15 @@ public class PersonDB implements PersonDBIF {
 				rs.getString("adress"),
 				rs.getString("type")
 				);
+		return c;
+	}
+	
+	private List<Customer> buildObjects(ResultSet rs) throws SQLException{
+		List<Customer> res = new ArrayList<>();
+		while(rs.next()) {
+			res.add(buildObject(rs));
+		}
+		return res;
 	}
 	
 	
