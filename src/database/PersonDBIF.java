@@ -1,12 +1,13 @@
 package database;
 
 import model.Customer;
+import model.Employee;
 import model.Person;
 
 public interface PersonDBIF {
-
-	Person findPersonByPhone(String phoneNo) throws DataAccessException;
-
+	
 	Customer findCustomerByPhone(String phoneNo) throws DataAccessException;
+
+	Employee findEmployeeByID(String employeeID) throws DataAccessException;
 
 }
