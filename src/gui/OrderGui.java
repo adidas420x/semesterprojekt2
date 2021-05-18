@@ -25,7 +25,8 @@ public class OrderGui extends JFrame {
 	private JTextField txtNavnForEvent;
 	private JTable table;
 	private JTable table_1;
-	private JTable table_2;
+	private JTable findUdstyrTable;
+	private JTable valgtUdstyrTable;
 
 	/**
 	 * Launch the application.
@@ -77,20 +78,22 @@ public class OrderGui extends JFrame {
 		layeredPane.add(lagerBtn);
 		
 		JButton annullerBtn = new JButton("Annuller");
+		annullerBtn.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		annullerBtn.setBounds(917, 654, 137, 67);
 		layeredPane.add(annullerBtn);
 		
 		JButton accepterBtn = new JButton("Accepter");
+		accepterBtn.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		accepterBtn.setBounds(1064, 654, 137, 67);
 		layeredPane.add(accepterBtn);
 		
 		JButton tilfjBtn = new JButton("Tilføj");
-		tilfjBtn.setBounds(226, 746, 90, 35);
+		tilfjBtn.setBounds(239, 533, 90, 35);
 		layeredPane.add(tilfjBtn);
 		
 		txtIndtastAntal = new JTextField();
 		txtIndtastAntal.setText("Indtast antal");
-		txtIndtastAntal.setBounds(27, 746, 201, 35);
+		txtIndtastAntal.setBounds(27, 533, 302, 35);
 		layeredPane.add(txtIndtastAntal);
 		txtIndtastAntal.setColumns(10);
 		
@@ -106,15 +109,15 @@ public class OrderGui extends JFrame {
 		aktiveOrdreBtn.setBounds(182, 56, 147, 67);
 		layeredPane.add(aktiveOrdreBtn);
 		
-		JLabel lblNewLabel = new JLabel("DEADLIGHT");
-		lblNewLabel.setFont(new Font("Sylfaen", Font.PLAIN, 52));
-		lblNewLabel.setBounds(931, 56, 415, 67);
-		layeredPane.add(lblNewLabel);
+		JLabel lblDeadlight = new JLabel("DEADLIGHT");
+		lblDeadlight.setFont(new Font("Sylfaen", Font.PLAIN, 52));
+		lblDeadlight.setBounds(931, 56, 415, 67);
+		layeredPane.add(lblDeadlight);
 		
-		JLabel lblNewLabel_1 = new JLabel("LYDIKSEN");
-		lblNewLabel_1.setFont(new Font("Sylfaen", Font.BOLD, 60));
-		lblNewLabel_1.setBounds(931, 82, 312, 104);
-		layeredPane.add(lblNewLabel_1);
+		JLabel lblLydisken = new JLabel("LYDIKSEN");
+		lblLydisken.setFont(new Font("Sylfaen", Font.BOLD, 60));
+		lblLydisken.setBounds(931, 82, 312, 104);
+		layeredPane.add(lblLydisken);
 		
 		txtNavnForEvent = new JTextField();
 		txtNavnForEvent.setFont(new Font("Sylfaen", Font.PLAIN, 16));
@@ -131,10 +134,10 @@ public class OrderGui extends JFrame {
 		table_1.setBounds(27, 514, 244, -164);
 		layeredPane.add(table_1);
 		
-		table_2 = new JTable();
-		table_2.setModel(new DefaultTableModel(
+		findUdstyrTable = new JTable();
+		findUdstyrTable.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null},
+				{"Udstyr", "Tilg\u00E6ngelige"},
 				{null, null},
 				{null, null},
 				{null, null},
@@ -158,8 +161,37 @@ public class OrderGui extends JFrame {
 				return columnTypes[columnIndex];
 			}
 		});
-		table_2.setFont(new Font("Sylfaen", Font.PLAIN, 14));
-		table_2.setBounds(27, 334, 234, 192);
-		layeredPane.add(table_2);
+		findUdstyrTable.setFont(new Font("Sylfaen", Font.PLAIN, 14));
+		findUdstyrTable.setBounds(27, 334, 302, 192);
+		layeredPane.add(findUdstyrTable);
+		
+		valgtUdstyrTable = new JTable();
+		valgtUdstyrTable.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"Udstyr", "Valgt antal"},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+				{null, null},
+			},
+			new String[] {
+				"Udstyr", "Valgt antal"
+			}
+		));
+		valgtUdstyrTable.setFont(new Font("Sylfaen", Font.PLAIN, 14));
+		valgtUdstyrTable.setBounds(794, 334, 302, 192);
+		layeredPane.add(valgtUdstyrTable);
+		
+		JLabel lblValgtUdstyr = new JLabel("Valgt udstyr");
+		lblValgtUdstyr.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		lblValgtUdstyr.setBounds(794, 294, 260, 35);
+		layeredPane.add(lblValgtUdstyr);
 	}
 }
