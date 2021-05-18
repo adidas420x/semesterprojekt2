@@ -35,19 +35,19 @@ public class Order {
 		this.orderID = orderID;
 	}
 
-	public LocalDate getEventStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setEventStartDate(LocalDate startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public LocalDate getEventEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEventEndDate(LocalDate endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 
