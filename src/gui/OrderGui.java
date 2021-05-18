@@ -25,8 +25,6 @@ public class OrderGui extends JFrame {
 	private JTextField txtIndtastAntal;
 	private JTextField txtIndtastSgeordEller;
 	private JTextField txtNavnForEvent;
-	private JTable table;
-	private JTable table_1;
 	private JTable findUdstyrTable;
 	private JTable valgtUdstyrTable;
 
@@ -128,14 +126,6 @@ public class OrderGui extends JFrame {
 		layeredPane.add(txtNavnForEvent);
 		txtNavnForEvent.setColumns(10);
 		
-		table = new JTable();
-		table.setBounds(44, 334, 1, 1);
-		layeredPane.add(table);
-		
-		table_1 = new JTable();
-		table_1.setBounds(27, 514, 244, -164);
-		layeredPane.add(table_1);
-		
 		findUdstyrTable = new JTable();
 		findUdstyrTable.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -196,16 +186,18 @@ public class OrderGui extends JFrame {
 		lblValgtUdstyr.setBounds(794, 350, 260, 35);
 		layeredPane.add(lblValgtUdstyr);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(298, 340, 174, -98);
-		layeredPane.add(scrollPane);
+		JComboBox comboBox = new JComboBox();
+		comboBox.setEditable(true);
+		comboBox.addItem("Nibe 2019");
+		comboBox.addItem("Samsung livestream event 2020");
+		comboBox.addItem("2 vogne, 4 ekstra kamera");
+		comboBox.addItem("1 vogn, 2 ekstra kamera");
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(533, 337, -74, -31);
-		layeredPane.add(scrollPane_1);
+		comboBox.setSelectedItem("Skabeloner");
+		
 		
 		JComboBox comboBoxSkabeloner = new JComboBox();
-		comboBoxSkabeloner.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		comboBoxSkabeloner.setFont(new Font("Sylfaen", Font.PLAIN, 11));
 		comboBoxSkabeloner.setBounds(27, 183, 302, 40);
 		layeredPane.add(comboBoxSkabeloner);
 	}
