@@ -16,6 +16,8 @@ import javax.swing.JList;
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
+import javax.swing.JComboBox;
 
 public class OrderGui extends JFrame {
 
@@ -74,7 +76,7 @@ public class OrderGui extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		lagerBtn.setBounds(339, 56, 145, 67);
+		lagerBtn.setBounds(338, 56, 145, 67);
 		layeredPane.add(lagerBtn);
 		
 		JButton annullerBtn = new JButton("Annuller");
@@ -88,25 +90,25 @@ public class OrderGui extends JFrame {
 		layeredPane.add(accepterBtn);
 		
 		JButton tilfjBtn = new JButton("Tilføj");
-		tilfjBtn.setBounds(239, 533, 90, 35);
+		tilfjBtn.setBounds(239, 589, 90, 35);
 		layeredPane.add(tilfjBtn);
 		
 		txtIndtastAntal = new JTextField();
 		txtIndtastAntal.setText("Indtast antal");
-		txtIndtastAntal.setBounds(27, 533, 302, 35);
+		txtIndtastAntal.setBounds(27, 589, 302, 35);
 		layeredPane.add(txtIndtastAntal);
 		txtIndtastAntal.setColumns(10);
 		
 		txtIndtastSgeordEller = new JTextField();
 		txtIndtastSgeordEller.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		txtIndtastSgeordEller.setText("Indtast søgeord eller ID");
-		txtIndtastSgeordEller.setBounds(27, 267, 201, 40);
+		txtIndtastSgeordEller.setBounds(27, 323, 302, 40);
 		layeredPane.add(txtIndtastSgeordEller);
 		txtIndtastSgeordEller.setColumns(10);
 		
 		JButton aktiveOrdreBtn = new JButton("Aktive Ordre");
 		aktiveOrdreBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
-		aktiveOrdreBtn.setBounds(182, 56, 147, 67);
+		aktiveOrdreBtn.setBounds(182, 56, 145, 67);
 		layeredPane.add(aktiveOrdreBtn);
 		
 		JLabel lblDeadlight = new JLabel("DEADLIGHT");
@@ -162,7 +164,7 @@ public class OrderGui extends JFrame {
 			}
 		});
 		findUdstyrTable.setFont(new Font("Sylfaen", Font.PLAIN, 14));
-		findUdstyrTable.setBounds(27, 334, 302, 192);
+		findUdstyrTable.setBounds(27, 390, 302, 192);
 		layeredPane.add(findUdstyrTable);
 		
 		valgtUdstyrTable = new JTable();
@@ -186,12 +188,25 @@ public class OrderGui extends JFrame {
 			}
 		));
 		valgtUdstyrTable.setFont(new Font("Sylfaen", Font.PLAIN, 14));
-		valgtUdstyrTable.setBounds(794, 334, 302, 192);
+		valgtUdstyrTable.setBounds(794, 390, 302, 192);
 		layeredPane.add(valgtUdstyrTable);
 		
 		JLabel lblValgtUdstyr = new JLabel("Valgt udstyr");
 		lblValgtUdstyr.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblValgtUdstyr.setBounds(794, 294, 260, 35);
+		lblValgtUdstyr.setBounds(794, 350, 260, 35);
 		layeredPane.add(lblValgtUdstyr);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(298, 340, 174, -98);
+		layeredPane.add(scrollPane);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(533, 337, -74, -31);
+		layeredPane.add(scrollPane_1);
+		
+		JComboBox comboBoxSkabeloner = new JComboBox();
+		comboBoxSkabeloner.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		comboBoxSkabeloner.setBounds(27, 183, 302, 40);
+		layeredPane.add(comboBoxSkabeloner);
 	}
 }
