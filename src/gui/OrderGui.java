@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLayeredPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -27,8 +29,8 @@ public class OrderGui extends JFrame {
 	private JTextField txtNavnForEvent;
 	private JTable findUdstyrTable;
 	private JTable valgtUdstyrTable;
-	private JTextField txtDdmmyyyy;
-	private JTextField textField;
+	private JTextField txtEventStartDate;
+	private JTextField txtEventEndDate;
 
 	/**
 	 * Launch the application.
@@ -96,6 +98,12 @@ public class OrderGui extends JFrame {
 		
 		txtIndtastAntal = new JTextField();
 		txtIndtastAntal.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		txtIndtastAntal.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtIndtastAntal.setText("");
+			}
+		});
 		txtIndtastAntal.setText("Indtast antal");
 		txtIndtastAntal.setBounds(27, 589, 302, 35);
 		layeredPane.add(txtIndtastAntal);
@@ -103,6 +111,12 @@ public class OrderGui extends JFrame {
 		
 		txtIndtastSgeordEller = new JTextField();
 		txtIndtastSgeordEller.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		txtIndtastSgeordEller.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtIndtastSgeordEller.setText("");
+			}
+		});
 		txtIndtastSgeordEller.setText("Indtast søgeord eller ID");
 		txtIndtastSgeordEller.setBounds(27, 323, 302, 40);
 		layeredPane.add(txtIndtastSgeordEller);
@@ -129,6 +143,12 @@ public class OrderGui extends JFrame {
 		txtNavnForEvent.setBounds(27, 133, 302, 40);
 		layeredPane.add(txtNavnForEvent);
 		txtNavnForEvent.setColumns(10);
+		txtNavnForEvent.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtNavnForEvent.setText("");
+			}
+		});
 		
 		findUdstyrTable = new JTable();
 		findUdstyrTable.setModel(new DefaultTableModel(
@@ -204,19 +224,31 @@ public class OrderGui extends JFrame {
 		
 		comboBoxSkabeloner.setSelectedItem("Skabeloner");
 		
-		txtDdmmyyyy = new JTextField();
-		txtDdmmyyyy.setText("dd-mm-yyyy");
-		txtDdmmyyyy.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		txtDdmmyyyy.setColumns(10);
-		txtDdmmyyyy.setBounds(27, 233, 128, 40);
-		layeredPane.add(txtDdmmyyyy);
+		txtEventStartDate = new JTextField();
+		txtEventStartDate.setText("dd-mm-yyyy");
+		txtEventStartDate.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		txtEventStartDate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtEventStartDate.setText("");
+			}
+		});
+		txtEventStartDate.setColumns(10);
+		txtEventStartDate.setBounds(27, 233, 128, 40);
+		layeredPane.add(txtEventStartDate);
 		
-		textField = new JTextField();
-		textField.setText("dd-mm-yyyy");
-		textField.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		textField.setColumns(10);
-		textField.setBounds(201, 233, 128, 40);
-		layeredPane.add(textField);
+		txtEventEndDate = new JTextField();
+		txtEventEndDate.setText("dd-mm-yyyy");
+		txtEventEndDate.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		txtEventEndDate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtEventEndDate.setText("");
+			}
+		});
+		txtEventEndDate.setColumns(10);
+		txtEventEndDate.setBounds(201, 233, 128, 40);
+		layeredPane.add(txtEventEndDate);
 		
 		JLabel lblNewLabel = new JLabel("-");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
