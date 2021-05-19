@@ -20,10 +20,5 @@ public class EquipmentController {
 	
 	public Equipment findEquipmentByID(String eqID) throws DataAccessException {
 		return equipmentDB.findEquipmentByID(eqID);
-	}
-	
-	
-	public Equipment addEquipmentToOrder(String eqID, quantity??) {
-		return null;
-	}
+	}	
 }

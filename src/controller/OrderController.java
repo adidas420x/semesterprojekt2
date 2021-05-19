@@ -27,7 +27,7 @@ public class OrderController {
 		
 	}
 	
-	public Event findEventByID(String eventID) {
+	public Event findEventByID(String eventID) throws DataAccessException {
 		Event e = eventController.findEventByID(eventID);
 		return e;
 	}
