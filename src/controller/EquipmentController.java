@@ -14,12 +14,12 @@ public class EquipmentController {
 		this.equipmentDB = new EquipmentDB();
 	}
 	
-	public Equipment findEquipmentByName(String name) {
-		return EquipmentDB.findEquipmentName(name);
+	public Equipment findEquipmentByName(String name) throws DataAccessException {
+		return equipmentDB.findEquipmentByName(name);
 	}
 	
-	public Equipment findEquimentByID(String eqID) {
-		return EquipmentDB.findEquipmentID(eqID);
+	public Equipment findEquipmentByID(String eqID) throws DataAccessException {
+		return equipmentDB.findEquipmentByID(eqID);
 	}
 	
 	
