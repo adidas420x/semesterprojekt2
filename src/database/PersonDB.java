@@ -49,7 +49,7 @@ public class PersonDB implements PersonDBIF {
 	@Override
 	public Employee findEmployeeByID(String employeeID) throws DataAccessException {
 		try {
-			findEmployeeByID.setString(??, employeeID);
+			findEmployeeByID.setString(1, employeeID);
 			ResultSet rs = findEmployeeByID.executeQuery();
 			Employee e = null;
 			if (rs.next()) {
