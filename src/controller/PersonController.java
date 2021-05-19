@@ -21,5 +21,4 @@ public class PersonController {
 	public Employee findEmployeeByID(String employeeID) throws DataAccessException {
 		return personDB.findEmployeeByID(employeeID);
 	}
-
 }

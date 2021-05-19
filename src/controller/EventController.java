@@ -14,8 +14,8 @@ public class EventController {
 		this.eventDB = new EventDB();
 	}
 
-	public Event findEventByID(String eventID) {
-		return eventDB.findEventbyID(eventID);
+	public Event findEventByID(String eventID) throws DataAccessException {
+		return eventDB.findEventByID(eventID);
 	}
 	
 	
