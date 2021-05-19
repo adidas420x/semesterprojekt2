@@ -31,7 +31,6 @@ public class OrderGui extends JFrame {
 	private JTable valgtUdstyrTable;
 	private JTextField txtEventStartDate;
 	private JTextField txtEventEndDate;
-
 	/**
 	 * Launch the application.
 	 */
@@ -82,6 +81,11 @@ public class OrderGui extends JFrame {
 		layeredPane.add(lagerBtn);
 		
 		JButton annullerBtn = new JButton("Annuller");
+		annullerBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		annullerBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		annullerBtn.setBounds(917, 654, 137, 67);
 		layeredPane.add(annullerBtn);
