@@ -1,6 +1,8 @@
 package controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import database.DataAccessException;
 import database.OrderDB;
@@ -19,9 +21,8 @@ public class OrderController {
 	private EventController eventController;
 	private Order order;
 	private PersonController personController;
+	private Equipment equipment;
 
-	
-	
 	public OrderController() throws DataAccessException {
 		super();
 		this.orderController = new OrderController();
@@ -43,8 +44,11 @@ public class OrderController {
 		return emp;
 	}
 	
-	public Equipment findEquipmentById(String eqID) {
+	public List<Equipment> findEquipmentById(String eqID) {
+		List<Equipment> eq = equipmentController.findEquipmentByID(eqID);
 		
+		//skal returnere en liste med de equipment der er
+		return eq;
 	}
 	
 	public Equipment findEquipment(String nameID) {
