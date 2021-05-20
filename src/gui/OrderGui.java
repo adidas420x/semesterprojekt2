@@ -31,6 +31,7 @@ public class OrderGui extends JFrame {
 	private JTable valgtUdstyrTable;
 	private JTextField txtEventStartDate;
 	private JTextField txtEventEndDate;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -81,11 +82,6 @@ public class OrderGui extends JFrame {
 		layeredPane.add(lagerBtn);
 		
 		JButton annullerBtn = new JButton("Annuller");
-		annullerBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
 		annullerBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		annullerBtn.setBounds(917, 654, 137, 67);
 		layeredPane.add(annullerBtn);
@@ -122,7 +118,7 @@ public class OrderGui extends JFrame {
 			}
 		});
 		txtIndtastSgeordEller.setText("Indtast søgeord eller ID");
-		txtIndtastSgeordEller.setBounds(27, 323, 302, 40);
+		txtIndtastSgeordEller.setBounds(27, 312, 302, 40);
 		layeredPane.add(txtIndtastSgeordEller);
 		txtIndtastSgeordEller.setColumns(10);
 		
@@ -154,22 +150,16 @@ public class OrderGui extends JFrame {
 			}
 		});
 		
+		JScrollPane scrollPaneFindUdstyr = new JScrollPane();
+		scrollPaneFindUdstyr.setBounds(27, 365, 302, 214);
+		layeredPane.add(scrollPaneFindUdstyr);
+		
 		findUdstyrTable = new JTable();
+		scrollPaneFindUdstyr.setViewportView(findUdstyrTable);
+		findUdstyrTable.setFillsViewportHeight(true);
 		findUdstyrTable.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"Udstyr", "Tilg\u00E6ngelige"},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-			},
+				},
 			new String[] {
 				"Udstyr", "Tilg\u00E6ngelige"
 			}
@@ -181,38 +171,8 @@ public class OrderGui extends JFrame {
 				return columnTypes[columnIndex];
 			}
 		});
+		
 		findUdstyrTable.setFont(new Font("Sylfaen", Font.PLAIN, 14));
-		findUdstyrTable.setBounds(27, 390, 302, 192);
-		layeredPane.add(findUdstyrTable);
-		
-		valgtUdstyrTable = new JTable();
-		valgtUdstyrTable.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Udstyr", "Valgt antal"},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"Udstyr", "Valgt antal"
-			}
-		));
-		valgtUdstyrTable.setFont(new Font("Sylfaen", Font.PLAIN, 14));
-		valgtUdstyrTable.setBounds(794, 390, 302, 192);
-		layeredPane.add(valgtUdstyrTable);
-		
-		JLabel lblValgtUdstyr = new JLabel("Valgt udstyr:");
-		lblValgtUdstyr.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		lblValgtUdstyr.setBounds(794, 350, 260, 35);
-		layeredPane.add(lblValgtUdstyr);
 		
 			
 		JComboBox<String> comboBoxSkabeloner = new JComboBox<String>();
@@ -258,5 +218,20 @@ public class OrderGui extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
 		lblNewLabel.setBounds(169, 244, 15, 13);
 		layeredPane.add(lblNewLabel);
+		
+		JScrollPane scrollPaneValgtUdstyr = new JScrollPane();
+		scrollPaneValgtUdstyr.setBounds(795, 365, 302, 214);
+		layeredPane.add(scrollPaneValgtUdstyr);
+		
+		valgtUdstyrTable = new JTable();
+		scrollPaneValgtUdstyr.setViewportView(valgtUdstyrTable);
+		valgtUdstyrTable.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Udstyr", "Valgt antal"
+			}
+		));
+		valgtUdstyrTable.setFont(new Font("Sylfaen", Font.PLAIN, 14));
 	}
 }
