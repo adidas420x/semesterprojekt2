@@ -11,13 +11,6 @@ public class Order {
 	private Event event;
 	private Employee employee;
 
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
 
 	public Order(String orderID, LocalDate startDate, LocalDate endDate, String eventStatus, Event event) {
 		super();
@@ -28,6 +21,14 @@ public class Order {
 		this.event = event;
 	}
 
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	
 	public Event getEvent() {
 		return event;
 	}
