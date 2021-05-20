@@ -9,38 +9,20 @@ public class Order {
 	private LocalDate endDate;
 	private Employee employee;
 
-
-	public Order(Event event,  LocalDate startDate, LocalDate endDate, Employee employee) {
+	public Order(Event event, LocalDate startDate, LocalDate endDate, Employee employee) {
 		super();
-		this.orderID = orderID;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.eventStatus = eventStatus;
 		this.event = event;
-	}
-
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	
+
 	public Event getEvent() {
 		return event;
 	}
 
 	public void setEvent(Event event) {
 		this.event = event;
-	}
-
-	public String getOrderID() {
-		return orderID;
-	}
-
-	public void setOrderID(String orderID) {
-		this.orderID = orderID;
 	}
 
 	public LocalDate getStartDate() {
@@ -59,12 +41,12 @@ public class Order {
 		this.endDate = endDate;
 	}
 
-	public String getEventStatus() {
-		return eventStatus;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setEventStatus(String eventStatus) {
-		this.eventStatus = eventStatus;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 }
