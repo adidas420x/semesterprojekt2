@@ -25,12 +25,13 @@ public class OrderGui extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtIndtastAntal;
-	private JTextField txtIndtastSgeordEller;
+	private JTextField txtIndtastSgeord;
 	private JTextField txtNavnForEvent;
 	private JTable findUdstyrTable;
 	private JTable valgtUdstyrTable;
 	private JTextField txtEventStartDate;
 	private JTextField txtEventEndDate;
+	private JTextField txtIndtastID;
 	
 	/**
 	 * Launch the application.
@@ -62,6 +63,16 @@ public class OrderGui extends JFrame {
 		JLayeredPane layeredPane = new JLayeredPane();
 		contentPane.add(layeredPane, BorderLayout.CENTER);
 		
+		JButton idSgBtn = new JButton("Søg");
+		idSgBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		idSgBtn.setBounds(239, 370, 90, 40);
+		layeredPane.add(idSgBtn);
+		
+		JButton navnSgBtn = new JButton("Søg");
+		navnSgBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		navnSgBtn.setBounds(239, 315, 90, 40);
+		layeredPane.add(navnSgBtn);
+		
 		JButton eventBtn = new JButton("Events");
 		eventBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		eventBtn.setBounds(494, 56, 145, 67);
@@ -83,17 +94,17 @@ public class OrderGui extends JFrame {
 		
 		JButton annullerBtn = new JButton("Annuller");
 		annullerBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
-		annullerBtn.setBounds(917, 654, 137, 67);
+		annullerBtn.setBounds(908, 654, 145, 67);
 		layeredPane.add(annullerBtn);
 		
 		JButton accepterBtn = new JButton("Accepter");
 		accepterBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
-		accepterBtn.setBounds(1064, 654, 137, 67);
+		accepterBtn.setBounds(1064, 654, 145, 67);
 		layeredPane.add(accepterBtn);
 		
 		JButton tilfjBtn = new JButton("Tilføj");
 		tilfjBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tilfjBtn.setBounds(239, 589, 90, 35);
+		tilfjBtn.setBounds(239, 650, 90, 40);
 		layeredPane.add(tilfjBtn);
 		
 		txtIndtastAntal = new JTextField();
@@ -105,22 +116,22 @@ public class OrderGui extends JFrame {
 			}
 		});
 		txtIndtastAntal.setText("Indtast antal");
-		txtIndtastAntal.setBounds(27, 589, 302, 35);
+		txtIndtastAntal.setBounds(27, 650, 302, 40);
 		layeredPane.add(txtIndtastAntal);
 		txtIndtastAntal.setColumns(10);
 		
-		txtIndtastSgeordEller = new JTextField();
-		txtIndtastSgeordEller.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		txtIndtastSgeordEller.addMouseListener(new MouseAdapter() {
+		txtIndtastSgeord = new JTextField();
+		txtIndtastSgeord.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		txtIndtastSgeord.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				txtIndtastSgeordEller.setText("");
+				txtIndtastSgeord.setText("");
 			}
 		});
-		txtIndtastSgeordEller.setText("Indtast søgeord eller ID");
-		txtIndtastSgeordEller.setBounds(27, 312, 302, 40);
-		layeredPane.add(txtIndtastSgeordEller);
-		txtIndtastSgeordEller.setColumns(10);
+		txtIndtastSgeord.setText("Indtast søgeord");
+		txtIndtastSgeord.setBounds(27, 315, 302, 40);
+		layeredPane.add(txtIndtastSgeord);
+		txtIndtastSgeord.setColumns(10);
 		
 		JButton aktiveOrdreBtn = new JButton("Aktive Ordre");
 		aktiveOrdreBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
@@ -151,7 +162,7 @@ public class OrderGui extends JFrame {
 		});
 		
 		JScrollPane scrollPaneFindUdstyr = new JScrollPane();
-		scrollPaneFindUdstyr.setBounds(27, 365, 302, 214);
+		scrollPaneFindUdstyr.setBounds(27, 430, 302, 215);
 		layeredPane.add(scrollPaneFindUdstyr);
 		
 		findUdstyrTable = new JTable();
@@ -220,10 +231,11 @@ public class OrderGui extends JFrame {
 		layeredPane.add(lblNewLabel);
 		
 		JScrollPane scrollPaneValgtUdstyr = new JScrollPane();
-		scrollPaneValgtUdstyr.setBounds(795, 365, 302, 214);
+		scrollPaneValgtUdstyr.setBounds(494, 315, 302, 330);
 		layeredPane.add(scrollPaneValgtUdstyr);
 		
 		valgtUdstyrTable = new JTable();
+		valgtUdstyrTable.setFillsViewportHeight(true);
 		scrollPaneValgtUdstyr.setViewportView(valgtUdstyrTable);
 		valgtUdstyrTable.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -233,5 +245,12 @@ public class OrderGui extends JFrame {
 			}
 		));
 		valgtUdstyrTable.setFont(new Font("Sylfaen", Font.PLAIN, 14));
+		
+		txtIndtastID = new JTextField();
+		txtIndtastID.setText("Indtast ID");
+		txtIndtastID.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		txtIndtastID.setColumns(10);
+		txtIndtastID.setBounds(27, 370, 302, 40);
+		layeredPane.add(txtIndtastID);
 	}
 }
