@@ -11,12 +11,12 @@ import model.Equipment;
 
 public class EquipmentDB implements EquipmentDBIF {
 
-	private static final String findEquipmentByIDQ = " select eqName, storageLocation, eqID. description,"
-			+ "manufacturer, stock. owner, type from equipments where eqID = ?";
-	private static final String findEquipmentByNameQ = " select eqName, storageLocation, eqID. description,"
-			+ "manufacturer, stock. owner, type from equipments where eqName = ?";
-	private static final String findEquipmentQ = " select eqName, storageLocation, eqID. description,"
-			+ "manufacturer, stock. owner, type from equipments where eqID = ?";
+	private static final String findEquipmentByIDQ = " select eqName, storageLocation, eqID, description,"
+			+ "manufacturer, stock, owner, type from equipments where eqID = ?";
+	private static final String findEquipmentByNameQ = " select eqName, storageLocation, eqID, description,"
+			+ "manufacturer, stock, owner, type from equipments where eqName = ?";
+	private static final String findEquipmentQ = " select eqName, storageLocation, eqID, description,"
+			+ "manufacturer, stock, owner, type from equipments where eqID = ?";
 
 	private PreparedStatement findEquipmentByID;
 	private PreparedStatement findEquipmentByName;
