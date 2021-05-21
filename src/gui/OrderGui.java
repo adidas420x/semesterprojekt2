@@ -163,6 +163,7 @@ public class OrderGui extends JFrame {
 		layeredPane.add(lblDeadlight);
 		
 		JLabel lblLydisken = new JLabel("LYDIKSEN");
+		lblLydisken.setForeground(new Color(135, 206, 250));
 		lblLydisken.setFont(new Font("Sylfaen", Font.BOLD, 60));
 		lblLydisken.setBounds(931, 82, 312, 104);
 		layeredPane.add(lblLydisken);
@@ -249,6 +250,7 @@ public class OrderGui extends JFrame {
 		layeredPane.add(txtEventEndDate);
 		
 		JLabel lblNewLabel = new JLabel("-");
+		lblNewLabel.setForeground(new Color(135, 206, 250));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
 		lblNewLabel.setBounds(248, 242, 15, 13);
 		layeredPane.add(lblNewLabel);
@@ -288,5 +290,11 @@ public class OrderGui extends JFrame {
 		opretOgGemBtn.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		opretOgGemBtn.setBounds(909, 730, 300, 67);
 		layeredPane.add(opretOgGemBtn);
+		
+		JPanel panel = new JPanel();
+		panel.setForeground(new Color(105, 105, 105));
+		panel.setBackground(new Color(0, 0, 128));
+		panel.setBounds(0, 0, 1530, 835);
+		layeredPane.add(panel);
 	}
 }
