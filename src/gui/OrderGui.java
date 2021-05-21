@@ -65,12 +65,12 @@ public class OrderGui extends JFrame {
 		
 		JButton idSgBtn = new JButton("Søg");
 		idSgBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		idSgBtn.setBounds(239, 370, 90, 40);
+		idSgBtn.setBounds(393, 370, 90, 40);
 		layeredPane.add(idSgBtn);
 		
 		JButton navnSgBtn = new JButton("Søg");
 		navnSgBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		navnSgBtn.setBounds(239, 315, 90, 40);
+		navnSgBtn.setBounds(393, 315, 90, 40);
 		layeredPane.add(navnSgBtn);
 		
 		JButton eventBtn = new JButton("Events");
@@ -78,7 +78,7 @@ public class OrderGui extends JFrame {
 		eventBtn.setBounds(494, 56, 145, 67);
 		layeredPane.add(eventBtn);
 		
-		JButton opretOrdreBtn = new JButton("Opret Ordre");
+		JButton opretOrdreBtn = new JButton("Opret ordre");
 		opretOrdreBtn.setFont(new Font("Sylfaen", Font.BOLD, 20));
 		opretOrdreBtn.setBounds(27, 56, 145, 67);
 		layeredPane.add(opretOrdreBtn);
@@ -92,19 +92,19 @@ public class OrderGui extends JFrame {
 		lagerBtn.setBounds(338, 56, 145, 67);
 		layeredPane.add(lagerBtn);
 		
-		JButton annullerBtn = new JButton("Annuller");
-		annullerBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
-		annullerBtn.setBounds(908, 654, 145, 67);
+		JButton annullerBtn = new JButton("Annuller ordre");
+		annullerBtn.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		annullerBtn.setBounds(909, 654, 145, 67);
 		layeredPane.add(annullerBtn);
 		
-		JButton accepterBtn = new JButton("Accepter");
-		accepterBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
-		accepterBtn.setBounds(1064, 654, 145, 67);
-		layeredPane.add(accepterBtn);
+		JButton opretBtn = new JButton("Opret ordre");
+		opretBtn.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		opretBtn.setBounds(1064, 654, 145, 67);
+		layeredPane.add(opretBtn);
 		
 		JButton tilfjBtn = new JButton("Tilføj");
 		tilfjBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		tilfjBtn.setBounds(239, 650, 90, 40);
+		tilfjBtn.setBounds(393, 650, 90, 40);
 		layeredPane.add(tilfjBtn);
 		
 		txtIndtastAntal = new JTextField();
@@ -116,7 +116,7 @@ public class OrderGui extends JFrame {
 			}
 		});
 		txtIndtastAntal.setText("Indtast antal");
-		txtIndtastAntal.setBounds(27, 650, 302, 40);
+		txtIndtastAntal.setBounds(27, 650, 456, 40);
 		layeredPane.add(txtIndtastAntal);
 		txtIndtastAntal.setColumns(10);
 		
@@ -129,11 +129,11 @@ public class OrderGui extends JFrame {
 			}
 		});
 		txtIndtastSgeord.setText("Indtast søgeord");
-		txtIndtastSgeord.setBounds(27, 315, 302, 40);
+		txtIndtastSgeord.setBounds(27, 315, 456, 40);
 		layeredPane.add(txtIndtastSgeord);
 		txtIndtastSgeord.setColumns(10);
 		
-		JButton aktiveOrdreBtn = new JButton("Aktive Ordre");
+		JButton aktiveOrdreBtn = new JButton("Aktive ordre");
 		aktiveOrdreBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
 		aktiveOrdreBtn.setBounds(182, 56, 145, 67);
 		layeredPane.add(aktiveOrdreBtn);
@@ -151,7 +151,7 @@ public class OrderGui extends JFrame {
 		txtNavnForEvent = new JTextField();
 		txtNavnForEvent.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		txtNavnForEvent.setText("Navn for event:");
-		txtNavnForEvent.setBounds(27, 133, 302, 40);
+		txtNavnForEvent.setBounds(27, 133, 456, 40);
 		layeredPane.add(txtNavnForEvent);
 		txtNavnForEvent.setColumns(10);
 		txtNavnForEvent.addMouseListener(new MouseAdapter() {
@@ -162,7 +162,7 @@ public class OrderGui extends JFrame {
 		});
 		
 		JScrollPane scrollPaneFindUdstyr = new JScrollPane();
-		scrollPaneFindUdstyr.setBounds(27, 430, 302, 215);
+		scrollPaneFindUdstyr.setBounds(27, 430, 456, 215);
 		layeredPane.add(scrollPaneFindUdstyr);
 		
 		findUdstyrTable = new JTable();
@@ -188,7 +188,7 @@ public class OrderGui extends JFrame {
 			
 		JComboBox<String> comboBoxSkabeloner = new JComboBox<String>();
 		comboBoxSkabeloner.setFont(new Font("Sylfaen", Font.PLAIN, 16));
-		comboBoxSkabeloner.setBounds(27, 183, 302, 40);
+		comboBoxSkabeloner.setBounds(27, 183, 366, 40);
 		layeredPane.add(comboBoxSkabeloner);
 		
 		comboBoxSkabeloner.setEditable(true);
@@ -209,7 +209,7 @@ public class OrderGui extends JFrame {
 			}
 		});
 		txtEventStartDate.setColumns(10);
-		txtEventStartDate.setBounds(27, 233, 128, 40);
+		txtEventStartDate.setBounds(27, 233, 200, 40);
 		layeredPane.add(txtEventStartDate);
 		
 		txtEventEndDate = new JTextField();
@@ -222,16 +222,16 @@ public class OrderGui extends JFrame {
 			}
 		});
 		txtEventEndDate.setColumns(10);
-		txtEventEndDate.setBounds(201, 233, 128, 40);
+		txtEventEndDate.setBounds(283, 233, 200, 40);
 		layeredPane.add(txtEventEndDate);
 		
 		JLabel lblNewLabel = new JLabel("-");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
-		lblNewLabel.setBounds(169, 244, 15, 13);
+		lblNewLabel.setBounds(248, 242, 15, 13);
 		layeredPane.add(lblNewLabel);
 		
 		JScrollPane scrollPaneValgtUdstyr = new JScrollPane();
-		scrollPaneValgtUdstyr.setBounds(494, 315, 302, 330);
+		scrollPaneValgtUdstyr.setBounds(753, 315, 456, 330);
 		layeredPane.add(scrollPaneValgtUdstyr);
 		
 		valgtUdstyrTable = new JTable();
@@ -250,7 +250,17 @@ public class OrderGui extends JFrame {
 		txtIndtastID.setText("Indtast ID");
 		txtIndtastID.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		txtIndtastID.setColumns(10);
-		txtIndtastID.setBounds(27, 370, 302, 40);
+		txtIndtastID.setBounds(27, 370, 456, 40);
 		layeredPane.add(txtIndtastID);
+		
+		JButton skabelonVlgBtn = new JButton("Vælg");
+		skabelonVlgBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		skabelonVlgBtn.setBounds(393, 183, 90, 40);
+		layeredPane.add(skabelonVlgBtn);
+		
+		JButton opretOgGemBtn = new JButton("Opret ordre & gem som skabelon");
+		opretOgGemBtn.setFont(new Font("Sylfaen", Font.PLAIN, 16));
+		opretOgGemBtn.setBounds(909, 730, 300, 67);
+		layeredPane.add(opretOgGemBtn);
 	}
 }
