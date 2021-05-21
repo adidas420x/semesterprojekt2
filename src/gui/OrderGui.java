@@ -20,6 +20,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
+import java.awt.Color;
 
 public class OrderGui extends JFrame {
 
@@ -93,11 +94,13 @@ public class OrderGui extends JFrame {
 		layeredPane.add(lagerBtn);
 		
 		JButton annullerBtn = new JButton("Annuller ordre");
+		annullerBtn.setBackground(new Color(255, 69, 0));
 		annullerBtn.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		annullerBtn.setBounds(909, 654, 145, 67);
 		layeredPane.add(annullerBtn);
 		
 		JButton opretBtn = new JButton("Opret ordre");
+		opretBtn.setBackground(new Color(50, 205, 50));
 		opretBtn.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		opretBtn.setBounds(1064, 654, 145, 67);
 		layeredPane.add(opretBtn);
@@ -259,6 +262,7 @@ public class OrderGui extends JFrame {
 		layeredPane.add(skabelonVlgBtn);
 		
 		JButton opretOgGemBtn = new JButton("Opret ordre & gem som skabelon");
+		opretOgGemBtn.setBackground(new Color(100, 149, 237));
 		opretOgGemBtn.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		opretOgGemBtn.setBounds(909, 730, 300, 67);
 		layeredPane.add(opretOgGemBtn);
