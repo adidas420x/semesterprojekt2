@@ -13,8 +13,7 @@ public class CopyDB implements CopyDBIF {
 	
 	private static final String getAvailCopiesQ =
 			" select serialNo, eqAvailability from copies where eqAvailability = available";
-			"select * from copies WHERE enddate >= ? AND startdate <= ?"
-
+	
 	private PreparedStatement getAvailCopies;
 	
 	public CopyDB() throws DataAccessException {
