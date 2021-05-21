@@ -62,30 +62,40 @@ public class OrderGui extends JFrame {
 		setContentPane(contentPane);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setForeground(new Color(0, 0, 128));
+		layeredPane.setBackground(new Color(0, 0, 128));
 		contentPane.add(layeredPane, BorderLayout.CENTER);
 		
 		JButton idSgBtn = new JButton("Søg");
+		idSgBtn.setBackground(new Color(100, 149, 237));
 		idSgBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		idSgBtn.setBounds(393, 370, 90, 40);
 		layeredPane.add(idSgBtn);
 		
 		JButton navnSgBtn = new JButton("Søg");
+		navnSgBtn.setBackground(new Color(100, 149, 237));
 		navnSgBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		navnSgBtn.setBounds(393, 315, 90, 40);
 		layeredPane.add(navnSgBtn);
 		
 		JButton eventBtn = new JButton("Events");
-		eventBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		eventBtn.setBackground(new Color(0, 0, 139));
+		eventBtn.setForeground(new Color(255, 255, 255));
+		eventBtn.setFont(new Font("Sylfaen", Font.BOLD, 18));
 		eventBtn.setBounds(494, 56, 145, 67);
 		layeredPane.add(eventBtn);
 		
 		JButton opretOrdreBtn = new JButton("Opret ordre");
-		opretOrdreBtn.setFont(new Font("Sylfaen", Font.BOLD, 20));
+		opretOrdreBtn.setBackground(new Color(0, 0, 139));
+		opretOrdreBtn.setForeground(new Color(135, 206, 250));
+		opretOrdreBtn.setFont(new Font("Sylfaen", Font.BOLD, 18));
 		opretOrdreBtn.setBounds(27, 56, 145, 67);
 		layeredPane.add(opretOrdreBtn);
 		
 		JButton lagerBtn = new JButton("Lager");
-		lagerBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		lagerBtn.setBackground(new Color(0, 0, 139));
+		lagerBtn.setForeground(new Color(255, 255, 255));
+		lagerBtn.setFont(new Font("Sylfaen", Font.BOLD, 18));
 		lagerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -106,11 +116,13 @@ public class OrderGui extends JFrame {
 		layeredPane.add(opretBtn);
 		
 		JButton tilfjBtn = new JButton("Tilføj");
+		tilfjBtn.setBackground(new Color(100, 149, 237));
 		tilfjBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		tilfjBtn.setBounds(393, 650, 90, 40);
 		layeredPane.add(tilfjBtn);
 		
 		txtIndtastAntal = new JTextField();
+		txtIndtastAntal.setBackground(new Color(135, 206, 250));
 		txtIndtastAntal.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		txtIndtastAntal.addMouseListener(new MouseAdapter() {
 			@Override
@@ -119,11 +131,12 @@ public class OrderGui extends JFrame {
 			}
 		});
 		txtIndtastAntal.setText("Indtast antal");
-		txtIndtastAntal.setBounds(27, 650, 456, 40);
+		txtIndtastAntal.setBounds(27, 650, 366, 40);
 		layeredPane.add(txtIndtastAntal);
 		txtIndtastAntal.setColumns(10);
 		
 		txtIndtastSgeord = new JTextField();
+		txtIndtastSgeord.setBackground(new Color(135, 206, 250));
 		txtIndtastSgeord.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		txtIndtastSgeord.addMouseListener(new MouseAdapter() {
 			@Override
@@ -132,16 +145,19 @@ public class OrderGui extends JFrame {
 			}
 		});
 		txtIndtastSgeord.setText("Indtast søgeord");
-		txtIndtastSgeord.setBounds(27, 315, 456, 40);
+		txtIndtastSgeord.setBounds(27, 315, 366, 40);
 		layeredPane.add(txtIndtastSgeord);
 		txtIndtastSgeord.setColumns(10);
 		
 		JButton aktiveOrdreBtn = new JButton("Aktive ordre");
-		aktiveOrdreBtn.setFont(new Font("Sylfaen", Font.PLAIN, 20));
+		aktiveOrdreBtn.setBackground(new Color(0, 0, 139));
+		aktiveOrdreBtn.setForeground(new Color(255, 255, 255));
+		aktiveOrdreBtn.setFont(new Font("Sylfaen", Font.BOLD, 18));
 		aktiveOrdreBtn.setBounds(182, 56, 145, 67);
 		layeredPane.add(aktiveOrdreBtn);
 		
 		JLabel lblDeadlight = new JLabel("DEADLIGHT");
+		lblDeadlight.setForeground(new Color(255, 255, 255));
 		lblDeadlight.setFont(new Font("Sylfaen", Font.PLAIN, 52));
 		lblDeadlight.setBounds(931, 56, 415, 67);
 		layeredPane.add(lblDeadlight);
@@ -152,6 +168,7 @@ public class OrderGui extends JFrame {
 		layeredPane.add(lblLydisken);
 		
 		txtNavnForEvent = new JTextField();
+		txtNavnForEvent.setBackground(new Color(135, 206, 250));
 		txtNavnForEvent.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		txtNavnForEvent.setText("Navn for event:");
 		txtNavnForEvent.setBounds(27, 133, 456, 40);
@@ -190,6 +207,7 @@ public class OrderGui extends JFrame {
 		
 			
 		JComboBox<String> comboBoxSkabeloner = new JComboBox<String>();
+		comboBoxSkabeloner.setBackground(new Color(135, 206, 250));
 		comboBoxSkabeloner.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		comboBoxSkabeloner.setBounds(27, 183, 366, 40);
 		layeredPane.add(comboBoxSkabeloner);
@@ -203,6 +221,7 @@ public class OrderGui extends JFrame {
 		comboBoxSkabeloner.setSelectedItem("Skabeloner");
 		
 		txtEventStartDate = new JTextField();
+		txtEventStartDate.setBackground(new Color(135, 206, 250));
 		txtEventStartDate.setText("dd-mm-yyyy");
 		txtEventStartDate.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		txtEventStartDate.addMouseListener(new MouseAdapter() {
@@ -216,6 +235,7 @@ public class OrderGui extends JFrame {
 		layeredPane.add(txtEventStartDate);
 		
 		txtEventEndDate = new JTextField();
+		txtEventEndDate.setBackground(new Color(135, 206, 250));
 		txtEventEndDate.setText("dd-mm-yyyy");
 		txtEventEndDate.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		txtEventEndDate.addMouseListener(new MouseAdapter() {
@@ -250,13 +270,15 @@ public class OrderGui extends JFrame {
 		valgtUdstyrTable.setFont(new Font("Sylfaen", Font.PLAIN, 14));
 		
 		txtIndtastID = new JTextField();
+		txtIndtastID.setBackground(new Color(135, 206, 250));
 		txtIndtastID.setText("Indtast ID");
 		txtIndtastID.setFont(new Font("Sylfaen", Font.PLAIN, 16));
 		txtIndtastID.setColumns(10);
-		txtIndtastID.setBounds(27, 370, 456, 40);
+		txtIndtastID.setBounds(27, 370, 366, 40);
 		layeredPane.add(txtIndtastID);
 		
 		JButton skabelonVlgBtn = new JButton("Vælg");
+		skabelonVlgBtn.setBackground(new Color(100, 149, 237));
 		skabelonVlgBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		skabelonVlgBtn.setBounds(393, 183, 90, 40);
 		layeredPane.add(skabelonVlgBtn);
