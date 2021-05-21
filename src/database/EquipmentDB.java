@@ -33,30 +33,31 @@ public class EquipmentDB implements EquipmentDBIF {
 
 	@Override
 	public Equipment findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException {
-		if (//hvis der bliver indtastet i navn) {
+		//hvis der bliver indtastet i navn
+		if () {
 			try {
 				findEquipmentByName.setString(1, name);
 				ResultSet rs = findEquipmentByName.executeQuery();
 				Equipment e = null;
 				if (rs.next()) {
 					e = buildObject(rs);
-				}
-				return e;
+			}
+			return e;
 			} catch (SQLException e) {
 				throw new DataAccessException(e, "could not find by name");
 			}
-		} else
-	{
-		try {
-			findEquipmentByID.setString(1, eqID);
-			ResultSet rs = findEquipmentByID.executeQuery();
-			Equipment e = null;
-			if (rs.next()) {
+		}else {
+			try {
+				findEquipmentByID.setString(1, eqID);
+				ResultSet rs = findEquipmentByID.executeQuery();
+				Equipment e = null;
+				if (rs.next()) {
 				e = buildObject(rs);
 			}
 			return e;
-		} catch (SQLException e) {
-			throw new DataAccessException(e, "could not find by name");
+			} catch (SQLException e) {
+				throw new DataAccessException(e, "could not find by ID");
+			}
 		}
 	}
 

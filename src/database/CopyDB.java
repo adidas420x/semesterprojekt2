@@ -3,6 +3,7 @@ package database;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,8 @@ public class CopyDB implements CopyDBIF {
 	
 	private static final String getAvailCopiesQ =
 			" select serialNo, eqAvailability from copies where eqAvailability = available";
-	
+			"select * from copies WHERE enddate >= ? AND startdate <= ?"
+
 	private PreparedStatement getAvailCopies;
 	
 	public CopyDB() throws DataAccessException {
@@ -34,7 +36,7 @@ public class CopyDB implements CopyDBIF {
 				e = buildObject(rs);
 			}
 			return e;
-		} catch(SQLExeption e) {
+		} catch(SQLException e) {
 			throw new DataAccessException(e, "could not find available copies");
 		}
 	}
@@ -45,6 +47,10 @@ public class CopyDB implements CopyDBIF {
 			rs.getString("eqAvailablity")
 			);
 		return e;
+	}
+	
+	public List<Copy> getAvailCopies(String eqID, LocalDate startDate, LocalDate endDate){
+		
 	}
 	
 	private List<Copy> buildObjects(ResultSet rs) throws SQLException {
