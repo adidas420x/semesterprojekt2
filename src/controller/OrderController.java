@@ -22,6 +22,7 @@ public class OrderController {
 	private Order order;
 	private PersonController personController;
 	private Equipment equipment;
+	
 
 	public OrderController() throws DataAccessException {
 		super();
@@ -44,20 +45,11 @@ public class OrderController {
 		return emp;
 	}
 	
-	public List<Equipment> findEquipmentById(String eqID) {
-		List<Equipment> eq = equipmentController.findEquipmentByID(eqID);
-		
-		//skal returnere en liste med de equipment der er
-		return eq;
-	}
 	
-	public Equipment findEquipment(String nameID) {
-		//skal have regex til at sortere mellem navn eller id
-		if(nameID == "sksksks") {
-			findequ
-		} else {
-			
-		}
+	public List<Equipment> findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate){
+		List<Equipment> equipments = equipmentController.findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate);
+		
+		return equipments;
 	}
 	
 	public Customer findCustomer(String phone) throws DataAccessException {

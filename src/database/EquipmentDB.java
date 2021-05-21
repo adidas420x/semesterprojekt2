@@ -3,6 +3,7 @@ package database;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +15,12 @@ public class EquipmentDB implements EquipmentDBIF {
 			+ "manufacturer, stock. owner, type from equipments where eqID = ?";
 	private static final String findEquipmentByNameQ = " select eqName, storageLocation, eqID. description,"
 			+ "manufacturer, stock. owner, type from equipments where eqName = ?";
+	private static final String findEquipmentQ = " select eqName, storageLocation, eqID. description,"
+			+ "manufacturer, stock. owner, type from equipments where eqID = ?";
 
 	private PreparedStatement findEquipmentByID;
 	private PreparedStatement findEquipmentByName;
+	private PreparedStatement findEquipment;
 
 	public EquipmentDB() throws DataAccessException {
 		try {
@@ -28,25 +32,24 @@ public class EquipmentDB implements EquipmentDBIF {
 	}
 
 	@Override
-	public Equipment findEquipmentByID(String eqID) throws DataAccessException {
-		try {
-			findEquipmentByID.setString(3, eqID);
-			ResultSet rs = findEquipmentByID.executeQuery();
-			Equipment e = null;
-			if (rs.next()) {
-				e = buildObject(rs);
+	public Equipment findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException {
+		if (//hvis der bliver indtastet i navn) {
+			try {
+				findEquipmentByName.setString(1, name);
+				ResultSet rs = findEquipmentByName.executeQuery();
+				Equipment e = null;
+				if (rs.next()) {
+					e = buildObject(rs);
+				}
+				return e;
+			} catch (SQLException e) {
+				throw new DataAccessException(e, "could not find by name");
 			}
-			return e;
-		} catch (SQLException e) {
-			throw new DataAccessException(e, "could not find by id");
-		}
-	}
-
-	@Override
-	public Equipment findEquipmentByName(String eqName) throws DataAccessException {
+		} else
+	{
 		try {
-			findEquipmentByName.setString(1, eqName);
-			ResultSet rs = findEquipmentByName.executeQuery();
+			findEquipmentByID.setString(1, eqID);
+			ResultSet rs = findEquipmentByID.executeQuery();
 			Equipment e = null;
 			if (rs.next()) {
 				e = buildObject(rs);

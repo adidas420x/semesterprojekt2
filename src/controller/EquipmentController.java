@@ -1,5 +1,7 @@
 package controller;
 
+import java.time.LocalDate;
+
 import database.DataAccessException;
 import database.EquipmentDB;
 import database.EquipmentDBIF;
@@ -21,4 +23,8 @@ public class EquipmentController {
 	public Equipment findEquipmentByID(String eqID) throws DataAccessException {
 		return equipmentDB.findEquipmentByID(eqID);
 	}	
+	
+	public List<Equipment> findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate) {
+		return equipmentDB.findEquipment();
+	}
 }
