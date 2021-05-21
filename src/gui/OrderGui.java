@@ -291,10 +291,10 @@ public class OrderGui extends JFrame {
 		opretOgGemBtn.setBounds(909, 730, 300, 67);
 		layeredPane.add(opretOgGemBtn);
 		
-		JPanel panel = new JPanel();
-		panel.setForeground(new Color(105, 105, 105));
-		panel.setBackground(new Color(0, 0, 128));
-		panel.setBounds(0, 0, 1530, 835);
-		layeredPane.add(panel);
+		JPanel baggrundsfarvePanel = new JPanel();
+		baggrundsfarvePanel.setForeground(new Color(105, 105, 105));
+		baggrundsfarvePanel.setBackground(new Color(41, 140, 240));
+		baggrundsfarvePanel.setBounds(0, 0, 1530, 835);
+		layeredPane.add(baggrundsfarvePanel);
 	}
 }
