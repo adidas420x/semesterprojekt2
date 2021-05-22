@@ -1,6 +1,7 @@
 package controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import database.DataAccessException;
 import database.EquipmentDB;
@@ -15,14 +16,6 @@ public class EquipmentController {
 		super();
 		this.equipmentDB = new EquipmentDB();
 	}
-	
-	public Equipment findEquipmentByName(String name) throws DataAccessException {
-		return equipmentDB.findEquipmentByName(name);
-	}
-	
-	public Equipment findEquipmentByID(String eqID) throws DataAccessException {
-		return equipmentDB.findEquipmentByID(eqID);
-	}	
 	
 	public List<Equipment> findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate) {
 		return equipmentDB.findEquipment();
