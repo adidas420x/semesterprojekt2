@@ -44,7 +44,7 @@ public class OrderController {
 		return emp;
 	}
 	
-	public List<Equipment> findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate){
+	public List<Equipment> findEquipment(String EqName, String eqID, LocalDate startDate, LocalDate endDate){
 		List<Equipment> equipments = equipmentController.findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate);
 		
 		return equipments;

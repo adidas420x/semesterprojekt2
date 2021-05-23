@@ -32,11 +32,11 @@ public class EquipmentDB implements EquipmentDBIF {
 	}
 
 	@Override
-	public Equipment findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException {
+	public Equipment findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException {
 		//hvis der bliver indtastet i navn
 		if () {
 			try {
-				findEquipmentByName.setString(1, name);
+				findEquipmentByName.setString(1, eqName);
 				ResultSet rs = findEquipmentByName.executeQuery();
 				Equipment e = null;
 				if (rs.next()) {
@@ -44,7 +44,7 @@ public class EquipmentDB implements EquipmentDBIF {
 			}
 			return e;
 			} catch (SQLException e) {
-				throw new DataAccessException(e, "could not find by name");
+				throw new DataAccessException(e, "could not find by equipment name");
 			}
 		}else {
 			try {
