@@ -22,7 +22,6 @@ public class OrderController {
 	private Order order;
 	private PersonController personController;
 	private Equipment equipment;
-	
 
 	public OrderController() throws DataAccessException {
 		super();
@@ -45,7 +44,6 @@ public class OrderController {
 		return emp;
 	}
 	
-	
 	public List<Equipment> findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate){
 		List<Equipment> equipments = equipmentController.findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate);
 		
@@ -53,8 +51,8 @@ public class OrderController {
 	}
 	
 	public Customer findCustomer(String phone) throws DataAccessException {
-		Customer c = customerController.findCustomerByPhone(phone);
-	    saleOrder.setCustomer(c);
+		Customer c = personController.findCustomerByPhone(phone);
+	    order.setCustomer(c);
 		return c;
 
 	}

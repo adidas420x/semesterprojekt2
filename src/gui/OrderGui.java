@@ -18,6 +18,10 @@ import javax.swing.JList;
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import model.Event;
+import controller.OrderController;
+
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import java.awt.Color;
@@ -28,12 +32,14 @@ public class OrderGui extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtIndtastAntal;
 	private JTextField txtIndtastSgeord;
-	private JTextField txtNavnForEvent;
+	private JTextField txtEventID;
 	private JTable findUdstyrTable;
 	private JTable valgtUdstyrTable;
 	private JTextField txtEventStartDate;
 	private JTextField txtEventEndDate;
 	private JTextField txtIndtastID;
+	private String eventID;
+	private OrderController orderController;
 	
 	/**
 	 * Launch the application.
@@ -55,6 +61,7 @@ public class OrderGui extends JFrame {
 	 * Create the frame.
 	 */
 	public OrderGui() {
+		orderController = new OrderController();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1920, 1080);
 		contentPane = new JPanel();
@@ -175,17 +182,17 @@ public class OrderGui extends JFrame {
 		lblLydisken.setBounds(1485, 67, 385, 67);
 		layeredPane.add(lblLydisken);
 		
-		txtNavnForEvent = new JTextField();
-		txtNavnForEvent.setBackground(new Color(135, 206, 250));
-		txtNavnForEvent.setFont(new Font("Calibri", Font.PLAIN, 20));
-		txtNavnForEvent.setText("Søg efter event ID");
-		txtNavnForEvent.setBounds(27, 158, 503, 40);
-		layeredPane.add(txtNavnForEvent);
-		txtNavnForEvent.setColumns(10);
-		txtNavnForEvent.addMouseListener(new MouseAdapter() {
+		txtEventID = new JTextField();
+		txtEventID.setBackground(new Color(135, 206, 250));
+		txtEventID.setFont(new Font("Calibri", Font.PLAIN, 20));
+		txtEventID.setText("Søg efter event ID");
+		txtEventID.setBounds(27, 158, 503, 40);
+		layeredPane.add(txtEventID);
+		txtEventID.setColumns(10);
+		txtEventID.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				txtNavnForEvent.setText("");
+				txtEventID.setText("");
 			}
 		});
 		
@@ -288,11 +295,31 @@ public class OrderGui extends JFrame {
 		skabelonVlgBtn.setBounds(537, 231, 90, 40);
 		layeredPane.add(skabelonVlgBtn);
 		
-		JButton navnSgBtn_1 = new JButton("Søg");
-		navnSgBtn_1.setFont(new Font("Arial", Font.BOLD, 20));
-		navnSgBtn_1.setBackground(Color.GRAY);
-		navnSgBtn_1.setBounds(537, 159, 90, 40);
-		layeredPane.add(navnSgBtn_1);
+		JButton btnSøgEvent = new JButton("Søg");
+		btnSøgEvent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				eventID = txtEventID.getText();
+				Event event = null;
+				event = orderController.findEventByID(eventID);
+				
+				proID = Integer.parseInt(vareNrTextField.getText());
+				SaleProduct saleProduct = null;
+				saleProduct = saleController.searchSaleProductByID(proID);
+				if (saleProduct != null) {
+					vareNavnTextField.setText(saleProduct.getProductName());
+					madeByCompanyTextField.setText(saleProduct.getMadeByCompany());
+					price = saleProduct.getPrice();
+					priceTextField.setText("" + saleProduct.getPrice());
+					vareNrTextField.setText("Indtast varens ID.");
+				} else {
+					new ErrorOneFrame().setVisible(true);
+				}
+			}
+		});
+		btnSøgEvent.setFont(new Font("Arial", Font.BOLD, 20));
+		btnSøgEvent.setBackground(Color.GRAY);
+		btnSøgEvent.setBounds(537, 159, 90, 40);
+		layeredPane.add(btnSøgEvent);
 		
 		JLabel lblStartdato = new JLabel("Startdato");
 		lblStartdato.setFont(new Font("Calibri", Font.PLAIN, 20));
