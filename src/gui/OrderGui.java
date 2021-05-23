@@ -91,13 +91,13 @@ public class OrderGui extends JFrame {
 		layeredPane.setBackground(new Color(0, 0, 128));
 		contentPane.add(layeredPane, BorderLayout.CENTER);
 		
-		JButton idSgBtn = new JButton("Søg");
+		JButton idSgBtn = new JButton("SÃ¸g");
 		idSgBtn.setBackground(Color.GRAY);
 		idSgBtn.setFont(new Font("Arial", Font.BOLD, 20));
 		idSgBtn.setBounds(537, 499, 90, 40);
 		layeredPane.add(idSgBtn);
 		
-		JButton navnSgBtn = new JButton("Søg");
+		JButton navnSgBtn = new JButton("SÃ¸g");
 		navnSgBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			eqName = txtIndtastSgeord.getText();
@@ -164,7 +164,7 @@ public class OrderGui extends JFrame {
 		opretBtn.setBounds(1670, 934, 200, 67);
 		layeredPane.add(opretBtn);
 		
-		JButton tilfjBtn = new JButton("Tilføj");
+		JButton tilfjBtn = new JButton("TilfÃ¸j");
 		tilfjBtn.setBackground(Color.GRAY);
 		tilfjBtn.setFont(new Font("Arial", Font.BOLD, 20));
 		tilfjBtn.setBounds(537, 961, 90, 40);
@@ -193,7 +193,7 @@ public class OrderGui extends JFrame {
 				txtIndtastSgeord.setText("");
 			}
 		});
-		txtIndtastSgeord.setText("Indtast navn på udstyr");
+		txtIndtastSgeord.setText("Indtast navn pÃ¥ udstyr");
 		txtIndtastSgeord.setBounds(27, 449, 503, 40);
 		layeredPane.add(txtIndtastSgeord);
 		txtIndtastSgeord.setColumns(10);
@@ -221,7 +221,7 @@ public class OrderGui extends JFrame {
 		txtEventID = new JTextField();
 		txtEventID.setBackground(new Color(135, 206, 250));
 		txtEventID.setFont(new Font("Calibri", Font.PLAIN, 20));
-		txtEventID.setText("Søg efter event ID");
+		txtEventID.setText("SÃ¸g efter event ID");
 		txtEventID.setBounds(27, 158, 503, 40);
 		layeredPane.add(txtEventID);
 		txtEventID.setColumns(10);
@@ -319,20 +319,20 @@ public class OrderGui extends JFrame {
 		
 		txtIndtastID = new JTextField();
 		txtIndtastID.setBackground(new Color(135, 206, 250));
-		txtIndtastID.setText("Indtast ID på udstyr");
+		txtIndtastID.setText("Indtast ID pÃ¥ udstyr");
 		txtIndtastID.setFont(new Font("Calibri", Font.PLAIN, 20));
 		txtIndtastID.setColumns(10);
 		txtIndtastID.setBounds(27, 499, 503, 40);
 		layeredPane.add(txtIndtastID);
 		
-		JButton btnVælgSkabelon = new JButton("Vælg");
-		btnVælgSkabelon.setBackground(Color.GRAY);
-		btnVælgSkabelon.setFont(new Font("Arial", Font.BOLD, 20));
-		btnVælgSkabelon.setBounds(537, 231, 90, 40);
-		layeredPane.add(btnVælgSkabelon);
+		JButton btnVÃ¦lgSkabelon = new JButton("VÃ¦lg");
+		btnVÃ¦lgSkabelon.setBackground(Color.GRAY);
+		btnVÃ¦lgSkabelon.setFont(new Font("Arial", Font.BOLD, 20));
+		btnVÃ¦lgSkabelon.setBounds(537, 231, 90, 40);
+		layeredPane.add(btnVÃ¦lgSkabelon);
 		
-		JButton btnSøgEvent = new JButton("Søg");
-		btnSøgEvent.addActionListener(new ActionListener() {
+		JButton btnSÃ¸gEvent = new JButton("SÃ¸g");
+		btnSÃ¸gEvent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				eventID = txtEventID.getText();
 				Event eventTest = null;
@@ -345,10 +345,10 @@ public class OrderGui extends JFrame {
 				
 			}
 		});
-		btnSøgEvent.setFont(new Font("Arial", Font.BOLD, 20));
-		btnSøgEvent.setBackground(Color.GRAY);
-		btnSøgEvent.setBounds(537, 159, 90, 40);
-		layeredPane.add(btnSøgEvent);
+		btnSÃ¸gEvent.setFont(new Font("Arial", Font.BOLD, 20));
+		btnSÃ¸gEvent.setBackground(Color.GRAY);
+		btnSÃ¸gEvent.setBounds(537, 159, 90, 40);
+		layeredPane.add(btnSÃ¸gEvent);
 		
 		JLabel lblStartdato = new JLabel("Startdato");
 		lblStartdato.setFont(new Font("Calibri", Font.PLAIN, 20));
@@ -360,17 +360,17 @@ public class OrderGui extends JFrame {
 		lblSlutdato.setBounds(290, 352, 71, 25);
 		layeredPane.add(lblSlutdato);
 		
-		JLabel lblSgEfterUdstyr = new JLabel("Søg efter udstyr");
+		JLabel lblSgEfterUdstyr = new JLabel("SÃ¸g efter udstyr");
 		lblSgEfterUdstyr.setFont(new Font("Calibri", Font.PLAIN, 20));
 		lblSgEfterUdstyr.setBounds(27, 423, 132, 25);
 		layeredPane.add(lblSgEfterUdstyr);
 		
-		JLabel lblVlgSkabelon = new JLabel("Vælg skabelon");
+		JLabel lblVlgSkabelon = new JLabel("VÃ¦lg skabelon");
 		lblVlgSkabelon.setFont(new Font("Calibri", Font.PLAIN, 20));
 		lblVlgSkabelon.setBounds(27, 209, 132, 25);
 		layeredPane.add(lblVlgSkabelon);
 		
-		JLabel lblSgEfterEvent = new JLabel("Søg efter event");
+		JLabel lblSgEfterEvent = new JLabel("SÃ¸g efter event");
 		lblSgEfterEvent.setFont(new Font("Calibri", Font.PLAIN, 20));
 		lblSgEfterEvent.setBounds(27, 136, 132, 25);
 		layeredPane.add(lblSgEfterEvent);
@@ -400,7 +400,7 @@ public class OrderGui extends JFrame {
 		lblMedarbejder.setBounds(27, 282, 109, 25);
 		layeredPane.add(lblMedarbejder);
 		
-		JLabel lblNavnPEvent = new JLabel("Navn på event");
+		JLabel lblNavnPEvent = new JLabel("Navn pÃ¥ event");
 		lblNavnPEvent.setFont(new Font("Calibri", Font.PLAIN, 20));
 		lblNavnPEvent.setBounds(1270, 314, 132, 25);
 		layeredPane.add(lblNavnPEvent);
