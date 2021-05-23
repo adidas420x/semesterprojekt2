@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 import model.Event;
 import controller.OrderController;
+import database.DataAccessException;
 
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
@@ -40,6 +41,8 @@ public class OrderGui extends JFrame {
 	private JTextField txtIndtastID;
 	private String eventID;
 	private OrderController orderController;
+	private JTextField txtIndtastMedarbejderId;
+	private JTextField textField;
 	
 	/**
 	 * Launch the application.
@@ -78,13 +81,13 @@ public class OrderGui extends JFrame {
 		JButton idSgBtn = new JButton("Søg");
 		idSgBtn.setBackground(Color.GRAY);
 		idSgBtn.setFont(new Font("Arial", Font.BOLD, 20));
-		idSgBtn.setBounds(537, 429, 90, 40);
+		idSgBtn.setBounds(537, 499, 90, 40);
 		layeredPane.add(idSgBtn);
 		
 		JButton navnSgBtn = new JButton("Søg");
 		navnSgBtn.setBackground(Color.GRAY);
 		navnSgBtn.setFont(new Font("Arial", Font.BOLD, 20));
-		navnSgBtn.setBounds(537, 378, 90, 40);
+		navnSgBtn.setBounds(537, 448, 90, 40);
 		layeredPane.add(navnSgBtn);
 		
 		JButton eventBtn = new JButton("Events");
@@ -131,7 +134,7 @@ public class OrderGui extends JFrame {
 		JButton tilfjBtn = new JButton("Tilføj");
 		tilfjBtn.setBackground(Color.GRAY);
 		tilfjBtn.setFont(new Font("Arial", Font.BOLD, 20));
-		tilfjBtn.setBounds(537, 891, 90, 40);
+		tilfjBtn.setBounds(537, 961, 90, 40);
 		layeredPane.add(tilfjBtn);
 		
 		txtIndtastAntal = new JTextField();
@@ -144,7 +147,7 @@ public class OrderGui extends JFrame {
 			}
 		});
 		txtIndtastAntal.setText("Indtast antal");
-		txtIndtastAntal.setBounds(27, 891, 503, 40);
+		txtIndtastAntal.setBounds(27, 961, 503, 40);
 		layeredPane.add(txtIndtastAntal);
 		txtIndtastAntal.setColumns(10);
 		
@@ -158,7 +161,7 @@ public class OrderGui extends JFrame {
 			}
 		});
 		txtIndtastSgeord.setText("Indtast navn på udstyr");
-		txtIndtastSgeord.setBounds(27, 379, 503, 40);
+		txtIndtastSgeord.setBounds(27, 449, 503, 40);
 		layeredPane.add(txtIndtastSgeord);
 		txtIndtastSgeord.setColumns(10);
 		
@@ -197,7 +200,7 @@ public class OrderGui extends JFrame {
 		});
 		
 		JScrollPane scrollPaneFindUdstyr = new JScrollPane();
-		scrollPaneFindUdstyr.setBounds(27, 480, 600, 400);
+		scrollPaneFindUdstyr.setBounds(27, 550, 600, 400);
 		layeredPane.add(scrollPaneFindUdstyr);
 		
 		findUdstyrTable = new JTable();
@@ -247,7 +250,7 @@ public class OrderGui extends JFrame {
 			}
 		});
 		txtEventStartDate.setColumns(10);
-		txtEventStartDate.setBounds(27, 302, 240, 40);
+		txtEventStartDate.setBounds(27, 372, 240, 40);
 		layeredPane.add(txtEventStartDate);
 		
 		txtEventEndDate = new JTextField();
@@ -262,7 +265,7 @@ public class OrderGui extends JFrame {
 			}
 		});
 		txtEventEndDate.setColumns(10);
-		txtEventEndDate.setBounds(290, 302, 240, 40);
+		txtEventEndDate.setBounds(290, 372, 240, 40);
 		layeredPane.add(txtEventEndDate);
 		
 		JScrollPane scrollPaneValgtUdstyr = new JScrollPane();
@@ -286,33 +289,25 @@ public class OrderGui extends JFrame {
 		txtIndtastID.setText("Indtast ID på udstyr");
 		txtIndtastID.setFont(new Font("Calibri", Font.PLAIN, 20));
 		txtIndtastID.setColumns(10);
-		txtIndtastID.setBounds(27, 429, 503, 40);
+		txtIndtastID.setBounds(27, 499, 503, 40);
 		layeredPane.add(txtIndtastID);
 		
-		JButton skabelonVlgBtn = new JButton("Vælg");
-		skabelonVlgBtn.setBackground(Color.GRAY);
-		skabelonVlgBtn.setFont(new Font("Arial", Font.BOLD, 20));
-		skabelonVlgBtn.setBounds(537, 231, 90, 40);
-		layeredPane.add(skabelonVlgBtn);
+		JButton btnVælgSkabelon = new JButton("Vælg");
+		btnVælgSkabelon.setBackground(Color.GRAY);
+		btnVælgSkabelon.setFont(new Font("Arial", Font.BOLD, 20));
+		btnVælgSkabelon.setBounds(537, 231, 90, 40);
+		layeredPane.add(btnVælgSkabelon);
 		
 		JButton btnSøgEvent = new JButton("Søg");
 		btnSøgEvent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				eventID = txtEventID.getText();
 				Event event = null;
-				event = orderController.findEventByID(eventID);
-				
-				proID = Integer.parseInt(vareNrTextField.getText());
-				SaleProduct saleProduct = null;
-				saleProduct = saleController.searchSaleProductByID(proID);
-				if (saleProduct != null) {
-					vareNavnTextField.setText(saleProduct.getProductName());
-					madeByCompanyTextField.setText(saleProduct.getMadeByCompany());
-					price = saleProduct.getPrice();
-					priceTextField.setText("" + saleProduct.getPrice());
-					vareNrTextField.setText("Indtast varens ID.");
-				} else {
-					new ErrorOneFrame().setVisible(true);
+				try {
+					event = orderController.findEventByID(eventID);
+				} catch (DataAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		});
@@ -323,17 +318,17 @@ public class OrderGui extends JFrame {
 		
 		JLabel lblStartdato = new JLabel("Startdato");
 		lblStartdato.setFont(new Font("Calibri", Font.PLAIN, 20));
-		lblStartdato.setBounds(27, 282, 79, 25);
+		lblStartdato.setBounds(27, 352, 79, 25);
 		layeredPane.add(lblStartdato);
 		
 		JLabel lblSlutdato = new JLabel("Slutdato");
 		lblSlutdato.setFont(new Font("Calibri", Font.PLAIN, 20));
-		lblSlutdato.setBounds(290, 282, 71, 25);
+		lblSlutdato.setBounds(290, 352, 71, 25);
 		layeredPane.add(lblSlutdato);
 		
 		JLabel lblSgEfterUdstyr = new JLabel("Søg efter udstyr");
 		lblSgEfterUdstyr.setFont(new Font("Calibri", Font.PLAIN, 20));
-		lblSgEfterUdstyr.setBounds(27, 353, 132, 25);
+		lblSgEfterUdstyr.setBounds(27, 423, 132, 25);
 		layeredPane.add(lblSgEfterUdstyr);
 		
 		JLabel lblVlgSkabelon = new JLabel("Vælg skabelon");
@@ -345,6 +340,43 @@ public class OrderGui extends JFrame {
 		lblSgEfterEvent.setFont(new Font("Calibri", Font.PLAIN, 20));
 		lblSgEfterEvent.setBounds(27, 136, 132, 25);
 		layeredPane.add(lblSgEfterEvent);
+		
+		JButton btnOpretOrdre = new JButton("Opret");
+		btnOpretOrdre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnOpretOrdre.setFont(new Font("Arial", Font.BOLD, 20));
+		btnOpretOrdre.setBackground(Color.GRAY);
+		btnOpretOrdre.setBounds(537, 372, 90, 40);
+		layeredPane.add(btnOpretOrdre);
+		
+		txtIndtastMedarbejderId = new JTextField();
+		txtIndtastMedarbejderId.setText("Indtast medarbejder ID");
+		txtIndtastMedarbejderId.setHorizontalAlignment(SwingConstants.LEFT);
+		txtIndtastMedarbejderId.setFont(new Font("Calibri", Font.PLAIN, 20));
+		txtIndtastMedarbejderId.setColumns(10);
+		txtIndtastMedarbejderId.setBackground(new Color(135, 206, 250));
+		txtIndtastMedarbejderId.setBounds(27, 301, 503, 40);
+		layeredPane.add(txtIndtastMedarbejderId);
+		
+		JLabel lblMedarbejder = new JLabel("Medarbejder");
+		lblMedarbejder.setFont(new Font("Calibri", Font.PLAIN, 20));
+		lblMedarbejder.setBounds(27, 282, 109, 25);
+		layeredPane.add(lblMedarbejder);
+		
+		JLabel lblNavnPEvent = new JLabel("Navn på event");
+		lblNavnPEvent.setFont(new Font("Calibri", Font.PLAIN, 20));
+		lblNavnPEvent.setBounds(1270, 314, 132, 25);
+		layeredPane.add(lblNavnPEvent);
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		textField.setFont(new Font("Calibri", Font.PLAIN, 20));
+		textField.setColumns(10);
+		textField.setBackground(new Color(135, 206, 250));
+		textField.setBounds(1270, 336, 600, 40);
+		layeredPane.add(textField);
 		
 	}
 }
