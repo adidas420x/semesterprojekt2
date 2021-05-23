@@ -289,10 +289,6 @@ public class OrderGui extends JFrame {
 		layeredPane.add(skabelonVlgBtn);
 		
 		JButton navnSgBtn_1 = new JButton("Søg");
-		navnSgBtn_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		navnSgBtn_1.setFont(new Font("Arial", Font.BOLD, 20));
 		navnSgBtn_1.setBackground(Color.GRAY);
 		navnSgBtn_1.setBounds(537, 159, 90, 40);
