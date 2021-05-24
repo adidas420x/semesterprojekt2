@@ -58,6 +58,7 @@ public class OrderGui extends JFrame {
 	private Event eventTest;
 	private String txtEqID;
 	private String txtEqName;
+	private List<Equipment> equipments;
 	/**
 	 * Launch the application.
 	 */
@@ -83,6 +84,7 @@ public class OrderGui extends JFrame {
 		eventTest = new Event(null, null, null);
 		txtEqID = "Indtast ID på udstyr";
 		txtEqName = "Indtast navn på udstyr";
+		equipments = new ArrayList<>();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1920, 1080);
 		contentPane = new JPanel();
@@ -101,7 +103,6 @@ public class OrderGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				eqID = txtIndtastID.getText();
 				txtIndtastSgeord.setText(txtEqName);
-				List<Equipment> equipments = new ArrayList<>();
 				equipments = orderController.findEquipment(null, eqID, startDate, endDate);
 			}
 		});
@@ -115,7 +116,6 @@ public class OrderGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				eqName = txtIndtastSgeord.getText();
 				txtIndtastID.setText(txtEqID);
-				List<Equipment> equipments = new ArrayList<>();
 				equipments = orderController.findEquipment(eqName, null, startDate, endDate);
 				}
 			});
