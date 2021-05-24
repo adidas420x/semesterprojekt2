@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -54,7 +56,7 @@ public class OrderGui extends JFrame {
 	private String employeeID;
 	private Order order;
 	private Event eventTest;
-	
+	private String txtEqID;
 	/**
 	 * Launch the application.
 	 */
@@ -78,6 +80,7 @@ public class OrderGui extends JFrame {
 	public OrderGui() throws DataAccessException {
 		orderController = new OrderController();
 		eventTest = new Event(null, null, null);
+		txtEqID = "Indtast ID på udstyr";
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1920, 1080);
 		contentPane = new JPanel();
@@ -91,20 +94,21 @@ public class OrderGui extends JFrame {
 		layeredPane.setBackground(new Color(0, 0, 128));
 		contentPane.add(layeredPane, BorderLayout.CENTER);
 		
-		JButton idSgBtn = new JButton("SÃ¸g");
+		JButton idSgBtn = new JButton("Søg");
 		idSgBtn.setBackground(Color.GRAY);
 		idSgBtn.setFont(new Font("Arial", Font.BOLD, 20));
 		idSgBtn.setBounds(537, 499, 90, 40);
 		layeredPane.add(idSgBtn);
 		
-		JButton navnSgBtn = new JButton("SÃ¸g");
+		JButton navnSgBtn = new JButton("Søg");
 		navnSgBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			eqName = txtIndtastSgeord.getText();
-			Equipment equipment = null;
-			//equipment = orderController.findEquipment(name, eqID, startDate, endDate)
-			}
-		});
+				eqName = txtIndtastSgeord.getText();
+				txtIndtastID.setText(txtEqID);
+				List<Equipment> equipments = new ArrayList<>();
+				equipments = orderController.findEquipment(eqName, null, startDate, endDate);
+				}
+			});
 		
 		
 		navnSgBtn.setBackground(Color.GRAY);
@@ -164,7 +168,7 @@ public class OrderGui extends JFrame {
 		opretBtn.setBounds(1670, 934, 200, 67);
 		layeredPane.add(opretBtn);
 		
-		JButton tilfjBtn = new JButton("TilfÃ¸j");
+		JButton tilfjBtn = new JButton("Tilføj");
 		tilfjBtn.setBackground(Color.GRAY);
 		tilfjBtn.setFont(new Font("Arial", Font.BOLD, 20));
 		tilfjBtn.setBounds(537, 961, 90, 40);
@@ -193,7 +197,7 @@ public class OrderGui extends JFrame {
 				txtIndtastSgeord.setText("");
 			}
 		});
-		txtIndtastSgeord.setText("Indtast navn pÃ¥ udstyr");
+		txtIndtastSgeord.setText("Indtast navn på udstyr");
 		txtIndtastSgeord.setBounds(27, 449, 503, 40);
 		layeredPane.add(txtIndtastSgeord);
 		txtIndtastSgeord.setColumns(10);
@@ -221,7 +225,7 @@ public class OrderGui extends JFrame {
 		txtEventID = new JTextField();
 		txtEventID.setBackground(new Color(135, 206, 250));
 		txtEventID.setFont(new Font("Calibri", Font.PLAIN, 20));
-		txtEventID.setText("SÃ¸g efter event ID");
+		txtEventID.setText("Søg efter event ID");
 		txtEventID.setBounds(27, 158, 503, 40);
 		layeredPane.add(txtEventID);
 		txtEventID.setColumns(10);
@@ -319,20 +323,20 @@ public class OrderGui extends JFrame {
 		
 		txtIndtastID = new JTextField();
 		txtIndtastID.setBackground(new Color(135, 206, 250));
-		txtIndtastID.setText("Indtast ID pÃ¥ udstyr");
+		txtIndtastID.setText(txtEqID);
 		txtIndtastID.setFont(new Font("Calibri", Font.PLAIN, 20));
 		txtIndtastID.setColumns(10);
 		txtIndtastID.setBounds(27, 499, 503, 40);
 		layeredPane.add(txtIndtastID);
 		
-		JButton btnVÃ¦lgSkabelon = new JButton("VÃ¦lg");
-		btnVÃ¦lgSkabelon.setBackground(Color.GRAY);
-		btnVÃ¦lgSkabelon.setFont(new Font("Arial", Font.BOLD, 20));
-		btnVÃ¦lgSkabelon.setBounds(537, 231, 90, 40);
-		layeredPane.add(btnVÃ¦lgSkabelon);
+		JButton btnVælgSkabelon = new JButton("Vælg");
+		btnVælgSkabelon.setBackground(Color.GRAY);
+		btnVælgSkabelon.setFont(new Font("Arial", Font.BOLD, 20));
+		btnVælgSkabelon.setBounds(537, 231, 90, 40);
+		layeredPane.add(btnVælgSkabelon);
 		
-		JButton btnSÃ¸gEvent = new JButton("SÃ¸g");
-		btnSÃ¸gEvent.addActionListener(new ActionListener() {
+		JButton btnSøgEvent = new JButton("Søg");
+		btnSøgEvent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				eventID = txtEventID.getText();
 				Event eventTest = null;
@@ -345,10 +349,10 @@ public class OrderGui extends JFrame {
 				
 			}
 		});
-		btnSÃ¸gEvent.setFont(new Font("Arial", Font.BOLD, 20));
-		btnSÃ¸gEvent.setBackground(Color.GRAY);
-		btnSÃ¸gEvent.setBounds(537, 159, 90, 40);
-		layeredPane.add(btnSÃ¸gEvent);
+		btnSøgEvent.setFont(new Font("Arial", Font.BOLD, 20));
+		btnSøgEvent.setBackground(Color.GRAY);
+		btnSøgEvent.setBounds(537, 159, 90, 40);
+		layeredPane.add(btnSøgEvent);
 		
 		JLabel lblStartdato = new JLabel("Startdato");
 		lblStartdato.setFont(new Font("Calibri", Font.PLAIN, 20));
@@ -360,17 +364,17 @@ public class OrderGui extends JFrame {
 		lblSlutdato.setBounds(290, 352, 71, 25);
 		layeredPane.add(lblSlutdato);
 		
-		JLabel lblSgEfterUdstyr = new JLabel("SÃ¸g efter udstyr");
+		JLabel lblSgEfterUdstyr = new JLabel("Søg efter udstyr");
 		lblSgEfterUdstyr.setFont(new Font("Calibri", Font.PLAIN, 20));
 		lblSgEfterUdstyr.setBounds(27, 423, 132, 25);
 		layeredPane.add(lblSgEfterUdstyr);
 		
-		JLabel lblVlgSkabelon = new JLabel("VÃ¦lg skabelon");
+		JLabel lblVlgSkabelon = new JLabel("Vælg skabelon");
 		lblVlgSkabelon.setFont(new Font("Calibri", Font.PLAIN, 20));
 		lblVlgSkabelon.setBounds(27, 209, 132, 25);
 		layeredPane.add(lblVlgSkabelon);
 		
-		JLabel lblSgEfterEvent = new JLabel("SÃ¸g efter event");
+		JLabel lblSgEfterEvent = new JLabel("Søg efter event");
 		lblSgEfterEvent.setFont(new Font("Calibri", Font.PLAIN, 20));
 		lblSgEfterEvent.setBounds(27, 136, 132, 25);
 		layeredPane.add(lblSgEfterEvent);
@@ -400,7 +404,7 @@ public class OrderGui extends JFrame {
 		lblMedarbejder.setBounds(27, 282, 109, 25);
 		layeredPane.add(lblMedarbejder);
 		
-		JLabel lblNavnPEvent = new JLabel("Navn pÃ¥ event");
+		JLabel lblNavnPEvent = new JLabel("Navn på event");
 		lblNavnPEvent.setFont(new Font("Calibri", Font.PLAIN, 20));
 		lblNavnPEvent.setBounds(1270, 314, 132, 25);
 		layeredPane.add(lblNavnPEvent);
