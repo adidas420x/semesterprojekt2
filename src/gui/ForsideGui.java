@@ -29,12 +29,12 @@ public class ForsideGui extends JFrame {
 		
 		JButton forsideLagerBtn = new JButton("Lager");
 		forsideLagerBtn.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		forsideLagerBtn.setBounds(387, 265, 300, 210);
+		forsideLagerBtn.setBounds(385, 265, 300, 210);
 		layeredPane.add(forsideLagerBtn);
 		
 		JButton forsideEventsBtn = new JButton("Events");
 		forsideEventsBtn.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		forsideEventsBtn.setBounds(732, 265, 300, 210);
+		forsideEventsBtn.setBounds(730, 265, 300, 210);
 		layeredPane.add(forsideEventsBtn);
 	}
 	
