@@ -207,7 +207,7 @@ public class OrderGui extends JFrame {
 				txtIndtastSgeord.setText("");
 			}
 		});
-		txtIndtastSgeord.setText("Indtast navn på udstyr");
+		txtIndtastSgeord.setText(txtEqName);
 		txtIndtastSgeord.setBounds(27, 449, 503, 40);
 		layeredPane.add(txtIndtastSgeord);
 		txtIndtastSgeord.setColumns(10);
