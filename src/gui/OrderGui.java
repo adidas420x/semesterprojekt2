@@ -57,6 +57,7 @@ public class OrderGui extends JFrame {
 	private Order order;
 	private Event eventTest;
 	private String txtEqID;
+	private String txtEqName;
 	/**
 	 * Launch the application.
 	 */
@@ -81,6 +82,7 @@ public class OrderGui extends JFrame {
 		orderController = new OrderController();
 		eventTest = new Event(null, null, null);
 		txtEqID = "Indtast ID på udstyr";
+		txtEqName = "Indtast navn på udstyr";
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1920, 1080);
 		contentPane = new JPanel();
@@ -95,6 +97,14 @@ public class OrderGui extends JFrame {
 		contentPane.add(layeredPane, BorderLayout.CENTER);
 		
 		JButton idSgBtn = new JButton("Søg");
+		idSgBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eqID = txtIndtastID.getText();
+				txtIndtastSgeord.setText(txtEqName);
+				List<Equipment> equipments = new ArrayList<>();
+				equipments = orderController.findEquipment(null, eqID, startDate, endDate);
+			}
+		});
 		idSgBtn.setBackground(Color.GRAY);
 		idSgBtn.setFont(new Font("Arial", Font.BOLD, 20));
 		idSgBtn.setBounds(537, 499, 90, 40);
