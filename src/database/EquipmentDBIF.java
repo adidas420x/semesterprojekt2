@@ -1,10 +1,11 @@
 package database;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import model.Equipment;
 
 public interface EquipmentDBIF {
 
-	Equipment findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException;
+	List<Equipment> findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException;
 }

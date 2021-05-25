@@ -17,8 +17,8 @@ public class EquipmentController {
 		this.equipmentDB = new EquipmentDB();
 	}
 	
-//	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate) {
-//		List<Equipment> equipments = equipmentDB.findEquipment(eqID, eqID, endDate, endDate)
-//		return equipments;
-//	}
+	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate) {
+		List<Equipment> equipments = equipmentDB.findEquipment(eqID, eqID, endDate, endDate)
+		return equipments;
+	}
 }
