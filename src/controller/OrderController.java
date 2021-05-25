@@ -30,38 +30,32 @@ public class OrderController {
 		this.equipmentController = new EquipmentController();
 		this.orderDB = new OrderDB();
 		this.eventController = new EventController();
-		//this.order = new Order();
+		// this.order = new Order();
 	}
-	
+
 	public Event findEventByID(String eventID) throws DataAccessException {
 		Event e = eventController.findEventByID(eventID);
 		order.setEvent(e);
-		return e ;
+		return e;
 	}
-	
+
 	public Employee findEmployeeByID(String employeeID) throws DataAccessException {
 		Employee emp = personController.findEmployeeByID(employeeID);
 		order.setEmployee(emp);
 		return emp;
 	}
-	
-	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate){
-		List<Equipment> equipments = equipmentController.findEquipment(eqName,  eqID,  startDate,  endDate);
-		
+
+	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate)
+			throws DataAccessException {
+		List<Equipment> equipments = equipmentController.findEquipment(eqName, eqID, startDate, endDate);
+
 		return equipments;
 	}
-	
-//	public Customer findCustomer(String phone) throws DataAccessException {
-//		Customer c = personController.findCustomerByPhone(phone);
-//	    order.setCustomer(c);
-//		return c;
-//
-//	}
-//	
-//	public Order createOrder(Event event, LocalDate startDate, LocalDate endDate, Employee employee, String eventID) {
-//		Event e = findEventByID(eventID);
-//		
-//		Order o = new Order(event, startDate, endDate,  employee);
-//		return o;	
-//	}
+
+	public Order createOrder(Event event, LocalDate startDate, LocalDate endDate, Employee employee, String eventID) {
+		Event e = findEventByID(eventID);
+
+		Order o = new Order(event, startDate, endDate, employee);
+		return o;
+	}
 }

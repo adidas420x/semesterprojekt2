@@ -14,7 +14,6 @@ public class CopyDB implements CopyDBIF {
 	private static final String getAvailCopiesQ = " SELECT copies.eqID, copies.eqAvailability, copies.serialNo, orders.startDate, orders.endDate\r\n"
 			+ "from Copies\r\n" + "INNER JOIN specificcopies ON copies.serialNo=specificcopies.serialNo\r\n"
 			+ "INNER JOIN orders ON specificcopies.orderID=orders.orderID\r\n" + "\r\n" + "where copies.eqID = ?;";
-
 	private PreparedStatement getAvailCopies;
 
 	public CopyDB() throws DataAccessException {
@@ -40,15 +39,15 @@ public class CopyDB implements CopyDBIF {
 		}
 	}
 
-	public List<Copy> getAvailCopies(String eqID, LocalDate startDate, LocalDate endDate) {
+	public List<Copy> getAvailCopies(String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException {
 		List<Copy> availCopies = new ArrayList<Copy>();
 		try {
 			getAvailCopies.setString(2, eqID);
 			ResultSet rs = getAvailCopies.executeQuery();
 			while (rs.next()) {
 				//.getdate skal parses til localdate
-				if(startDate >= LocalDate.parse(rs.getDate("endDate"))){
-					if(endDate >= LocalDate.parse(rs.getDate("startDate"))) {
+				if(startDate.isAfter(rs.getDate("endDate").toLocalDate())){
+					if(endDate.isBefore(rs.getDate("startDate").toLocalDate())) {
 						Copy c = buildObject(rs);
 						availCopies.add(c);
 					}

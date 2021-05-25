@@ -19,12 +19,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import model.Event;
 import controller.OrderController;
+import database.DBConnection;
 import database.DataAccessException;
 import model.Equipment;
 import model.Employee;
@@ -73,6 +76,7 @@ public class OrderGui extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
 		});
 	}
@@ -420,4 +424,16 @@ public class OrderGui extends JFrame {
 		layeredPane.add(textField);
 
 	}
+	public void init() {
+		new Thread(()->{
+			try {
+				DBConnection.getInstance();
+			} catch (DataAccessException e) {
+				JOptionPane.showMessageDialog(this, "Connection to DB went could not be established", "DBConnectionError", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			}
+		}
+		);
+	}
+	
 }

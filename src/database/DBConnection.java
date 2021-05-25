@@ -28,23 +28,20 @@ public class DBConnection {
 	
 	
 	
-	private DBConnection() {
+	private DBConnection() throws DataAccessException {
 		String connectionString = String.format("jdbc:sqlserver://%s:%d;databaseName=%s;user=%s;password=%s",
 				serverAddress, serverPort, dbName, userName, password);
 		try {
 			Class.forName(driverClass);
 			connection = DriverManager.getConnection(connectionString);
 		} catch (ClassNotFoundException e) {
-			System.err.println("Could not load JDBC driver");
-			e.printStackTrace();
+			throw new DataAccessException(e, "Could not load JDBC driver");
 		} catch(SQLException e) {
-			System.err.println("Could not connect to database " + dbName + "@" + serverAddress + ":" + serverPort + " as user " + userName + " using password ******");
-			System.out.println("Connection string was: " + connectionString.substring(0, connectionString.length() - password.length()) + "....");
-			e.printStackTrace();
+			throw new DataAccessException(e, "Connection string was: " + connectionString.substring(0, connectionString.length() - password.length()) + "....");
 		}
 	}
 	
-	public static DBConnection getInstance() {
+	public static DBConnection getInstance() throws DataAccessException {
 		if(dbConnection == null) {
 			dbConnection = new DBConnection();
 		}

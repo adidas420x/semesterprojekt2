@@ -22,6 +22,8 @@ public class EquipmentDB implements EquipmentDBIF {
 	private PreparedStatement findEquipmentByID;
 	private PreparedStatement findEquipmentByName;
 	private PreparedStatement findEquipment;
+	private CopyDB copyDB;
+	
 
 	public EquipmentDB() throws DataAccessException {
 		try {
@@ -62,14 +64,14 @@ public class EquipmentDB implements EquipmentDBIF {
 		}
 	}
 
-	private Equipment buildObject(ResultSet rs, LocalDate startDate, LocalDate endDate) throws SQLException {
+	private Equipment buildObject(ResultSet rs, LocalDate startDate, LocalDate endDate) throws SQLException, DataAccessException {
 		Equipment e = new Equipment(rs.getString("eqName"), rs.getString("storageLocation"), rs.getString("eqID"),
 				rs.getString("description"), rs.getString("manufacturer"), rs.getInt("stock"), rs.getString("owner"));
-		List<Copy> copies = CopyDB.getAvailCopies(e.getEqID(), startDate, endDate);
+		List<Copy> copies = copyDB.getAvailCopies(e.getEqID(), startDate, endDate);
 		return e;
 	}
 
-	private List<Equipment> buildObjects(ResultSet rs, LocalDate startDate, LocalDate endDate) throws SQLException {
+	private List<Equipment> buildObjects(ResultSet rs, LocalDate startDate, LocalDate endDate) throws SQLException, DataAccessException {
 		List<Equipment> res = new ArrayList<>();
 		while (rs.next()) {
 			res.add(buildObject(rs, startDate, endDate));

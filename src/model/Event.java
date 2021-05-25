@@ -14,8 +14,8 @@ public class Event {
 		this.name = name;
 	}
 
-	public void addCustomer(Customer c) {
-		this.customer = c;
+	public void addCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	
 	public Customer getCustomer() {
