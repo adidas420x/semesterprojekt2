@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Equipment {
 
 	private String eqName;
@@ -9,6 +11,7 @@ public class Equipment {
 	private String manufacturer;
 	private int stock;
 	private String owner;
+	private List<Copy> copies;
 
 	public Equipment(String eqName, String eqID, String storageLocation, String description, String manufacturer,
 			int stock, String owner) {
@@ -21,9 +24,17 @@ public class Equipment {
 		this.stock = stock;
 		this.owner = owner;
 	}
-
+	
 	public String getEqName() {
 		return eqName;
+	}
+
+	public List<Copy> getCopies() {
+		return copies;
+	}
+
+	public void setCopies(List<Copy> copies) {
+		this.copies = copies;
 	}
 
 	public void setEqName(String eqName) {
