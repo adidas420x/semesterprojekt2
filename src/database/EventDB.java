@@ -44,7 +44,6 @@ public class EventDB implements EventDBIF {
 		Event ev = new Event(
 				rs.getString("eventID"),
 				rs.getString("name"),
-				rs.getString("phoneNo")
 				);
 		return ev;
 	}
