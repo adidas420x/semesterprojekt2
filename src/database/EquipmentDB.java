@@ -34,7 +34,7 @@ public class EquipmentDB implements EquipmentDBIF {
 	@Override
 	public Equipment findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException {
 		//hvis der bliver indtastet i navn
-		if () {
+		if (eqID == null) {
 			try {
 				findEquipmentByName.setString(1, eqName);
 				ResultSet rs = findEquipmentByName.executeQuery();
