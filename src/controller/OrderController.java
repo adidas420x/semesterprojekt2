@@ -32,6 +32,10 @@ public class OrderController {
 	public Event findEventByID(String eventID) throws DataAccessException {
 		return eventController.findEventByID(eventID);
 	}
+	
+	public String generateOrderID(String orderID) {
+		return order.generateOrderID();
+	}
 
 	public Order createOrder(String orderID, LocalDate startDate, LocalDate endDate, Employee employee) {
 		Order o = new Order(orderID, startDate, endDate, employee);

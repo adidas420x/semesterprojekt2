@@ -22,8 +22,10 @@ public class Order {
 		this.endDate = endDate;
 		this.employee = employee;
 	}
-	public static synchronized String generateOrderID() {
-		return String.valueOf(idCounter++);
+	public String generateOrderID() {
+		String str = getStartDate().toString();
+		String newOID = str.substring(2) + String.valueOf(idCounter++);
+		return newOID;
 	}
 	
 	public String getOrderID() {

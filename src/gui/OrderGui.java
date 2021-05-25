@@ -417,10 +417,9 @@ public class OrderGui extends JFrame {
 
 		JButton btnOpretOrdre = new JButton("Opret");
 		btnOpretOrdre.addActionListener(new ActionListener() {
-			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent arg0) {
-				order.generateOrderID();
-				System.out.println(order.idCounter);
+				orderID = orderController.generateOrderID(orderID);
+				System.out.println(orderID);
 				orderController.createOrder(orderID, startDate, endDate, null);
 			}
 		});
