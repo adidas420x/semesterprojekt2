@@ -1,4 +1,3 @@
-
 package controller;
 
 import java.time.LocalDate;
@@ -15,22 +14,17 @@ import model.Event;
 import model.Order;
 
 public class OrderController {
-
-//	private OrderController orderController;
 	private EquipmentController equipmentController;
-	private OrderDBIF orderDB;
+	private OrderDB orderDB;
 	private EventController eventController;
 	private Order order;
 	private PersonController personController;
-	private Equipment equipment;
 
 	public OrderController() throws DataAccessException {
 		super();
-//		this.orderController = new OrderController();
 		this.equipmentController = new EquipmentController();
 		this.orderDB = new OrderDB();
 		this.eventController = new EventController();
-		// this.order = new Order();
 	}
 
 	public Event findEventByID(String eventID) throws DataAccessException {
@@ -39,12 +33,11 @@ public class OrderController {
 		return e;
 	}
 
-	public Order createOrder(String orderID, LocalDate startDate, LocalDate endDate, Event event,
-			Employee employee) {
+	public Order createOrder(String orderID, LocalDate startDate, LocalDate endDate, Event event, Employee employee) {
 		Order o = new Order(orderID, startDate, endDate, event, employee);
 		return o;
 	}
-	
+
 	public Employee findEmployeeByID(String employeeID) throws DataAccessException {
 		Employee emp = personController.findEmployeeByID(employeeID);
 		order.setEmployee(emp);
@@ -58,8 +51,11 @@ public class OrderController {
 	}
 
 	public void addEquipmentToOrder(String eqID, int quantity) throws DataAccessException {
-		 equipmentController.getCopiesFromTemp(eqID, order.getStartDate(), order.getEndDate(), quantity);
-		 
+		equipmentController.getCopiesFromTemp(eqID, order.getStartDate(), order.getEndDate(), quantity);
+	}
+
+	public void saveOrder(Order order) throws DataAccessException {
+		orderDB.insertOrder(order);
 	}
 
 }
