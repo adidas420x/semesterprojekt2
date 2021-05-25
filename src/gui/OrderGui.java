@@ -104,8 +104,9 @@ public class OrderGui extends JFrame {
 		idSgBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				eqID = txtIndtastID.getText();
-				txtIndtastSgeord.setText(txtEqName);
+				txtIndtastSgeord.setText(null);
 				equipments = orderController.findEquipment(eqName, eqID, startDate, endDate);
+				txtIndtastSgeord.setText(txtEqName);
 			}
 		});
 		idSgBtn.setBackground(Color.GRAY);
@@ -117,8 +118,9 @@ public class OrderGui extends JFrame {
 		navnSgBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				eqName = txtIndtastSgeord.getText();
-				txtIndtastID.setText(txtEqID);
+				txtIndtastID.setText(null);
 				equipments = orderController.findEquipment(eqName, eqID, startDate, endDate);
+				txtIndtastID.setText(txtEqID);
 			}
 		});
 

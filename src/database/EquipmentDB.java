@@ -38,7 +38,7 @@ public class EquipmentDB implements EquipmentDBIF {
 			try {
 				findEquipmentByName.setString(1, eqName);
 				ResultSet rs = findEquipmentByName.executeQuery();
-				Equipment e = null;
+				List<Equipment> e = null;
 				if (rs.next()) {
 					e = buildObject(rs);
 			}
