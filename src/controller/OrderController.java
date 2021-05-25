@@ -44,13 +44,13 @@ public class OrderController {
 		order.setEmployee(emp);
 		return emp;
 	}
-//	
-//	public List<Equipment> findEquipment(String EqName, String eqID, LocalDate startDate, LocalDate endDate){
-//		List<Equipment> equipments = equipmentController.findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate);
-//		
-//		return equipments;
-//	}
-//	
+	
+	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate){
+		List<Equipment> equipments = equipmentController.findEquipment(eqName,  eqID,  startDate,  endDate);
+		
+		return equipments;
+	}
+	
 //	public Customer findCustomer(String phone) throws DataAccessException {
 //		Customer c = personController.findCustomerByPhone(phone);
 //	    order.setCustomer(c);
