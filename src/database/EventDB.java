@@ -43,7 +43,7 @@ public class EventDB implements EventDBIF {
 	private Event buildObject(ResultSet rs) throws SQLException {
 		Event ev = new Event(
 				rs.getString("eventID"),
-				rs.getString("name"),
+				rs.getString("name")
 				);
 		return ev;
 	}
