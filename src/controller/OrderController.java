@@ -41,7 +41,7 @@ public class OrderController {
 
 	public Order createOrder(String orderID, LocalDate startDate, LocalDate endDate, Event event,
 			Employee employee) {
-		Order o = new Order(orderID, endDate, endDate, event, employee);
+		Order o = new Order(orderID, startDate, endDate, event, employee);
 		return o;
 	}
 	
@@ -54,9 +54,12 @@ public class OrderController {
 	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate)
 			throws DataAccessException {
 		List<Equipment> equipments = equipmentController.findEquipment(eqName, eqID, startDate, endDate);
-
 		return equipments;
 	}
 
+	public void addEquipmentToOrder(String eqID, int quantity) throws DataAccessException {
+		 equipmentController.getCopiesFromTemp(eqID, order.getStartDate(), order.getEndDate(), quantity);
+		 
+	}
 
 }
