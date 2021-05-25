@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Order {
 	
@@ -9,6 +10,7 @@ public class Order {
 	private LocalDate endDate;
 	private Event event;
 	private Employee employee;
+	public static long idCounter = 0;
 
 
 
@@ -19,6 +21,9 @@ public class Order {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.employee = employee;
+	}
+	public static synchronized String generateOrderID() {
+		return String.valueOf(idCounter++);
 	}
 	
 	public String getOrderID() {
