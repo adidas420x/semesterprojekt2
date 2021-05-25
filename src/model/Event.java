@@ -8,11 +8,10 @@ public class Event {
 	private String name;
 	private Person phoneNo;
 	
-	public Event(String eventID, String name, Person phoneNo) {
+	public Event(String eventID, String name) {
 		super();
 		this.eventID = eventID;
 		this.name = name;
-		this.phoneNo = phoneNo;
 	}
 
 	public String getEventID() {
