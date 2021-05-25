@@ -49,7 +49,7 @@ public class CopyDB implements CopyDBIF {
 	}
 	
 	public List<Copy> getAvailCopies(String eqID, LocalDate startDate, LocalDate endDate){
-		
+
 	}
 	
 	private List<Copy> buildObjects(ResultSet rs) throws SQLException {
