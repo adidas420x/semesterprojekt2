@@ -63,6 +63,7 @@ public class OrderGui extends JFrame {
 	private String txtEqName;
 	private List<Equipment> equipments;
 	private String orderID;
+	private int quantity;
 
 	/**
 	 * Launch the application.
@@ -88,6 +89,7 @@ public class OrderGui extends JFrame {
 	 */
 	public OrderGui() throws DataAccessException {
 		orderController = new OrderController();
+		quantity = 0;
 		eventTest = new Event(null, null);
 		txtEqID = "Indtast ID på udstyr";
 		txtEqName = "Indtast navn på udstyr";
@@ -110,7 +112,11 @@ public class OrderGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				eqID = txtIndtastID.getText();
 				txtIndtastSgeord.setText(null);
-				equipments = orderController.findEquipment(eqName, eqID, startDate, endDate);
+				try {
+					equipments = orderController.findEquipment(eqName, eqID, startDate, endDate);
+				} catch (DataAccessException e1) {
+					e1.printStackTrace();
+				}
 				txtIndtastSgeord.setText(txtEqName);
 			}
 		});
@@ -124,7 +130,11 @@ public class OrderGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				eqName = txtIndtastSgeord.getText();
 				txtIndtastID.setText(null);
-				equipments = orderController.findEquipment(eqName, eqID, startDate, endDate);
+				try {
+					equipments = orderController.findEquipment(eqName, eqID, startDate, endDate);
+				} catch (DataAccessException e1) {
+					e1.printStackTrace();
+				}
 				txtIndtastID.setText(txtEqID);
 			}
 		});
@@ -188,6 +198,11 @@ public class OrderGui extends JFrame {
 		layeredPane.add(opretBtn);
 
 		JButton tilfjBtn = new JButton("Tilføj");
+		tilfjBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			 quantity = Integer.parseInt(txtIndtastAntal.getText());
+			}
+		});
 		tilfjBtn.setBackground(Color.GRAY);
 		tilfjBtn.setFont(new Font("Arial", Font.BOLD, 20));
 		tilfjBtn.setBounds(537, 961, 90, 40);
