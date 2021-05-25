@@ -372,8 +372,11 @@ public class OrderGui extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				eventID = txtEventID.getText();
 				try {
-					orderController.findEventByID(eventID);
-					System.out.println(eventID);
+					System.out.println("1");
+					Event eventTest = null;
+					System.out.println("2");
+					eventTest = orderController.findEventByID(eventID);
+					System.out.println("3");
 				    //txtEventID.setText(eventTest.getName());
 				    //txtEventID.setEditable(false);
 				} catch (DataAccessException e) {
