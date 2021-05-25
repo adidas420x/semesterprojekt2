@@ -7,19 +7,17 @@ public class Order {
 	private String orderID;
 	private LocalDate startDate;
 	private LocalDate endDate;
-	private String eventStatus;
 	private Event event;
 	private Employee employee;
 
 
 
-	public Order(String orderID, LocalDate startDate, LocalDate endDate, String eventStatus, Event event,
+	public Order(String orderID, LocalDate startDate, LocalDate endDate, Event event,
 			Employee employee) {
 		super();
 		this.orderID = orderID;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.eventStatus = eventStatus;
 		this.event = event;
 		this.employee = employee;
 	}
@@ -46,14 +44,6 @@ public class Order {
 
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
-	}
-
-	public String getEventStatus() {
-		return eventStatus;
-	}
-
-	public void setEventStatus(String eventStatus) {
-		this.eventStatus = eventStatus;
 	}
 
 	public Event getEvent() {
