@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Copy;
 import model.Equipment;
 
 public class EquipmentDB implements EquipmentDBIF {
@@ -40,7 +41,7 @@ public class EquipmentDB implements EquipmentDBIF {
 				ResultSet rs = findEquipmentByName.executeQuery();
 				List<Equipment> e = null;
 				if (rs.next()) {
-					e = buildObjects(rs);
+					e = buildObjects(rs, startDate, endDate);
 			}
 			return e;
 			} catch (SQLException e) {
@@ -52,7 +53,7 @@ public class EquipmentDB implements EquipmentDBIF {
 				ResultSet rs = findEquipmentByID.executeQuery();
 				List<Equipment> e = null;
 				if (rs.next()) {
-				e = buildObjects(rs);
+				e = buildObjects(rs, startDate, endDate);
 			}
 			return e;
 			} catch (SQLException e) {
@@ -61,16 +62,17 @@ public class EquipmentDB implements EquipmentDBIF {
 		}
 	}
 
-	private Equipment buildObject(ResultSet rs) throws SQLException {
+	private Equipment buildObject(ResultSet rs, LocalDate startDate, LocalDate endDate) throws SQLException {
 		Equipment e = new Equipment(rs.getString("eqName"), rs.getString("storageLocation"), rs.getString("eqID"),
 				rs.getString("description"), rs.getString("manufacturer"), rs.getInt("stock"), rs.getString("owner"));
+		List<Copy> copies = CopyDB.getAvailCopies(e.getEqID(), startDate, endDate);
 		return e;
 	}
 
-	private List<Equipment> buildObjects(ResultSet rs) throws SQLException {
+	private List<Equipment> buildObjects(ResultSet rs, LocalDate startDate, LocalDate endDate) throws SQLException {
 		List<Equipment> res = new ArrayList<>();
 		while (rs.next()) {
-			res.add(buildObject(rs));
+			res.add(buildObject(rs, startDate, endDate));
 		}
 		return res;
 	}

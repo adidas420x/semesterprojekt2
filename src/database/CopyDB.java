@@ -11,7 +11,9 @@ import model.Copy;
 
 public class CopyDB implements CopyDBIF {
 
-	private static final String getAvailCopiesQ = " select serialNo, eqAvailability from copies where eqAvailability = available";
+	private static final String getAvailCopiesQ = " SELECT copies.eqID, copies.eqAvailability, copies.serialNo, orders.startDate, orders.endDate\r\n"
+			+ "from Copies\r\n" + "INNER JOIN specificcopies ON copies.serialNo=specificcopies.serialNo\r\n"
+			+ "INNER JOIN orders ON specificcopies.orderID=orders.orderID\r\n" + "\r\n" + "where copies.eqID = ?;";
 
 	private PreparedStatement getAvailCopies;
 
@@ -39,8 +41,23 @@ public class CopyDB implements CopyDBIF {
 	}
 
 	public List<Copy> getAvailCopies(String eqID, LocalDate startDate, LocalDate endDate) {
-
-		return s;
+		List<Copy> availCopies = new ArrayList<Copy>();
+		try {
+			getAvailCopies.setString(2, eqID);
+			ResultSet rs = getAvailCopies.executeQuery();
+			while (rs.next()) {
+				//.getdate skal parses til localdate
+				if(startDate >= LocalDate.parse(rs.getDate("endDate"))){
+					if(endDate >= LocalDate.parse(rs.getDate("startDate"))) {
+						Copy c = buildObject(rs);
+						availCopies.add(c);
+					}
+				}
+			}
+			return availCopies;
+		} catch (SQLException e) {
+			throw new DataAccessException(e, "could not find available copies");
+		}
 	}
 
 	private Copy buildObject(ResultSet rs) throws SQLException {
