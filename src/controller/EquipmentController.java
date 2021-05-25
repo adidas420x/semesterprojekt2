@@ -26,8 +26,8 @@ public class EquipmentController {
 		return equipments;
 	}
 	
-	public Copy getCopiesFromTemp(String eqID, LocalDate startDate, LocalDate endDate){
-		List<Copy> copies = CopyDB.getAvailCopies(eqID, startDate, endDate);	
+	public List<Copy> getCopiesFromTemp(String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException{
+		List<Copy> copies = copyDB.getAvailCopies(eqID, startDate, endDate);	
 		return copies;
 	}
 }
