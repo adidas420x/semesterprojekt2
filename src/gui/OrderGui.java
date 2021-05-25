@@ -58,7 +58,7 @@ public class OrderGui extends JFrame {
 	private LocalDate endDate;
 	private String employeeID;
 	private Order order;
-	private Event eventTest;
+	private Event event;
 	private String txtEqID;
 	private String txtEqName;
 	private List<Equipment> equipments;
@@ -77,7 +77,7 @@ public class OrderGui extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 			}
 		});
 	}
@@ -90,7 +90,7 @@ public class OrderGui extends JFrame {
 	public OrderGui() throws DataAccessException {
 		orderController = new OrderController();
 		quantity = 0;
-		eventTest = new Event(null, null);
+		event = new Event(null, null);
 		txtEqID = "Indtast ID på udstyr";
 		txtEqName = "Indtast navn på udstyr";
 		equipments = new ArrayList<>();
@@ -201,17 +201,16 @@ public class OrderGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				quantity = Integer.parseInt(txtIndtastAntal.getText());
 				DefaultTableModel model = (DefaultTableModel) findUdstyrTable.getModel();
-                try {
-                int column = 0;
-                int row = findUdstyrTable.getSelectedRow();
-                String value = findUdstyrTable.getModel().getValueAt(row, column).toString();
-                DefaultTableModel model1 = (DefaultTableModel) valgtUdstyrTable.getModel();
-				model1.addRow(new Object[] { (value), (quantity)});
-                //valgtUdstyrTable
-                }catch(Exception ex)
-                {
-                    JOptionPane.showMessageDialog(null, ex);
-			}
+				try {
+					int column = 0;
+					int row = findUdstyrTable.getSelectedRow();
+					String value = findUdstyrTable.getModel().getValueAt(row, column).toString();
+					DefaultTableModel model1 = (DefaultTableModel) valgtUdstyrTable.getModel();
+					model1.addRow(new Object[] { (value), (quantity) });
+					// valgtUdstyrTable
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, ex);
+				}
 			}
 		});
 		tilfjBtn.setBackground(Color.GRAY);
@@ -372,13 +371,14 @@ public class OrderGui extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				eventID = txtEventID.getText();
 				try {
-					System.out.println("1");
-					Event eventTest = null;
-					System.out.println("2");
-					eventTest = orderController.findEventByID(eventID);
-					System.out.println("3");
-				    //txtEventID.setText(eventTest.getName());
-				    //txtEventID.setEditable(false);
+					Event event = null;
+					if (!txtEventID.getText().isEmpty()) {
+						event = orderController.findEventByID(eventID);
+						txtEventID.setText(event.getName());
+						txtEventID.setEditable(false);
+					} else {
+						btnSøgEvent.setEnabled(false);
+					}
 				} catch (DataAccessException e) {
 					e.printStackTrace();
 				}
@@ -454,16 +454,17 @@ public class OrderGui extends JFrame {
 		layeredPane.add(textField);
 
 	}
+
 	public void init() {
-		new Thread(()->{
+		new Thread(() -> {
 			try {
 				DBConnection.getInstance();
 			} catch (DataAccessException e) {
-				JOptionPane.showMessageDialog(this, "Connection to DB went could not be established", "DBConnectionError", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Connection to DB went could not be established",
+						"DBConnectionError", JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
 			}
-		}
-		);
+		});
 	}
-	
+
 }

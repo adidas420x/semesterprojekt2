@@ -26,11 +26,11 @@ public class OrderController {
 		super();
 		this.equipmentController = new EquipmentController();
 		this.orderDB = new OrderDB();
-		this.eventController = new EventController();
+		this.eventController = new EventController(); 
 	}
 
 	public Event findEventByID(String eventID) throws DataAccessException {
-		return eventDB.findEventByID(eventID);
+		return eventController.findEventByID(eventID);
 	}
 
 	public Order createOrder(String orderID, LocalDate startDate, LocalDate endDate, Employee employee) {

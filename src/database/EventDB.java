@@ -33,6 +33,7 @@ public class EventDB implements EventDBIF {
 			if(rs.next()) {
 				ev = buildObject(rs);
 			} 
+			
 			return ev;
 		} catch (SQLException e) {
 			throw new DataAccessException(e, "could not find event by id");
