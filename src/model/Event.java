@@ -6,7 +6,7 @@ public class Event {
 
 	private String eventID;
 	private String name;
-	private Person phoneNo;
+	private Customer customer;
 	
 	public Event(String eventID, String name) {
 		super();
@@ -14,6 +14,14 @@ public class Event {
 		this.name = name;
 	}
 
+	public void addCustomer(Customer c) {
+		this.customer = c;
+	}
+	
+	public Customer getCustomer() {
+		return customer;
+	}
+	
 	public String getEventID() {
 		return eventID;
 	}
@@ -28,14 +36,6 @@ public class Event {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public void setPhoneNo(Person phoneNo) {
-		this.phoneNo = phoneNo;
-	}
-	
-	public Person getPhoneNo() {
-		return phoneNo;
 	}
 	
 }
