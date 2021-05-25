@@ -40,8 +40,8 @@ public class OrderController {
 	}
 
 	public Order createOrder(String orderID, LocalDate startDate, LocalDate endDate, Event event,
-			Employee employeeD) {
-		Order o = new Order(orderID, endDate, endDate, event, employeeD);
+			Employee employee) {
+		Order o = new Order(orderID, endDate, endDate, event, employee);
 		return o;
 	}
 	
