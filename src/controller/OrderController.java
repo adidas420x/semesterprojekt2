@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import database.DataAccessException;
+import database.EventDB;
 import database.OrderDB;
 import database.OrderDBIF;
 import model.Customer;
@@ -19,6 +20,7 @@ public class OrderController {
 	private EventController eventController;
 	private Order order;
 	private PersonController personController;
+	private EventDB eventDB;
 
 	public OrderController() throws DataAccessException {
 		super();
@@ -28,13 +30,11 @@ public class OrderController {
 	}
 
 	public Event findEventByID(String eventID) throws DataAccessException {
-		Event e = eventController.findEventByID(eventID);
-		order.setEvent(e);
-		return e;
+		return eventDB.findEventByID(eventID);
 	}
 
-	public Order createOrder(String orderID, LocalDate startDate, LocalDate endDate, Event event, Employee employee) {
-		Order o = new Order(orderID, startDate, endDate, event, employee);
+	public Order createOrder(String orderID, LocalDate startDate, LocalDate endDate, Employee employee) {
+		Order o = new Order(orderID, startDate, endDate, employee);
 		return o;
 	}
 
@@ -43,7 +43,7 @@ public class OrderController {
 		order.setEmployee(emp);
 		return emp;
 	}
-
+	
 	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate)
 			throws DataAccessException {
 		List<Equipment> equipments = equipmentController.findEquipment(eqName, eqID, startDate, endDate);

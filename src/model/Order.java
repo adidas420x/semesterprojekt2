@@ -12,16 +12,15 @@ public class Order {
 
 
 
-	public Order(String orderID, LocalDate startDate, LocalDate endDate, Event event,
+	public Order(String orderID, LocalDate startDate, LocalDate endDate,
 			Employee employee) {
 		super();
 		this.orderID = orderID;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.event = event;
 		this.employee = employee;
 	}
-
+	
 	public String getOrderID() {
 		return orderID;
 	}

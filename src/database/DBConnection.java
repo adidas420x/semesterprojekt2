@@ -18,13 +18,13 @@ public class DBConnection {
 	 * 
 	 */
 	
-	private static final String driverClass = "";
-	private static final String dbName = "";
-	private static final String serverAddress = "";
+	private static final String driverClass = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+	private static final String dbName = "semesterprojekt";
+	private static final String serverAddress = "localhost";
 	//private static final String serverAddress = "192.168.56.2";
 	private static final int    serverPort = 1433;
-	private static final String userName = "";
-	private static final String password = "";
+	private static final String userName = "sa";
+	private static final String password = "secret";
 	
 	
 	

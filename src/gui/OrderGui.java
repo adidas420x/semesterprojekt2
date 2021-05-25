@@ -166,10 +166,9 @@ public class OrderGui extends JFrame {
 				try {
 					employee = orderController.findEmployeeByID(employeeID);
 				} catch (DataAccessException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				order = new Order(orderID, endDate, endDate, eventTest, employee);
+				order = new Order(orderID, endDate, endDate, employee);
 			}
 		});
 		layeredPane.add(opretOrdreBtn);
@@ -200,7 +199,19 @@ public class OrderGui extends JFrame {
 		JButton tilfjBtn = new JButton("Tilføj");
 		tilfjBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			 quantity = Integer.parseInt(txtIndtastAntal.getText());
+				quantity = Integer.parseInt(txtIndtastAntal.getText());
+				DefaultTableModel model = (DefaultTableModel) findUdstyrTable.getModel();
+                try {
+                int column = 0;
+                int row = findUdstyrTable.getSelectedRow();
+                String value = findUdstyrTable.getModel().getValueAt(row, column).toString();
+                DefaultTableModel model1 = (DefaultTableModel) valgtUdstyrTable.getModel();
+				model1.addRow(new Object[] { (value), (quantity)});
+                //valgtUdstyrTable
+                }catch(Exception ex)
+                {
+                    JOptionPane.showMessageDialog(null, ex);
+			}
 			}
 		});
 		tilfjBtn.setBackground(Color.GRAY);
@@ -360,11 +371,12 @@ public class OrderGui extends JFrame {
 		btnSøgEvent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				eventID = txtEventID.getText();
-				Event eventTest = null;
 				try {
-					eventTest = orderController.findEventByID(eventID);
+					orderController.findEventByID(eventID);
+					System.out.println(eventID);
+				    //txtEventID.setText(eventTest.getName());
+				    //txtEventID.setEditable(false);
 				} catch (DataAccessException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 

@@ -11,8 +11,7 @@ import model.Person;
 
 public class EventDB implements EventDBIF {
 
-	private static final String findEventByIDQ = "select eventID, name, PhoneNo" 
-				+ "where eventID = ?";
+	private static final String findEventByIDQ = "select eventID, name, cPhoneNo from events where eventID = ?";
 	
 	private PreparedStatement findEventByID;
 	
@@ -48,11 +47,4 @@ public class EventDB implements EventDBIF {
 		return ev;
 	}
 
-	private List<Event> buildObjects(ResultSet rs) throws SQLException {
-		List<Event> res = new ArrayList<>();
-		while(rs.next()) {
-			res.add(buildObject(rs));
-		}
-		return res;
-	}
 }
