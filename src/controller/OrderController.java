@@ -15,7 +15,7 @@ import model.Order;
 
 public class OrderController {
 
-	private OrderController orderController;
+//	private OrderController orderController;
 	private EquipmentController equipmentController;
 	private OrderDBIF orderDB;
 	private EventController eventController;
@@ -25,7 +25,7 @@ public class OrderController {
 
 	public OrderController() throws DataAccessException {
 		super();
-		this.orderController = new OrderController();
+//		this.orderController = new OrderController();
 		this.equipmentController = new EquipmentController();
 		this.orderDB = new OrderDB();
 		this.eventController = new EventController();
@@ -43,24 +43,24 @@ public class OrderController {
 		order.setEmployee(emp);
 		return emp;
 	}
-	
-	public List<Equipment> findEquipment(String EqName, String eqID, LocalDate startDate, LocalDate endDate){
-		List<Equipment> equipments = equipmentController.findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate);
-		
-		return equipments;
-	}
-	
-	public Customer findCustomer(String phone) throws DataAccessException {
-		Customer c = personController.findCustomerByPhone(phone);
-	    order.setCustomer(c);
-		return c;
-
-	}
-	
-	public Order createOrder(Event event, LocalDate startDate, LocalDate endDate, Employee employee, String eventID) {
-		Event e = findEventById(eventID);
-		
-		Order o = new Order(event, startDate, endDate,  employee);
-		return o;	
-	}
+//	
+//	public List<Equipment> findEquipment(String EqName, String eqID, LocalDate startDate, LocalDate endDate){
+//		List<Equipment> equipments = equipmentController.findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate);
+//		
+//		return equipments;
+//	}
+//	
+//	public Customer findCustomer(String phone) throws DataAccessException {
+//		Customer c = personController.findCustomerByPhone(phone);
+//	    order.setCustomer(c);
+//		return c;
+//
+//	}
+//	
+//	public Order createOrder(Event event, LocalDate startDate, LocalDate endDate, Employee employee, String eventID) {
+//		Event e = findEventByID(eventID);
+//		
+//		Order o = new Order(event, startDate, endDate,  employee);
+//		return o;	
+//	}
 }
