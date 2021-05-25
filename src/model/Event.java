@@ -6,13 +6,13 @@ public class Event {
 
 	private String eventID;
 	private String name;
-	private Customer customer;
+	private Person phoneNo;
 	
-	public Event(String eventID, String name, Customer customer) {
+	public Event(String eventID, String name, Person phoneNo) {
 		super();
 		this.eventID = eventID;
 		this.name = name;
-		this.customer = customer;
+		this.phoneNo = phoneNo;
 	}
 
 	public String getEventID() {
@@ -31,7 +31,12 @@ public class Event {
 		this.name = name;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setPhoneNo(Person phoneNo) {
+		this.phoneNo = phoneNo;
 	}
+	
+	public Person getPhoneNo() {
+		return phoneNo;
+	}
+	
 }
