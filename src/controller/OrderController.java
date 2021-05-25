@@ -39,6 +39,12 @@ public class OrderController {
 		return e;
 	}
 
+	public Order createOrder(String orderID, LocalDate startDate, LocalDate endDate, Event event,
+			Employee employeeD) {
+		Order o = new Order(orderID, endDate, endDate, event, employeeD);
+		return o;
+	}
+	
 	public Employee findEmployeeByID(String employeeID) throws DataAccessException {
 		Employee emp = personController.findEmployeeByID(employeeID);
 		order.setEmployee(emp);
@@ -52,10 +58,5 @@ public class OrderController {
 		return equipments;
 	}
 
-	public Order createOrder(Event event, LocalDate startDate, LocalDate endDate, Employee employee, String eventID) {
-		Event e = findEventByID(eventID);
 
-		Order o = new Order(event, startDate, endDate, employee);
-		return o;
-	}
 }
