@@ -59,6 +59,7 @@ public class OrderGui extends JFrame {
 	private String txtEqID;
 	private String txtEqName;
 	private List<Equipment> equipments;
+	private String orderID;
 
 	/**
 	 * Launch the application.
@@ -83,7 +84,7 @@ public class OrderGui extends JFrame {
 	 */
 	public OrderGui() throws DataAccessException {
 		orderController = new OrderController();
-		eventTest = new Event(null, null, null);
+		eventTest = new Event(null, null);
 		txtEqID = "Indtast ID på udstyr";
 		txtEqName = "Indtast navn på udstyr";
 		equipments = new ArrayList<>();
@@ -142,6 +143,8 @@ public class OrderGui extends JFrame {
 		opretOrdreBtn.setFont(new Font("Arial", Font.BOLD, 18));
 		opretOrdreBtn.setBounds(27, 27, 160, 67);
 		opretOrdreBtn.addActionListener(new ActionListener() {
+			
+
 			public void actionPerformed(ActionEvent arg0) {
 				startDate = LocalDate.parse(txtEventStartDate.getText());
 				endDate = LocalDate.parse(txtEventEndDate.getText());
@@ -153,7 +156,7 @@ public class OrderGui extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				order = new Order(eventTest, endDate, endDate, employee);
+				order = new Order(orderID, endDate, endDate, eventTest, employee);
 			}
 		});
 		layeredPane.add(opretOrdreBtn);

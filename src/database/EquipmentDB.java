@@ -46,7 +46,7 @@ public class EquipmentDB implements EquipmentDBIF {
 			} catch (SQLException e) {
 				throw new DataAccessException(e, "could not find by equipment name");
 			}
-		}else {
+		}else if(eqName == null){
 			try {
 				findEquipmentByID.setString(1, eqID);
 				ResultSet rs = findEquipmentByID.executeQuery();
