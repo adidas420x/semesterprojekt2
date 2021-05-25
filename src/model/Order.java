@@ -3,26 +3,33 @@ package model;
 import java.time.LocalDate;
 
 public class Order {
-
-	private Event event;
+	
+	private String orderID;
 	private LocalDate startDate;
 	private LocalDate endDate;
+	private String eventStatus;
+	private Event event;
 	private Employee employee;
 
-	public Order(Event event, LocalDate startDate, LocalDate endDate, Employee employee) {
+
+
+	public Order(String orderID, LocalDate startDate, LocalDate endDate, String eventStatus, Event event,
+			Employee employee) {
 		super();
+		this.orderID = orderID;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.eventStatus = eventStatus;
 		this.event = event;
 		this.employee = employee;
 	}
 
-	public Event getEvent() {
-		return event;
+	public String getOrderID() {
+		return orderID;
 	}
 
-	public void setEvent(Event event) {
-		this.event = event;
+	public void setOrderID(String orderID) {
+		this.orderID = orderID;
 	}
 
 	public LocalDate getStartDate() {
@@ -41,6 +48,22 @@ public class Order {
 		this.endDate = endDate;
 	}
 
+	public String getEventStatus() {
+		return eventStatus;
+	}
+
+	public void setEventStatus(String eventStatus) {
+		this.eventStatus = eventStatus;
+	}
+
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
+
 	public Employee getEmployee() {
 		return employee;
 	}
@@ -48,5 +71,7 @@ public class Order {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
+
+	
 
 }
