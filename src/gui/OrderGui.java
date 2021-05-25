@@ -143,7 +143,6 @@ public class OrderGui extends JFrame {
 		opretOrdreBtn.setFont(new Font("Arial", Font.BOLD, 18));
 		opretOrdreBtn.setBounds(27, 27, 160, 67);
 		opretOrdreBtn.addActionListener(new ActionListener() {
-			
 
 			public void actionPerformed(ActionEvent arg0) {
 				startDate = LocalDate.parse(txtEventStartDate.getText());
