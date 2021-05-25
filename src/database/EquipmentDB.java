@@ -40,19 +40,19 @@ public class EquipmentDB implements EquipmentDBIF {
 				ResultSet rs = findEquipmentByName.executeQuery();
 				List<Equipment> e = null;
 				if (rs.next()) {
-					e = buildObject(rs);
+					e = buildObjects(rs);
 			}
 			return e;
 			} catch (SQLException e) {
 				throw new DataAccessException(e, "could not find by equipment name");
 			}
-		}else if(eqName == null){
+		}else {
 			try {
 				findEquipmentByID.setString(1, eqID);
 				ResultSet rs = findEquipmentByID.executeQuery();
-				Equipment e = null;
+				List<Equipment> e = null;
 				if (rs.next()) {
-				e = buildObject(rs);
+				e = buildObjects(rs);
 			}
 			return e;
 			} catch (SQLException e) {
