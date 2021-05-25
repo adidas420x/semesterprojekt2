@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Event;
+import model.Person;
 
 public class EventDB implements EventDBIF {
 
-	private static final String findEventByIDQ = "select eventID, name, cPhoneNo" 
+	private static final String findEventByIDQ = "select eventID, name, PhoneNo" 
 				+ "where eventID = ?";
 	
 	private PreparedStatement findEventByID;
@@ -42,11 +43,12 @@ public class EventDB implements EventDBIF {
 	private Event buildObject(ResultSet rs) throws SQLException {
 		Event ev = new Event(
 				rs.getString("eventID"),
-				rs.getString("name")
+				rs.getString("name"),
+				rs.getString("phoneNo")
 				);
 		return ev;
 	}
-	
+
 	private List<Event> buildObjects(ResultSet rs) throws SQLException {
 		List<Event> res = new ArrayList<>();
 		while(rs.next()) {

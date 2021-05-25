@@ -24,21 +24,21 @@ public class CopyDB implements CopyDBIF {
 		}
 	}
 
-	@Override
-	public Copy getAvailCopies(String eqAvailability) throws DataAccessException {
-		try {
-			getAvailCopies.setString(2, eqAvailability);
-			ResultSet rs = getAvailCopies.executeQuery();
-			Copy e = null;
-			if (rs.next()) {
-				e = buildObject(rs);
-			}
-			return e;
-		} catch (SQLException e) {
-			throw new DataAccessException(e, "could not find available copies");
-		}
-	}
+//		public Copy getAvailCopies(String eqAvailability) throws DataAccessException {
+//		try {
+//			getAvailCopies.setString(2, eqAvailability);
+//			ResultSet rs = getAvailCopies.executeQuery();
+//			Copy e = null;
+//			if (rs.next()) {
+//				e = buildObject(rs);
+//			}
+//			return e;
+//		} catch (SQLException e) {
+//			throw new DataAccessException(e, "could not find available copies");
+//		}
+//	}
 
+	@Override
 	public List<Copy> getAvailCopies(String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException {
 		List<Copy> availCopies = new ArrayList<Copy>();
 		try {
@@ -71,4 +71,5 @@ public class CopyDB implements CopyDBIF {
 		}
 		return res;
 	}
+
 }

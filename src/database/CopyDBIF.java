@@ -1,9 +1,12 @@
 package database;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import model.Copy;
 
 public interface CopyDBIF {
 
-	Copy getAvailCopies(String eqAvailability) throws DataAccessException;
+	List<Copy> getAvailCopies(String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException;
 
 }
