@@ -20,10 +20,11 @@ public class EquipmentController {
 	public EquipmentController() throws DataAccessException {
 		super();
 		this.equipmentDB = new EquipmentDB();
+		this.copyDB = new CopyDB();
 	}
 	
 	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException {
-		List<Equipment> equipments = equipmentDB.findEquipment(eqID, eqID, endDate, endDate);
+		List<Equipment> equipments = equipmentDB.findEquipment(eqName, eqID, endDate, endDate);
 		return equipments;
 	}
 	

@@ -49,8 +49,7 @@ public class OrderController {
 		return personController.findEmployeeByID(employeeID);
 	}
 	
-	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate)
-			throws DataAccessException {
+	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException {
 		List<Equipment> equipments = equipmentController.findEquipment(eqName, eqID, startDate, endDate);
 		return equipments;
 	}

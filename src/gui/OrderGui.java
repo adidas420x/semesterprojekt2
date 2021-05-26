@@ -92,6 +92,7 @@ public class OrderGui extends JFrame {
 	 */
 	public OrderGui() throws DataAccessException {
 		orderController = new OrderController();
+		equipmentController = new EquipmentController();
 		quantity = 0;
 		event = new Event(null, null);
 		txtEqID = "Indtast ID på udstyr";
@@ -113,10 +114,16 @@ public class OrderGui extends JFrame {
 		JButton idSgBtn = new JButton("Søg");
 		idSgBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) findUdstyrTable.getModel();
+				model.setRowCount(0);
 				eqID = txtIndtastID.getText();
-				txtIndtastSgeord.setText(null);
 				try {
-					equipments = orderController.findEquipment(eqName, eqID, startDate, endDate);
+					equipments = orderController.findEquipment(null, eqID, order.getStartDate(), order.getEndDate());
+					for (Equipment equipment : equipments) {
+						int count = equipmentController.getCopiesFromTemp(equipment.getEqID(), order.getStartDate(), order.getEndDate()).size();
+						DefaultTableModel model1 = (DefaultTableModel) findUdstyrTable.getModel();
+						model1.addRow(new Object[] {equipment.getEqName(), count});
+					}
 				} catch (DataAccessException e1) {
 					e1.printStackTrace();
 				}
@@ -131,15 +138,15 @@ public class OrderGui extends JFrame {
 		JButton navnSgBtn = new JButton("Søg");
 		navnSgBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel) findUdstyrTable.getModel();
+				model.setRowCount(0);
 				eqName = txtIndtastSgeord.getText();
-				txtIndtastID.setText(null);
 				try {
-					equipments = orderController.findEquipment(eqName, eqID, startDate, endDate);
+					equipments = orderController.findEquipment(eqName, null, order.getStartDate(), order.getEndDate());
 					for (Equipment equipment : equipments) {
-						int count = equipmentController.getCopiesFromTemp(equipment.getEqID(), startDate, endDate).size();
-//						TableModel model = findUdstyrTable.getModel();
-						DefaultTableModel model = (DefaultTableModel) findUdstyrTable.getModel();
-						model.addRow(new Object[] {eqName, count});
+						int count = equipmentController.getCopiesFromTemp(equipment.getEqID(), order.getStartDate(), order.getEndDate()).size();
+						DefaultTableModel model1 = (DefaultTableModel) findUdstyrTable.getModel();
+						model1.addRow(new Object[] {equipment.getEqName(), count});
 					}
 				} catch (DataAccessException e1) {
 					e1.printStackTrace();
@@ -205,7 +212,7 @@ public class OrderGui extends JFrame {
 					String value = findUdstyrTable.getModel().getValueAt(row, column).toString();
 					DefaultTableModel model1 = (DefaultTableModel) valgtUdstyrTable.getModel();
 					model1.addRow(new Object[] { (value), (quantity) });
-					// valgtUdstyrTable
+					model.setRowCount(0);
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, ex);
 				}
@@ -359,6 +366,10 @@ public class OrderGui extends JFrame {
 		layeredPane.add(txtIndtastID);
 
 		JButton btnVælgSkabelon = new JButton("Vælg");
+		btnVælgSkabelon.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnVælgSkabelon.setBackground(Color.GRAY);
 		btnVælgSkabelon.setFont(new Font("Arial", Font.BOLD, 20));
 		btnVælgSkabelon.setBounds(537, 231, 90, 40);
@@ -373,7 +384,8 @@ public class OrderGui extends JFrame {
 					if (!txtEventID.getText().isEmpty()) {
 						event = orderController.findEventByID(eventID);
 						txtEventID.setText(event.getName());
-						txtEventID.setEditable(false);
+						textField.setText(event.getName());
+						txtEventID.setEnabled(false);
 					} else {
 						btnSøgEvent.setEnabled(false);
 					}
@@ -426,7 +438,7 @@ public class OrderGui extends JFrame {
 				} catch (DataAccessException e) {
 					e.printStackTrace();
 				}
-				order = new Order(orderID, endDate, endDate, employee);
+				order = new Order(orderID, startDate, endDate, employee);
 			}
 		});
 		btnOpretOrdre.setFont(new Font("Arial", Font.BOLD, 20));
@@ -474,7 +486,6 @@ public class OrderGui extends JFrame {
 			}
 		});
 		
-		equipmentController = new EquipmentController();
 	}
 
 }

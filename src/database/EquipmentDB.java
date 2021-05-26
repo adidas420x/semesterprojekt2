@@ -15,7 +15,7 @@ public class EquipmentDB implements EquipmentDBIF {
 	private static final String findEquipmentByIDQ = " select eqName, storageLocation, eqID, description,"
 			+ "manufacturer, stock, owner, type from equipments where eqID = ?";
 	private static final String findEquipmentByNameQ = " select eqName, storageLocation, eqID, description,"
-			+ "manufacturer, stock, owner, type from equipments where eqName = ?";
+			+ "manufacturer, stock, owner, type from equipments where eqName like ?";
 	private static final String findEquipmentQ = " select eqName, storageLocation, eqID, description,"
 			+ "manufacturer, stock, owner, type from equipments where eqID = ?";
 
@@ -23,7 +23,6 @@ public class EquipmentDB implements EquipmentDBIF {
 	private PreparedStatement findEquipmentByName;
 	private PreparedStatement findEquipment;
 	private CopyDB copyDB;
-	
 
 	public EquipmentDB() throws DataAccessException {
 		try {
@@ -35,43 +34,42 @@ public class EquipmentDB implements EquipmentDBIF {
 	}
 
 	@Override
-	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException {
-		//hvis der bliver indtastet i navn
+	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate)
+			throws DataAccessException {
+		// hvis der bliver indtastet i navn
 		if (eqID == null) {
 			try {
-				findEquipmentByName.setString(1, eqName);
+				findEquipmentByName.setString(1, "%" + eqName + "%");
 				ResultSet rs = findEquipmentByName.executeQuery();
 				List<Equipment> e = null;
-				if (rs.next()) {
-					e = buildObjects(rs, startDate, endDate);
-			}
-			return e;
+				e = buildObjects(rs, startDate, endDate);
+				return e;
 			} catch (SQLException e) {
 				throw new DataAccessException(e, "could not find by equipment name");
 			}
-		}else {
+		} else {
 			try {
 				findEquipmentByID.setString(1, eqID);
 				ResultSet rs = findEquipmentByID.executeQuery();
 				List<Equipment> e = null;
-				if (rs.next()) {
-				e = buildObjects(rs, startDate, endDate);
-			}
-			return e;
+					e = buildObjects(rs, startDate, endDate);
+				return e;
 			} catch (SQLException e) {
 				throw new DataAccessException(e, "could not find by ID");
 			}
 		}
 	}
 
-	private Equipment buildObject(ResultSet rs, LocalDate startDate, LocalDate endDate) throws SQLException, DataAccessException {
-		Equipment e = new Equipment(rs.getString("eqName"), rs.getString("storageLocation"), rs.getString("eqID"),
+	private Equipment buildObject(ResultSet rs, LocalDate startDate, LocalDate endDate)
+			throws SQLException, DataAccessException {
+		Equipment e = new Equipment(rs.getString("eqName"), rs.getString("eqID"), rs.getString("storageLocation"),
 				rs.getString("description"), rs.getString("manufacturer"), rs.getInt("stock"), rs.getString("owner"));
-		List<Copy> copies = copyDB.getAvailCopies(e.getEqID(), startDate, endDate);
+		//List<Copy> copies = copyDB.getAvailCopies(e.getEqID(), startDate, endDate);
 		return e;
 	}
 
-	private List<Equipment> buildObjects(ResultSet rs, LocalDate startDate, LocalDate endDate) throws SQLException, DataAccessException {
+	private List<Equipment> buildObjects(ResultSet rs, LocalDate startDate, LocalDate endDate)
+			throws SQLException, DataAccessException {
 		List<Equipment> res = new ArrayList<>();
 		while (rs.next()) {
 			res.add(buildObject(rs, startDate, endDate));
