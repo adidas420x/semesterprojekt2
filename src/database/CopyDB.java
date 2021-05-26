@@ -45,12 +45,9 @@ public class CopyDB implements CopyDBIF {
 			getAvailCopies.setString(2, eqID);
 			ResultSet rs = getAvailCopies.executeQuery();
 			while (rs.next()) {
-				//.getdate skal parses til localdate
-				if(startDate.isAfter(rs.getDate("endDate").toLocalDate())){
-					if(endDate.isBefore(rs.getDate("startDate").toLocalDate())) {
+				if(startDate.isAfter(rs.getDate("endDate").toLocalDate()) && endDate.isBefore(rs.getDate("startDate").toLocalDate())) {
 						Copy c = buildObject(rs);
 						availCopies.add(c);
-					}
 				}
 			}
 			return availCopies;

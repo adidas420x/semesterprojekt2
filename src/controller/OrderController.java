@@ -27,7 +27,8 @@ public class OrderController {
 		super();
 		this.equipmentController = new EquipmentController();
 		this.orderDB = new OrderDB();
-		this.eventController = new EventController(); 
+		this.eventController = new EventController();
+		this.personController = new PersonController();
 	}
 
 	public Event findEventByID(String eventID) throws DataAccessException {

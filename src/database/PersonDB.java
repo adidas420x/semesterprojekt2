@@ -13,8 +13,11 @@ import model.Person;
 public class PersonDB implements PersonDBIF {
 	private static final String findCustomerByPhoneQ = "select email, phoneNo, zipcode," + 
 			" address, from persons where phoneNo = ? and type = c";
-	private static final String findEmployeeByIDQ = "select email, phoneNo, zipCode," +
-			" address, from persons where employeeID = ? and type = e";
+	private static final String findEmployeeByIDQ = "SELECT persons.email, persons.phoneNo, persons.address, persons.zipCode, persons.type, employees.employeeID, employees.name, zipcity.city\r\n"
+			+ "from Persons\r\n"
+			+ "INNER JOIN zipCity ON persons.zipCode=zipCity.zipcode\r\n"
+			+ "INNER JOIN employees ON persons.phoneNo=employees.phoneNo\r\n"
+			+ "where employees.employeeid = ?;";
 	
 	private PreparedStatement findCustomerByPhone;
 	private PreparedStatement findEmployeeByID;
@@ -49,7 +52,7 @@ public class PersonDB implements PersonDBIF {
 	@Override
 	public Employee findEmployeeByID(String employeeID) throws DataAccessException {
 		try {
-			findEmployeeByID.setString(6, employeeID);
+			findEmployeeByID.setString(1, employeeID);
 			ResultSet rs = findEmployeeByID.executeQuery();
 			Employee e = null;
 			if (rs.next()) {

@@ -26,6 +26,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import model.Event;
+import controller.EquipmentController;
 import controller.OrderController;
 import database.DBConnection;
 import database.DataAccessException;
@@ -50,6 +51,7 @@ public class OrderGui extends JFrame {
 	private JTextField txtIndtastID;
 	private String eventID;
 	private OrderController orderController;
+	private EquipmentController equipmentController;
 	private JTextField txtEmployeeID;
 	private JTextField textField;
 	private String eqName;
@@ -132,6 +134,7 @@ public class OrderGui extends JFrame {
 				txtIndtastID.setText(null);
 				try {
 					equipments = orderController.findEquipment(eqName, eqID, startDate, endDate);
+					equipmentController.
 				} catch (DataAccessException e1) {
 					e1.printStackTrace();
 				}
@@ -464,6 +467,7 @@ public class OrderGui extends JFrame {
 				e.printStackTrace();
 			}
 		});
+		
 	}
 
 }
