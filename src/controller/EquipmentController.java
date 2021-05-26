@@ -1,6 +1,7 @@
 package controller;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import database.CopyDB;
@@ -30,4 +31,9 @@ public class EquipmentController {
 		List<Copy> copies = copyDB.getAvailCopies(eqID, startDate, endDate);	
 		return copies.subList(0, quantity-1);
 	}
+	
+	public List<Copy> getCopiesFromTemp(String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException{
+		List<Copy> copies = copyDB.getAvailCopies(eqID, startDate, endDate);	
+		return new ArrayList<>(copies);
+	} 
 }

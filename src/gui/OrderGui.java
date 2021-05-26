@@ -15,15 +15,16 @@ import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import model.Event;
 import controller.EquipmentController;
@@ -134,7 +135,12 @@ public class OrderGui extends JFrame {
 				txtIndtastID.setText(null);
 				try {
 					equipments = orderController.findEquipment(eqName, eqID, startDate, endDate);
-					equipmentController.
+					for (Equipment equipment : equipments) {
+						int count = equipmentController.getCopiesFromTemp(equipment.getEqID(), startDate, endDate).size();
+//						TableModel model = findUdstyrTable.getModel();
+						DefaultTableModel model = (DefaultTableModel) findUdstyrTable.getModel();
+						model.addRow(new Object[] {eqName, count});
+					}
 				} catch (DataAccessException e1) {
 					e1.printStackTrace();
 				}
@@ -457,7 +463,7 @@ public class OrderGui extends JFrame {
 
 	}
 
-	public void init() {
+	public void init() throws DataAccessException {
 		new Thread(() -> {
 			try {
 				DBConnection.getInstance();
@@ -468,6 +474,7 @@ public class OrderGui extends JFrame {
 			}
 		});
 		
+		equipmentController = new EquipmentController();
 	}
 
 }
