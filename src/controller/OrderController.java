@@ -45,9 +45,7 @@ public class OrderController {
 	}
 
 	public Employee findEmployeeByID(String employeeID) throws DataAccessException {
-		Employee emp = personController.findEmployeeByID(employeeID);
-		order.setEmployee(emp);
-		return emp;
+		return personController.findEmployeeByID(employeeID);
 	}
 	
 	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate)

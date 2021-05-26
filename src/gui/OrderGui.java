@@ -304,7 +304,7 @@ public class OrderGui extends JFrame {
 		txtEventStartDate = new JTextField();
 		txtEventStartDate.setHorizontalAlignment(SwingConstants.CENTER);
 		txtEventStartDate.setBackground(new Color(135, 206, 250));
-		txtEventStartDate.setText("DD-MM-YYYY");
+		txtEventStartDate.setText("YYYY-MM-DD");
 		txtEventStartDate.setFont(new Font("Calibri", Font.PLAIN, 20));
 		txtEventStartDate.addMouseListener(new MouseAdapter() {
 			@Override
@@ -319,7 +319,7 @@ public class OrderGui extends JFrame {
 		txtEventEndDate = new JTextField();
 		txtEventEndDate.setHorizontalAlignment(SwingConstants.CENTER);
 		txtEventEndDate.setBackground(new Color(135, 206, 250));
-		txtEventEndDate.setText("DD-MM-YYYY");
+		txtEventEndDate.setText("YYYY-MM-DD");
 		txtEventEndDate.setFont(new Font("Calibri", Font.PLAIN, 20));
 		txtEventEndDate.addMouseListener(new MouseAdapter() {
 			@Override

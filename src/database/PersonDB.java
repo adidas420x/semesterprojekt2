@@ -13,7 +13,7 @@ import model.Person;
 public class PersonDB implements PersonDBIF {
 	private static final String findCustomerByPhoneQ = "select email, phoneNo, zipcode," + 
 			" address, from persons where phoneNo = ? and type = c";
-	private static final String findEmployeeByIDQ = "select email, phoneNo, zipCode, " + 
+	private static final String findEmployeeByIDQ = "select email, phoneNo, zipCode," +
 			" address, from persons where employeeID = ? and type = e";
 	
 	private PreparedStatement findCustomerByPhone;
@@ -49,7 +49,7 @@ public class PersonDB implements PersonDBIF {
 	@Override
 	public Employee findEmployeeByID(String employeeID) throws DataAccessException {
 		try {
-			findEmployeeByID.setString(1, employeeID);
+			findEmployeeByID.setString(6, employeeID);
 			ResultSet rs = findEmployeeByID.executeQuery();
 			Employee e = null;
 			if (rs.next()) {
