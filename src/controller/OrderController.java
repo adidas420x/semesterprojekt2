@@ -21,6 +21,7 @@ public class OrderController {
 	private Order order;
 	private PersonController personController;
 	private EventDB eventDB;
+	private int idCounter = 0;
 
 	public OrderController() throws DataAccessException {
 		super();
@@ -33,8 +34,10 @@ public class OrderController {
 		return eventController.findEventByID(eventID);
 	}
 	
-	public String generateOrderID(String orderID) {
-		return order.generateOrderID();
+	public String generateOrderID() {
+		String str = order.getStartDate().toString();
+		String newOID = str.substring(2) + String.valueOf(idCounter++);
+		return newOID;
 	}
 
 	public Order createOrder(String orderID, LocalDate startDate, LocalDate endDate, Employee employee) {

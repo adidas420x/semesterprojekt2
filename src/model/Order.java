@@ -10,7 +10,6 @@ public class Order {
 	private LocalDate endDate;
 	private Event event;
 	private Employee employee;
-	public static long idCounter = 0;
 
 	public Order(String orderID, LocalDate startDate, LocalDate endDate, Employee employee) {
 		super();
@@ -18,12 +17,6 @@ public class Order {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.employee = employee;
-	}
-	
-	public String generateOrderID() {
-		String str = getStartDate().toString();
-		String newOID = str.substring(2) + String.valueOf(idCounter++);
-		return newOID;
 	}
 
 	public String getOrderID() {
