@@ -8,6 +8,7 @@ import database.DataAccessException;
 import database.EventDB;
 import database.OrderDB;
 import database.OrderDBIF;
+import model.Copy;
 import model.Customer;
 import model.Employee;
 import model.Equipment;
@@ -55,7 +56,8 @@ public class OrderController {
 	}
 
 	public void addEquipmentToOrder(String eqID, int quantity) throws DataAccessException {
-		equipmentController.getCopiesFromTemp(eqID, order.getStartDate(), order.getEndDate(), quantity);
+		List<Copy> copies = equipmentController.getCopiesFromTemp(eqID, order.getStartDate(), order.getEndDate(), quantity);
+		order.addEquipmentToOrder(copies);
 	}
 
 	public void saveOrder(Order order) throws DataAccessException {

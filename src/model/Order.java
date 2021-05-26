@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Order {
@@ -10,6 +12,7 @@ public class Order {
 	private LocalDate endDate;
 	private Event event;
 	private Employee employee;
+	private List<Copy> copies;
 
 	public Order(String orderID, LocalDate startDate, LocalDate endDate, Employee employee) {
 		super();
@@ -17,6 +20,11 @@ public class Order {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.employee = employee;
+		this.copies = new ArrayList<>();
+	}
+	
+	public void addEquipmentToOrder(List<Copy> copies){
+		this.copies.addAll(copies);
 	}
 	
 	public String getOrderID() {

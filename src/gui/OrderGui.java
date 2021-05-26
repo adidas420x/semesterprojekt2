@@ -122,7 +122,7 @@ public class OrderGui extends JFrame {
 					for (Equipment equipment : equipments) {
 						int count = equipmentController.getCopiesFromTemp(equipment.getEqID(), order.getStartDate(), order.getEndDate()).size();
 						DefaultTableModel model1 = (DefaultTableModel) findUdstyrTable.getModel();
-						model1.addRow(new Object[] {equipment.getEqName(), count});
+						model1.addRow(new Object[] {equipment.getEqName(), equipment.getEqID(), count});
 					}
 				} catch (DataAccessException e1) {
 					e1.printStackTrace();
@@ -146,7 +146,7 @@ public class OrderGui extends JFrame {
 					for (Equipment equipment : equipments) {
 						int count = equipmentController.getCopiesFromTemp(equipment.getEqID(), order.getStartDate(), order.getEndDate()).size();
 						DefaultTableModel model1 = (DefaultTableModel) findUdstyrTable.getModel();
-						model1.addRow(new Object[] {equipment.getEqName(), count});
+						model1.addRow(new Object[] {equipment.getEqName(), equipment.getEqID(), count});
 					}
 				} catch (DataAccessException e1) {
 					e1.printStackTrace();
@@ -206,6 +206,15 @@ public class OrderGui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				quantity = Integer.parseInt(txtIndtastAntal.getText());
 				DefaultTableModel model = (DefaultTableModel) findUdstyrTable.getModel();
+				try {
+					orderController.addEquipmentToOrder(eqID, quantity);
+					int column = 1;
+					int row = findUdstyrTable.getSelectedRow();
+					String value = ((DefaultTableModel) findUdstyrTable.getModel()).getValueAt(row, column);
+				} catch (DataAccessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				try {
 					int column = 0;
 					int row = findUdstyrTable.getSelectedRow();
@@ -293,7 +302,7 @@ public class OrderGui extends JFrame {
 		scrollPaneFindUdstyr.setViewportView(findUdstyrTable);
 		findUdstyrTable.setFillsViewportHeight(true);
 		findUdstyrTable
-				.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Udstyr", "Tilg\u00E6ngelige" }) {
+				.setModel(new DefaultTableModel(new Object[][][] {}, new String[] { "Udstyr", "eqID", "Tilg\u00E6ngelige" }) {
 					Class[] columnTypes = new Class[] { Object.class, String.class };
 
 					public Class getColumnClass(int columnIndex) {
