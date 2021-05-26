@@ -156,21 +156,6 @@ public class OrderGui extends JFrame {
 		opretOrdreBtn.setForeground(new Color(255, 255, 255));
 		opretOrdreBtn.setFont(new Font("Arial", Font.BOLD, 18));
 		opretOrdreBtn.setBounds(27, 27, 160, 67);
-		opretOrdreBtn.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent arg0) {
-				startDate = LocalDate.parse(txtEventStartDate.getText());
-				endDate = LocalDate.parse(txtEventEndDate.getText());
-				employeeID = txtEmployeeID.getText();
-				Employee employee = null;
-				try {
-					employee = orderController.findEmployeeByID(employeeID);
-				} catch (DataAccessException e) {
-					e.printStackTrace();
-				}
-				order = new Order(orderID, endDate, endDate, employee);
-			}
-		});
 		layeredPane.add(opretOrdreBtn);
 
 		JButton lagerBtn = new JButton("Lager");
@@ -191,6 +176,10 @@ public class OrderGui extends JFrame {
 		layeredPane.add(annullerBtn);
 
 		JButton opretBtn = new JButton("Opret ordre");
+		opretBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		opretBtn.setBackground(new Color(51, 176, 118));
 		opretBtn.setFont(new Font("Arial", Font.BOLD, 18));
 		opretBtn.setBounds(1670, 934, 200, 67);
@@ -418,9 +407,17 @@ public class OrderGui extends JFrame {
 		JButton btnOpretOrdre = new JButton("Opret");
 		btnOpretOrdre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				startDate = LocalDate.parse(txtEventStartDate.getText());
+				endDate = LocalDate.parse(txtEventEndDate.getText());
 				orderID = orderController.generateOrderID(orderID);
-				System.out.println(orderID);
-				orderController.createOrder(orderID, startDate, endDate, null);
+				employeeID = txtEmployeeID.getText();
+				Employee employee = null;
+				try {
+					employee = orderController.findEmployeeByID(employeeID);
+				} catch (DataAccessException e) {
+					e.printStackTrace();
+				}
+				order = new Order(orderID, endDate, endDate, employee);
 			}
 		});
 		btnOpretOrdre.setFont(new Font("Arial", Font.BOLD, 20));

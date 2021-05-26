@@ -34,9 +34,8 @@ public class OrderController {
 		return eventController.findEventByID(eventID);
 	}
 	
-	public String generateOrderID() {
-		String str = order.getStartDate().toString();
-		String newOID = str.substring(2) + String.valueOf(idCounter++);
+	public String generateOrderID(String orderID) {
+		String newOID = String.valueOf(idCounter++);
 		return newOID;
 	}
 
