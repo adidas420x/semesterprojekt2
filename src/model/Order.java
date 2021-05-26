@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class Order {
-	
+
 	private String orderID;
 	private LocalDate startDate;
 	private LocalDate endDate;
@@ -12,22 +12,20 @@ public class Order {
 	private Employee employee;
 	public static long idCounter = 0;
 
-
-
-	public Order(String orderID, LocalDate startDate, LocalDate endDate,
-			Employee employee) {
+	public Order(String orderID, LocalDate startDate, LocalDate endDate, Employee employee) {
 		super();
 		this.orderID = orderID;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.employee = employee;
 	}
+	
 	public String generateOrderID() {
 		String str = getStartDate().toString();
 		String newOID = str.substring(2) + String.valueOf(idCounter++);
 		return newOID;
 	}
-	
+
 	public String getOrderID() {
 		return orderID;
 	}
@@ -67,7 +65,5 @@ public class Order {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-
-	
 
 }
