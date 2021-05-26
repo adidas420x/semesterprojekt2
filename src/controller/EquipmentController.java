@@ -30,7 +30,7 @@ public class EquipmentController {
 	
 	public List<Copy> getCopiesFromTemp(String eqID, LocalDate startDate, LocalDate endDate, int quantity) throws DataAccessException{
 		List<Copy> copies = copyDB.getAvailCopies(eqID, startDate, endDate);	
-		return copies.subList(0, quantity-1);
+		return copies.subList(0, quantity);
 	}
 	
 	public List<Copy> getCopiesFromTemp(String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException{

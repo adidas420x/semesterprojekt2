@@ -3,14 +3,16 @@ package model;
 public class Copy {
 	
 	private String serialNo;
-	private String eqAvailability;
+	private String eqID;
 	
-	public Copy(String serialNo, String eqAvailability) {
+	public Copy(String serialNo, String eqID) {
 		super();
 		this.serialNo = serialNo;
-		this.eqAvailability = eqAvailability;
+		this.eqID = eqID;
 	}
 
+	
+	
 	public String getSerialNo() {
 		return serialNo;
 	}
@@ -19,11 +21,11 @@ public class Copy {
 		this.serialNo = serialNo;
 	}
 
-	public String getEqAvailability() {
-		return eqAvailability;
+	public String getEqID() {
+		return eqID;
 	}
-
-	public void setEqAvailability(String eqAvailability) {
-		this.eqAvailability = eqAvailability;
+	
+	public void setEqID(String eqID) {
+		this.eqID = eqID;
 	}
 }

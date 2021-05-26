@@ -1,9 +1,7 @@
 package controller;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import database.DataAccessException;
 import database.EventDB;
 import database.OrderDB;
@@ -21,7 +19,6 @@ public class OrderController {
 	private EventController eventController;
 	private Order order;
 	private PersonController personController;
-	private EventDB eventDB;
 	private int idCounter = 0;
 
 	public OrderController() throws DataAccessException {
@@ -35,15 +32,15 @@ public class OrderController {
 	public Event findEventByID(String eventID) throws DataAccessException {
 		return eventController.findEventByID(eventID);
 	}
-	
+
 	public String generateOrderID(String orderID) {
-		String newOID = String.valueOf(idCounter++);
+		String newOID = String.valueOf(idCounter++ + 1);
 		return newOID;
 	}
-
-	public Order createOrder(String orderID, LocalDate startDate, LocalDate endDate, Employee employee) {
-		Order o = new Order(orderID, startDate, endDate, employee);
-		return o;
+	
+	public Order createOrder(String orderID, LocalDate startDate, LocalDate endDate, Employee employee, String eventID) {
+		order = new Order(orderID, startDate, endDate, employee, eventID);
+		return order;
 	}
 
 	public Employee findEmployeeByID(String employeeID) throws DataAccessException {
@@ -60,8 +57,17 @@ public class OrderController {
 		order.addEquipmentToOrder(copies);
 	}
 
-	public void saveOrder(Order order) throws DataAccessException {
+	public void saveOrder() throws DataAccessException {
 		orderDB.insertOrder(order);
 	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public int getEquipmentCountByID(String eqID) {
+		return order.getEquipmentCountByID(eqID);
+	}
+	
 
 }

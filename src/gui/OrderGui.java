@@ -53,14 +53,14 @@ public class OrderGui extends JFrame {
 	private String eventID;
 	private OrderController orderController;
 	private EquipmentController equipmentController;
+	private Order order;
 	private JTextField txtEmployeeID;
-	private JTextField textField;
+	private JTextField txtAfspejlerValgtEvent;
 	private String eqName;
 	private String eqID;
 	private LocalDate startDate;
 	private LocalDate endDate;
 	private String employeeID;
-	private Order order;
 	private Event event;
 	private String txtEqID;
 	private String txtEqName;
@@ -118,11 +118,13 @@ public class OrderGui extends JFrame {
 				model.setRowCount(0);
 				eqID = txtIndtastID.getText();
 				try {
-					equipments = orderController.findEquipment(null, eqID, order.getStartDate(), order.getEndDate());
+					equipments = orderController.findEquipment(null, eqID, orderController.getOrder().getStartDate(), orderController.getOrder().getEndDate());
 					for (Equipment equipment : equipments) {
-						int count = equipmentController.getCopiesFromTemp(equipment.getEqID(), order.getStartDate(), order.getEndDate()).size();
+						int count = equipmentController
+								.getCopiesFromTemp(equipment.getEqID(), orderController.getOrder().getStartDate(), orderController.getOrder().getEndDate())
+								.size()-orderController.getEquipmentCountByID(equipment.getEqID());
 						DefaultTableModel model1 = (DefaultTableModel) findUdstyrTable.getModel();
-						model1.addRow(new Object[] {equipment.getEqName(), equipment.getEqID(), count});
+						model1.addRow(new Object[] { equipment.getEqName(), equipment.getEqID(), count });
 					}
 				} catch (DataAccessException e1) {
 					e1.printStackTrace();
@@ -142,11 +144,13 @@ public class OrderGui extends JFrame {
 				model.setRowCount(0);
 				eqName = txtIndtastSgeord.getText();
 				try {
-					equipments = orderController.findEquipment(eqName, null, order.getStartDate(), order.getEndDate());
+					equipments = orderController.findEquipment(eqName, null, orderController.getOrder().getStartDate(), orderController.getOrder().getEndDate());
 					for (Equipment equipment : equipments) {
-						int count = equipmentController.getCopiesFromTemp(equipment.getEqID(), order.getStartDate(), order.getEndDate()).size();
+						int count = equipmentController
+								.getCopiesFromTemp(equipment.getEqID(), orderController.getOrder().getStartDate(), orderController.getOrder().getEndDate())
+								.size()-orderController.getEquipmentCountByID(equipment.getEqID());
 						DefaultTableModel model1 = (DefaultTableModel) findUdstyrTable.getModel();
-						model1.addRow(new Object[] {equipment.getEqName(), equipment.getEqID(), count});
+						model1.addRow(new Object[] { equipment.getEqName(), equipment.getEqID(), count });
 					}
 				} catch (DataAccessException e1) {
 					e1.printStackTrace();
@@ -186,6 +190,19 @@ public class OrderGui extends JFrame {
 		layeredPane.add(lagerBtn);
 
 		JButton annullerBtn = new JButton("Annuller ordre");
+		annullerBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtAfspejlerValgtEvent.setText("");
+				DefaultTableModel resetModel1 = (DefaultTableModel) valgtUdstyrTable.getModel();
+				resetModel1.setRowCount(0);
+				DefaultTableModel resetModel2 = (DefaultTableModel) findUdstyrTable.getModel();
+				resetModel2.setRowCount(0);
+				txtIndtastAntal.setText("");
+				txtIndtastID.setText("");
+				txtIndtastSgeord.setText("");
+				txtEventEndDate.setText("");
+			}
+		});
 		annullerBtn.setBackground(new Color(212, 91, 61));
 		annullerBtn.setFont(new Font("Arial", Font.BOLD, 18));
 		annullerBtn.setBounds(1446, 934, 200, 67);
@@ -194,6 +211,11 @@ public class OrderGui extends JFrame {
 		JButton opretBtn = new JButton("Opret ordre");
 		opretBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					orderController.saveOrder();
+				} catch (DataAccessException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		opretBtn.setBackground(new Color(51, 176, 118));
@@ -207,23 +229,27 @@ public class OrderGui extends JFrame {
 				quantity = Integer.parseInt(txtIndtastAntal.getText());
 				DefaultTableModel model = (DefaultTableModel) findUdstyrTable.getModel();
 				try {
-					int column = 1;
 					int row = findUdstyrTable.getSelectedRow();
-					String value = ((DefaultTableModel) findUdstyrTable.getModel()).getValueAt(row, column).toString();
-					orderController.addEquipmentToOrder(value, quantity);
+					int availableCount = (Integer) ((DefaultTableModel) findUdstyrTable.getModel()).getValueAt(row, 2);
+					if (quantity <= availableCount && quantity >= 0) {
+						int column = 1;
+						String value = ((DefaultTableModel) findUdstyrTable.getModel()).getValueAt(row, column).toString();
+						orderController.addEquipmentToOrder(value, quantity);
+						try {
+							int modelcolum = 0;
+							int modelrow = findUdstyrTable.getSelectedRow();
+							String amountvalue = findUdstyrTable.getModel().getValueAt(modelrow, modelcolum).toString();
+							DefaultTableModel model1 = (DefaultTableModel) valgtUdstyrTable.getModel();
+							model1.addRow(new Object[] { (amountvalue), (quantity) });
+							model.setRowCount(0);
+						} catch (Exception ex) {
+							JOptionPane.showMessageDialog(null, ex);
+						}
+					}else {
+						JOptionPane.showMessageDialog(null, "Tilgængelige antal kopier er mindre end ønsket antal", "RequestedAmountError", JOptionPane.ERROR_MESSAGE);
+					}
 				} catch (DataAccessException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
-				try {
-					int column = 0;
-					int row = findUdstyrTable.getSelectedRow();
-					String value = findUdstyrTable.getModel().getValueAt(row, column).toString();
-					DefaultTableModel model1 = (DefaultTableModel) valgtUdstyrTable.getModel();
-					model1.addRow(new Object[] { (value), (quantity) });
-					model.setRowCount(0);
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, ex);
 				}
 			}
 		});
@@ -301,9 +327,9 @@ public class OrderGui extends JFrame {
 		findUdstyrTable = new JTable();
 		scrollPaneFindUdstyr.setViewportView(findUdstyrTable);
 		findUdstyrTable.setFillsViewportHeight(true);
-		findUdstyrTable
-				.setModel(new DefaultTableModel(new Object[][][] {}, new String[] { "Udstyr", "eqID", "Tilg\u00E6ngelige" }) {
-					Class[] columnTypes = new Class[] { Object.class, String.class };
+		findUdstyrTable.setModel(
+				new DefaultTableModel(new Object[][] {}, new String[] { "Udstyr", "eqID", "Tilg\u00E6ngelige" }) {
+					Class[] columnTypes = new Class[] { Object.class, Object.class, String.class };
 
 					public Class getColumnClass(int columnIndex) {
 						return columnTypes[columnIndex];
@@ -393,7 +419,7 @@ public class OrderGui extends JFrame {
 					if (!txtEventID.getText().isEmpty()) {
 						event = orderController.findEventByID(eventID);
 						txtEventID.setText(event.getName());
-						textField.setText(event.getName());
+						txtAfspejlerValgtEvent.setText(event.getName());
 						txtEventID.setEnabled(false);
 					} else {
 						btnSøgEvent.setEnabled(false);
@@ -439,15 +465,16 @@ public class OrderGui extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				startDate = LocalDate.parse(txtEventStartDate.getText());
 				endDate = LocalDate.parse(txtEventEndDate.getText());
-				orderID = orderController.generateOrderID(orderID);
 				employeeID = txtEmployeeID.getText();
 				Employee employee = null;
+				orderID = orderController.generateOrderID(orderID);
+				event.setEventID(txtEventID.getText());
 				try {
 					employee = orderController.findEmployeeByID(employeeID);
 				} catch (DataAccessException e) {
 					e.printStackTrace();
 				}
-				order = new Order(orderID, startDate, endDate, employee);
+				orderController.createOrder(orderID, startDate, endDate, employee, eventID);
 			}
 		});
 		btnOpretOrdre.setFont(new Font("Arial", Font.BOLD, 20));
@@ -474,13 +501,13 @@ public class OrderGui extends JFrame {
 		lblNavnPEvent.setBounds(1270, 314, 132, 25);
 		layeredPane.add(lblNavnPEvent);
 
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setFont(new Font("Calibri", Font.PLAIN, 20));
-		textField.setColumns(10);
-		textField.setBackground(new Color(135, 206, 250));
-		textField.setBounds(1270, 336, 600, 40);
-		layeredPane.add(textField);
+		txtAfspejlerValgtEvent = new JTextField();
+		txtAfspejlerValgtEvent.setEditable(false);
+		txtAfspejlerValgtEvent.setFont(new Font("Calibri", Font.PLAIN, 20));
+		txtAfspejlerValgtEvent.setColumns(10);
+		txtAfspejlerValgtEvent.setBackground(new Color(135, 206, 250));
+		txtAfspejlerValgtEvent.setBounds(1270, 336, 600, 40);
+		layeredPane.add(txtAfspejlerValgtEvent);
 
 	}
 
@@ -494,7 +521,7 @@ public class OrderGui extends JFrame {
 				e.printStackTrace();
 			}
 		});
-		
+
 	}
 
 }

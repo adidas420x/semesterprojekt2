@@ -10,17 +10,23 @@ public class Order {
 	private String orderID;
 	private LocalDate startDate;
 	private LocalDate endDate;
-	private Event event;
+	private String eventID;
 	private Employee employee;
 	private List<Copy> copies;
 
-	public Order(String orderID, LocalDate startDate, LocalDate endDate, Employee employee) {
+	public Order(String orderID, LocalDate startDate, LocalDate endDate, Employee employee, String eventID) {
 		super();
 		this.orderID = orderID;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.employee = employee;
+		this.eventID = eventID;
 		this.copies = new ArrayList<>();
+	}
+	
+	
+	public int getEquipmentCountByID(String eqID) {
+		return (int) copies.parallelStream().filter(Copy-> Copy.getEqID().equals(eqID)).count();
 	}
 	
 	public void addEquipmentToOrder(List<Copy> copies){
@@ -51,12 +57,13 @@ public class Order {
 		this.endDate = endDate;
 	}
 
-	public Event getEvent() {
-		return event;
+	public String getEventID() {
+		return eventID;
 	}
 
-	public void setEvent(Event event) {
-		this.event = event;
+
+	public void setEventID(String eventID) {
+		this.eventID = eventID;
 	}
 
 	public Employee getEmployee() {

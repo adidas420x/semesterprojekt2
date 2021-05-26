@@ -7,7 +7,7 @@ import model.Order;
 
 public class OrderDB implements OrderDBIF {
 
-	private static final String insertOrderQ = "insert into orders orderid = ?, eventstartdate = ?, eventenddate = ?, eventid = ?, employeeid = ?";
+	private static final String insertOrderQ = "insert into orders values(?, ?, ?, ?, ?)";
 
 	private PreparedStatement insertOrder;
 	
@@ -25,8 +25,8 @@ public class OrderDB implements OrderDBIF {
 			insertOrder.setString(1, order.getOrderID());
 			insertOrder.setDate(2, Date.valueOf(order.getStartDate()));
 			insertOrder.setDate(3, Date.valueOf(order.getEndDate()));
-			insertOrder.setString(5, order.getEvent().getEventID());
-			insertOrder.setString(6, order.getEmployee().getEmployeeID());
+			insertOrder.setString(4, order.getEventID());
+			insertOrder.setString(5, order.getEmployee().getEmployeeID());
 			insertOrder.executeUpdate();
 			return order;
 		} catch (SQLException e) {

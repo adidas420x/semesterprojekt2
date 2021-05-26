@@ -11,7 +11,7 @@ import model.Copy;
 
 public class CopyDB implements CopyDBIF {
 
-	private static final String getAvailCopiesQ = "SELECT copies.eqID, copies.serialNo, orders.startDate, orders.endDate "
+	private static final String getAvailCopiesQ = "SELECT copies.eqID as copyID, copies.serialNo, orders.startDate, orders.endDate "
 			+ "from Copies "
 			+ "INNER JOIN specificcopies ON copies.serialNo=specificcopies.serialNo "
 			+ "INNER JOIN orders ON specificcopies.orderID=orders.orderID "
@@ -48,7 +48,7 @@ public class CopyDB implements CopyDBIF {
 	}
 
 	private Copy buildObject(ResultSet rs) throws SQLException {
-		Copy e = new Copy(rs.getString("serialNo"), null);
+		Copy e = new Copy(rs.getString("serialNo"), rs.getString("copyID"));
 		return e;
 	}
 
