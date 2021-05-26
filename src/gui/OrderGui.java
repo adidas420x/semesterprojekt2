@@ -207,10 +207,10 @@ public class OrderGui extends JFrame {
 				quantity = Integer.parseInt(txtIndtastAntal.getText());
 				DefaultTableModel model = (DefaultTableModel) findUdstyrTable.getModel();
 				try {
-					orderController.addEquipmentToOrder(eqID, quantity);
 					int column = 1;
 					int row = findUdstyrTable.getSelectedRow();
-					String value = ((DefaultTableModel) findUdstyrTable.getModel()).getValueAt(row, column);
+					String value = ((DefaultTableModel) findUdstyrTable.getModel()).getValueAt(row, column).toString();
+					orderController.addEquipmentToOrder(value, quantity);
 				} catch (DataAccessException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
