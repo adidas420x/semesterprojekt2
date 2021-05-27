@@ -19,7 +19,7 @@ public class OrderController {
 	private EventController eventController;
 	private Order order;
 	private PersonController personController;
-	private int idCounter = 0;
+	private int idCounter;
 
 	public OrderController() throws DataAccessException {
 		super();
@@ -27,6 +27,7 @@ public class OrderController {
 		this.orderDB = new OrderDB();
 		this.eventController = new EventController();
 		this.personController = new PersonController();
+		this.idCounter = 0;
 	}
 
 	public Event findEventByID(String eventID) throws DataAccessException {
