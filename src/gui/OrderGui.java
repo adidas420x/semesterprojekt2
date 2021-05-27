@@ -516,7 +516,7 @@ public class OrderGui extends JFrame {
 			try {
 				DBConnection.getInstance();
 			} catch (DataAccessException e) {
-				JOptionPane.showMessageDialog(this, "Connection to DB went could not be established",
+				JOptionPane.showMessageDialog(this, "Connection to DB could not be established",
 						"DBConnectionError", JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
 			}
