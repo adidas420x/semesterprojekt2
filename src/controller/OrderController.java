@@ -1,4 +1,5 @@
 package controller;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +39,9 @@ public class OrderController {
 		String newOID = String.valueOf(idCounter++ + 1);
 		return newOID;
 	}
-	
-	public Order createOrder(String orderID, LocalDate startDate, LocalDate endDate, Employee employee, String eventID) {
+
+	public Order createOrder(String orderID, LocalDate startDate, LocalDate endDate, Employee employee,
+			String eventID) {
 		order = new Order(orderID, startDate, endDate, employee, eventID);
 		return order;
 	}
@@ -47,14 +49,16 @@ public class OrderController {
 	public Employee findEmployeeByID(String employeeID) throws DataAccessException {
 		return personController.findEmployeeByID(employeeID);
 	}
-	
-	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException {
+
+	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate)
+			throws DataAccessException {
 		List<Equipment> equipments = equipmentController.findEquipment(eqName, eqID, startDate, endDate);
 		return equipments;
 	}
 
 	public void addEquipmentToOrder(String eqID, int quantity) throws DataAccessException {
-		List<Copy> copies = equipmentController.getCopiesFromTemp(eqID, order.getStartDate(), order.getEndDate(), quantity);
+		List<Copy> copies = equipmentController.getCopiesFromTemp(eqID, order.getStartDate(), order.getEndDate(),
+				quantity);
 		order.addEquipmentToOrder(copies);
 	}
 
@@ -69,6 +73,4 @@ public class OrderController {
 	public int getEquipmentCountByID(String eqID) {
 		return order.getEquipmentCountByID(eqID);
 	}
-	
-
 }
