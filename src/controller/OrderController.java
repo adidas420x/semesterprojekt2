@@ -15,11 +15,11 @@ import model.Order;
 
 public class OrderController {
 	private EquipmentController equipmentController;
-	private OrderDB orderDB;
+	private OrderDBIF orderDB;
 	private EventController eventController;
 	private Order order;
 	private PersonController personController;
-	private int idCounter;
+	private static int idCounter;
 
 	public OrderController() throws DataAccessException {
 		super();
