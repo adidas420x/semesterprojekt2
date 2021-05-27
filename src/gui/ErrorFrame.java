@@ -76,7 +76,5 @@ public class ErrorFrame extends JFrame {
 		errorTxtBox.setBounds(88, 78, 236, 64);
 		layeredPane.add(errorTxtBox);
 		errorTxtBox.setBackground(new Color(41, 140, 240));
-
 	}
-
 }
