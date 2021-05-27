@@ -7,5 +7,6 @@ import model.Equipment;
 
 public interface EquipmentDBIF {
 
-	List<Equipment> findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException;
+	List<Equipment> findEquipment(String name, String eqID, LocalDate startDate, LocalDate endDate)
+			throws DataAccessException;
 }

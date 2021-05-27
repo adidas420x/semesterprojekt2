@@ -36,7 +36,6 @@ public class EquipmentDB implements EquipmentDBIF {
 	@Override
 	public List<Equipment> findEquipment(String eqName, String eqID, LocalDate startDate, LocalDate endDate)
 			throws DataAccessException {
-		// hvis der bliver indtastet i navn
 		if (eqID == null) {
 			try {
 				findEquipmentByName.setString(1, "%" + eqName + "%");
@@ -52,7 +51,7 @@ public class EquipmentDB implements EquipmentDBIF {
 				findEquipmentByID.setString(1, eqID);
 				ResultSet rs = findEquipmentByID.executeQuery();
 				List<Equipment> e = null;
-					e = buildObjects(rs, startDate, endDate);
+				e = buildObjects(rs, startDate, endDate);
 				return e;
 			} catch (SQLException e) {
 				throw new DataAccessException(e, "could not find by ID");
@@ -64,7 +63,6 @@ public class EquipmentDB implements EquipmentDBIF {
 			throws SQLException, DataAccessException {
 		Equipment e = new Equipment(rs.getString("eqName"), rs.getString("eqID"), rs.getString("storageLocation"),
 				rs.getString("description"), rs.getString("manufacturer"), rs.getInt("stock"), rs.getString("owner"));
-		//List<Copy> copies = copyDB.getAvailCopies(e.getEqID(), startDate, endDate);
 		return e;
 	}
 

@@ -8,7 +8,7 @@ import model.Event;
 public class EventController {
 
 	private EventDBIF eventDB;
-	
+
 	public EventController() throws DataAccessException {
 		super();
 		this.eventDB = new EventDB();
@@ -17,6 +17,4 @@ public class EventController {
 	public Event findEventByID(String eventID) throws DataAccessException {
 		return eventDB.findEventByID(eventID);
 	}
-	
-	
 }

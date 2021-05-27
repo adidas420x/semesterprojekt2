@@ -9,11 +9,11 @@ import model.Person;
 public class PersonController {
 
 	private PersonDBIF personDB;
-	
+
 	public PersonController() throws DataAccessException {
 		this.personDB = new PersonDB();
 	}
-	
+
 	public Person findCustomerByPhone(String phoneNo) throws DataAccessException {
 		return personDB.findCustomerByPhone(phoneNo);
 	}

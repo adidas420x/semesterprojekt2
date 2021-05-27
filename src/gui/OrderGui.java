@@ -118,11 +118,13 @@ public class OrderGui extends JFrame {
 				model.setRowCount(0);
 				eqID = txtIndtastID.getText();
 				try {
-					equipments = orderController.findEquipment(null, eqID, orderController.getOrder().getStartDate(), orderController.getOrder().getEndDate());
+					equipments = orderController.findEquipment(null, eqID, orderController.getOrder().getStartDate(),
+							orderController.getOrder().getEndDate());
 					for (Equipment equipment : equipments) {
 						int count = equipmentController
-								.getCopiesFromTemp(equipment.getEqID(), orderController.getOrder().getStartDate(), orderController.getOrder().getEndDate())
-								.size()-orderController.getEquipmentCountByID(equipment.getEqID());
+								.getCopiesFromTemp(equipment.getEqID(), orderController.getOrder().getStartDate(),
+										orderController.getOrder().getEndDate())
+								.size() - orderController.getEquipmentCountByID(equipment.getEqID());
 						DefaultTableModel model1 = (DefaultTableModel) findUdstyrTable.getModel();
 						model1.addRow(new Object[] { equipment.getEqName(), equipment.getEqID(), count });
 					}
@@ -144,11 +146,13 @@ public class OrderGui extends JFrame {
 				model.setRowCount(0);
 				eqName = txtIndtastSgeord.getText();
 				try {
-					equipments = orderController.findEquipment(eqName, null, orderController.getOrder().getStartDate(), orderController.getOrder().getEndDate());
+					equipments = orderController.findEquipment(eqName, null, orderController.getOrder().getStartDate(),
+							orderController.getOrder().getEndDate());
 					for (Equipment equipment : equipments) {
 						int count = equipmentController
-								.getCopiesFromTemp(equipment.getEqID(), orderController.getOrder().getStartDate(), orderController.getOrder().getEndDate())
-								.size()-orderController.getEquipmentCountByID(equipment.getEqID());
+								.getCopiesFromTemp(equipment.getEqID(), orderController.getOrder().getStartDate(),
+										orderController.getOrder().getEndDate())
+								.size() - orderController.getEquipmentCountByID(equipment.getEqID());
 						DefaultTableModel model1 = (DefaultTableModel) findUdstyrTable.getModel();
 						model1.addRow(new Object[] { equipment.getEqName(), equipment.getEqID(), count });
 					}
@@ -233,7 +237,8 @@ public class OrderGui extends JFrame {
 					int availableCount = (Integer) ((DefaultTableModel) findUdstyrTable.getModel()).getValueAt(row, 2);
 					if (quantity <= availableCount && quantity >= 0) {
 						int column = 1;
-						String value = ((DefaultTableModel) findUdstyrTable.getModel()).getValueAt(row, column).toString();
+						String value = ((DefaultTableModel) findUdstyrTable.getModel()).getValueAt(row, column)
+								.toString();
 						orderController.addEquipmentToOrder(value, quantity);
 						try {
 							int modelcolum = 0;
@@ -245,8 +250,9 @@ public class OrderGui extends JFrame {
 						} catch (Exception ex) {
 							JOptionPane.showMessageDialog(null, ex);
 						}
-					}else {
-						JOptionPane.showMessageDialog(null, "Tilgængelige antal kopier er mindre end ønsket antal", "RequestedAmountError", JOptionPane.ERROR_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, "Tilgængelige antal kopier er mindre end ønsket antal",
+								"RequestedAmountError", JOptionPane.ERROR_MESSAGE);
 					}
 				} catch (DataAccessException e1) {
 					e1.printStackTrace();
@@ -516,8 +522,8 @@ public class OrderGui extends JFrame {
 			try {
 				DBConnection.getInstance();
 			} catch (DataAccessException e) {
-				JOptionPane.showMessageDialog(this, "Connection to DB could not be established",
-						"DBConnectionError", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Connection to DB could not be established", "DBConnectionError",
+						JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
 			}
 		});

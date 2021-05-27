@@ -16,6 +16,4 @@ public class Customer extends Person {
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
-
-	
 }

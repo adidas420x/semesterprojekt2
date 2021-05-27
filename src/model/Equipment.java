@@ -24,7 +24,7 @@ public class Equipment {
 		this.stock = stock;
 		this.owner = owner;
 	}
-	
+
 	public String getEqName() {
 		return eqName;
 	}
@@ -88,5 +88,4 @@ public class Equipment {
 	public void setOwner(String owner) {
 		this.owner = owner;
 	}
-
 }

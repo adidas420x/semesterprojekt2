@@ -4,8 +4,5 @@ import model.Order;
 
 public interface OrderDBIF {
 
-	//indsæt funktion fra order
-	
-	public Order insertOrder(Order order) throws DataAccessException;
-	
+	Order insertOrder(Order order) throws DataAccessException;
 }
