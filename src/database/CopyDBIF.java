@@ -8,5 +8,4 @@ import model.Copy;
 public interface CopyDBIF {
 
 	List<Copy> getAvailCopies(String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException;
-
 }

@@ -48,10 +48,10 @@ public class ErrorFrame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.setBackground(new Color(41, 140, 240));
 		setContentPane(contentPane);
-		
+
 		JLayeredPane layeredPane = new JLayeredPane();
 		contentPane.add(layeredPane, BorderLayout.CENTER);
-		
+
 		JButton btnAccept = new JButton("OK");
 		btnAccept.setBackground(Color.GRAY);
 		btnAccept.addActionListener(new ActionListener() {
@@ -67,7 +67,7 @@ public class ErrorFrame extends JFrame {
 		btnAccept.setFont(new Font("Tahoma", Font.BOLD, 24));
 		btnAccept.setBounds(110, 180, 182, 49);
 		layeredPane.add(btnAccept);
-		
+
 		JTextPane errorTxtBox = new JTextPane();
 		errorTxtBox.setEditable(false);
 		errorTxtBox.setFont(new Font("Tahoma", Font.PLAIN, 24));

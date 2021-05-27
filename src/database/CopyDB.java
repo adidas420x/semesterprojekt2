@@ -12,10 +12,8 @@ import model.Copy;
 public class CopyDB implements CopyDBIF {
 
 	private static final String getAvailCopiesQ = "SELECT copies.eqID as copyID, copies.serialNo, orders.startDate, orders.endDate "
-			+ "from Copies "
-			+ "INNER JOIN specificcopies ON copies.serialNo=specificcopies.serialNo "
-			+ "INNER JOIN orders ON specificcopies.orderID=orders.orderID "
-			+ "where copies.eqID = ?";
+			+ "from Copies " + "INNER JOIN specificcopies ON copies.serialNo=specificcopies.serialNo "
+			+ "INNER JOIN orders ON specificcopies.orderID=orders.orderID " + "where copies.eqID = ?";
 	private PreparedStatement getAvailCopies;
 
 	public CopyDB() throws DataAccessException {
@@ -26,7 +24,6 @@ public class CopyDB implements CopyDBIF {
 		}
 	}
 
-
 	@Override
 	public List<Copy> getAvailCopies(String eqID, LocalDate startDate, LocalDate endDate) throws DataAccessException {
 		List<Copy> availCopies = new ArrayList<Copy>();
@@ -34,12 +31,12 @@ public class CopyDB implements CopyDBIF {
 			getAvailCopies.setString(1, eqID);
 			ResultSet rs = getAvailCopies.executeQuery();
 			while (rs.next()) {
-				if(startDate.isAfter(rs.getDate("endDate").toLocalDate()) || endDate.isBefore(rs.getDate("startDate").toLocalDate())) {
-						Copy c = buildObject(rs);
-						availCopies.add(c);
+				if (startDate.isAfter(rs.getDate("endDate").toLocalDate())
+						|| endDate.isBefore(rs.getDate("startDate").toLocalDate())) {
+					Copy c = buildObject(rs);
+					availCopies.add(c);
 				}
-						
-				}
+			}
 			return availCopies;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -59,5 +56,4 @@ public class CopyDB implements CopyDBIF {
 		}
 		return res;
 	}
-
 }
